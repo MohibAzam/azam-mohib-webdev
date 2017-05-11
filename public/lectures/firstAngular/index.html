@@ -4,6 +4,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="app.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+    <!--if commands aren't showing up, download local copies of Angular and Bootstrap-->
+    <!--of course, use hosted versions once you're deploying-->
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -12,20 +14,39 @@
         <h1>Todo List App</h1>
 
         <div ng-controller="TodoListController" ng-init="">
-            <!--<input ng-model="title" class="form-control"/>-->
-            <input ng-model="todo.title" placeholder="sup" class="form-control"/>
-            {{title}}
-            {{todo}}
-            <button ng-click="addTodo(todo);todo={}" class="btn btn-block btn-primary">Add todo</button>
+            <label>Title</label>
+            <input ng-model="todo.title"
+                   placeholder="sup" class="form-control"/>
 
-            {{todos}}
+            <!--{{title}}-->
+            <!--{{todo}}-->
+
+            <label>Details</label>
+            <textarea ng-model="todo.details"
+                      class="form-control"></textarea>
+
+            <button ng-click="addTodo(todo);todo={}"
+                    class="btn btn-block btn-primary">
+                Add todo
+            </button>
+
+            <button ng-click="updateTodo(todo);todo={}"
+                    class="btn btn-block btn-success">
+                Update
+            </button>
+
+            <!--ng-click functions are functions from the $scope object-->
+            <!--{{todos}}-->
 
             <ul class="list-group">
-                <li class="list-group-item">Pick up kids</li>
+                <!--<li class="list-group-item">Pick up kids</li>-->
                 <li ng-repeat="todo in todos" class="list-group-item">
-                    <!--<span ng-click="removeTodo($index)"
-                          class="pull-right"></span>-->
-                    {{todo.title}}
+                    <span ng-click="removeTodo(todo)"
+                          class="pull-right glyphicon glpyhicon-remove pull">remove</span>
+                    <span ng-click="selectTodo(todo)"
+                          class="pull-right glyphicon glpyhicon-cog pull">select</span>
+                    <h3>{{todo.title}}</h3>
+                    <p>{{todo.details}}</p>
                 </li>
             </ul>
         </div>

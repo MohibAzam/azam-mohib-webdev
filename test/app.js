@@ -5,6 +5,7 @@ module.exports = function(app)
     app.delete("/api/test/:id", deleteMessage);
 
     var connectionString = 'mongodb://127.0.0.1:27017/test'; // for local
+    connectionString = 'mongodb://@ds137101.mlab.com:37101/heroku_2gx4wpp3';
     if(process.env.MLAB_USERNAME) { // check if running remotely
         var username = process.env.MLAB_USERNAME; // get from environment
         var password = process.env.MLAB_PASSWORD;
