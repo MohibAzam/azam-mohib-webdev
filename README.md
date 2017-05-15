@@ -6,4 +6,8 @@ I'll be using this repository to store some of the work that I do for my Web Dev
 
 The Heroku instance's Home Page can be found here: https://azam-mohib-webdev.herokuapp.com/
 
+The project can be found here: https://azam-mohib-webdev.herokuapp.com/project
+
+The assignment can be found here: https://azam-mohib-webdev.herokuapp.com/assignment
+
 The only other thing that I feel needs to be noted is that I am also a gigantic nerd. 
