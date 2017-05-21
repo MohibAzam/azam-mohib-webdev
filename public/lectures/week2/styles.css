@@ -23,3 +23,12 @@ body {
 .navbar-right {
     float: right;
 }
+
+.move-right {
+    float: right;
+    margin-right: 10px;
+}
+.heading {
+    background-color:beige;
+    font-weight: bold;
+}
