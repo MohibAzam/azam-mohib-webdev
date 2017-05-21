@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default navbar-fixed-top navbar-inverse bg-inverse">
+        <div class="container-fluid">
+            <div class="col-lg-4 col-md-4 hidden-sm hidden-xs">
+                <a class="navbar-brand navbar-left" href="website-list.html">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="navbar-brand" href="website-list.html">
+                    Websites
+                </a>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <a class="navbar-brand navbar-left hidden-lg hidden-md" href="#">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="navbar-brand" href="#">
+                    Edit Website
+                </a>
+                <a class="navbar-brand navbar-right" href="website-list.html">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="yellow-bg col-lg-4 col-md-4 hidden-sm hidden-xs">
+        <div class="container-fluid">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12">
+                            <a href="profile.html">
+                                Address Book App
+                            </a>
+                        </div>
+                        <!--visible-lg could be used for Column 2 instead-->
+                        <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
+                            1-1-2017
+                        </div>
+                        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+                            2-2-2017
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
+                            <a href="website-edit.html">
+                                <!--span allows you to refer to things that
+                                are rendered in-line, i.e. particular words.
+                                doesn't initially change anything but allows
+                                you to add further attributes once marked as a span-->
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    Blogger
+                    <a href="website-edit.html">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    Blogging App
+                    <a href="website-edit.html">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    Script Testing App
+                    <a href="website-edit.html">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--visible-lg could be used for Column 2 instead-->
+    <div class="blue-bg col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <label for="name">Name</label>
+        <input id="name"
+               class="form-control"
+               value="Blogger"/>
+
+        <label for="description">Description</label>
+        <textarea id="description"
+                  rows="5"
+                  class="form-control input.form-control"></textarea>
+
+        <a href="website-list.html"
+           class="btn btn-block btn-danger">
+            Delete
+        </a>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand navbar-right" href="profile.html">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </nav>
+</body>
+</html>

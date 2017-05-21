@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="../vendor/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link href="styles2.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="">
+                Header
+            </a>
+        </div>
+    </div>
+</nav>
+
+<body>
+    <div class="yellow-bg col-lg-3 col-md-3 hidden-sm hidden-xs">
+        <div class="container-fluid">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6 col-sm-9 col-xs-12">
+                            <a href="profile.html">
+                                Address Book App
+                            </a>
+                        </div>
+                        <!--visible-lg could be used for Column 2 instead-->
+                        <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
+                            1-1-2017
+                        </div>
+                        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+                            2-2-2017
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 hidden-xs">
+                            <a href="website-edit.html">
+                                <!--span allows you to refer to things that
+                                are rendered in-line, i.e. particular words.
+                                doesn't initially change anything but allows
+                                you to add further attributes once marked as a span-->
+                                <span class="glyphicon glyphicon-cog pull-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    Blogger
+                    <a href="website-edit.html">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    Blogging App
+                    <a href="website-edit.html">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </li>
+                <li class="list-group-item">
+                    Script Testing App
+                    <a href="website-edit.html">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--visible-lg could be used for Column 2 instead-->
+    <div class="blue-bg col-lg-9 col-md-9 col-sm-12 col-xs-12">
+        <label for="name">Name</label>
+        <input id="name"
+               class="form-control"
+               value="Blogger"/>
+
+        <label for="description">Description</label>
+        <textarea id="description"
+                  rows="5"
+                  class="form-control input.form-control"></textarea>
+
+        <a href="website-list.html"
+           class="btn btn-block btn-danger">
+            Delete
+        </a>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <div class="navbar-footer">
+                <a class="navbar-brand" href="#">
+                    Footer
+                </a>
+            </div>
+        </div>
+    </nav>
+</body>
+</html>

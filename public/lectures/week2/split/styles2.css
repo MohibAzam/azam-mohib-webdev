@@ -1,0 +1,14 @@
+input.form-control {
+    margin-bottom: 5px;
+}
+
+.navbar-default {
+    background-color: darkblue;
+    color: white;
+}
+
+body {
+    margin-top: 70px;
+    margin-bottom: 60px;
+}
+

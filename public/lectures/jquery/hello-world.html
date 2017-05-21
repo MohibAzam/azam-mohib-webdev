@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        //alert('hello');
+        jQuery(function () {
+            alert('hello from jquery');
+        });
+        //OR:
+        /* jQuery(init)
+            function init () { alert('hello from jquery'); }
+         */
+        //You can grab stuff from the DOM and dynamically inject into it to update it
+        jQuery(function () {
+           jQuery('body')
+               .append('hello from jquery');
+        });
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
