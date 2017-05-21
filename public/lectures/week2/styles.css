@@ -2,6 +2,11 @@ input.form-control {
     margin-bottom: 5px;
 }
 
+.btn-block {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .white {
     color:white;
 }
