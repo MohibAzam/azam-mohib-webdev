@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet"/>
+    <title>Title</title>
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top gray-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand navbar-left" href="widget-list.html">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="navbar-brand navbar-left" href="#">
+                Widget Edit
+            </a>
+            <a class="navbar-brand navbar-right" href="widget-list.html">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+
+        <label for="name">
+            Name
+        </label>
+        <input id="name" class="form-control"/>
+
+        <label for="text">
+            Text
+        </label>
+        <input id="text" class="form-control"/>
+
+        <label for="url">
+            Url
+        </label>
+        <input id="url" class="form-control"/>
+
+        <label for="url">
+            Width
+        </label>
+        <input id="width" class="form-control"/>
+
+        <label for="file">
+            Image
+        </label>
+        <input id="file"
+               multiple
+               type="file"
+               class="form-control"/>
+
+        <a href="profile.html" class="btn btn-block btn-primary">Upload Image</a>
+
+        <a href="widget-list.html" class="btn btn-block btn-danger ">Delete</a>
+
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand navbar-right" href="profile.html">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </nav>
+
+</body>
+</html>
