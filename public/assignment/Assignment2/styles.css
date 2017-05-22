@@ -37,14 +37,13 @@ body {
     font-weight: bold;
 }
 
-.gray-navbar {
-    background-color: gainsboro;
+.blue-navbar {
+    background-color: royalblue;
     font-weight: bold;
 }
 
-.blue-navbar {
-    background-color: lightblue;
-    font-weight: bold;
+.navbar-default .navbar-brand {
+    color: white;
 }
 
 .wd-toolbar {
