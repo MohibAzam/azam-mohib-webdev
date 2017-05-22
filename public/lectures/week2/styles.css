@@ -55,14 +55,12 @@ body {
 .padded-video {
     padding-bottom: 55%;
     position: relative;
-    padding-top: 0;
-    padding-left: 0;
-    padding-right: 0;
+    padding-top: 30px;
     height: 0;
     overflow: hidden;
 }
 
-.padded-video embed {
+.padded-video iframe {
     position: absolute;
     top: 0;
     left: 0;
@@ -73,4 +71,10 @@ body {
 
 .widget-choice {
     margin-bottom: 20px;
+}
+
+.navbar-brand {
+    padding-left: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
 }

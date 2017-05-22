@@ -2,11 +2,23 @@
 <html lang="en">
 <head>
     <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-    <link href="user-style.css" rel="stylesheet"/>
+    <link href="styles.css" rel="stylesheet"/>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Profile</title>
 </head>
 <body>
+
+<nav class="navbar navbar-default navbar-fixed-top blue-navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand navbar-left" href="#">
+            Profile
+        </a>
+        <a class="navbar-brand navbar-right" href="profile.html">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+    </div>
+</nav>
+
 <div class="container-fluid">
     <h1>Profile</h1>
 
@@ -14,10 +26,10 @@
     <input readonly="aName" id="username" class="form-control" value="bee47"/>
 
     <label>Password</label>
-    <input type="password" class="form-control"/>
+    <input type="password" class="form-control" value="TerriblePassword"/>
 
     <label>Verify Password</label>
-    <input type="password" class="form-control"/>
+    <input type="password" class="form-control" value="TerriblePassword"/>
 
     <label>First Name</label>
     <input class="form-control" value="Bort"/>
@@ -32,5 +44,13 @@
 
     <a href="login.html" class="btn btn-block btn-danger">Logout</a>
 </div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom blue-navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand navbar-right" href="profile.html">
+            <span class="glyphicon glyphicon-user"></span>
+        </a>
+    </div>
+</nav>
 </body>
 </html>
