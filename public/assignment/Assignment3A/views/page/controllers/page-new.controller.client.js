@@ -7,22 +7,24 @@
                                   pageService,
                                   $location) {
 
-        var model = this;
-        model.userId = $routeParams['userId'];
-        model.websiteId = $routeParams.websiteId;
+        var vm = this;
+        vm.userId = $routeParams['userId'];
+        vm.websiteId = $routeParams.websiteId;
 
         // event handlers
-        model.createWebsite = createPage;
+        vm.createPage = createPage;
 
         function init() {
-            model.pages = pageService.findPagesByWebsiteId(model.websiteId);
+            vm.pages = pageService.findPagesByWebsiteId(vm.websiteId);
         }
         init();
 
         // implementation
         function createPage(page) {
-            pageService.createWebsite(model.websiteId, page);
-            $location.url('/user/' + model.userId + '/website/' + model.websiteId + '/page');
+            console.log(page);
+            pageService.createPage(vm.websiteId, page);
+            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
+            console.log('done');
         }
     }
 })();

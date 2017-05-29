@@ -1,20 +1,30 @@
 (function () {
     angular
         .module('WAM')
-        .controller('widgetListController', widgetListController);
+        .controller('widgetChooseController', widgetChooseController);
 
-    function widgetListController($location, $sce) {
+    function widgetChooseController($location,
+                                    $routeParams,
+                                    $sce,
+                                    widgetService) {
 
         var model = this;
+        model.userId = $routeParams['userId'];
+        model.websiteId = $routeParams.websiteId;
+        model.pageId = $routeParams.pageId;
 
-        model.widgets = widgets;
+        function init() {
+            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+        }
+        init();
+
+        model.handleChoice = handleChoice;
 
         function handleChoice(choice) {
             var widgetChoice = {
                 widgetType: choice
             };
-            widgetChoice._id = (new Date()).getTime() + "";
-            widgets.push(widgetChoice);
+            widgetService.createWidget(model.pageId, widgetChoice);
             $location.url('/user/' + model.userId +
                 '/website/' + model.websiteId +
                 '/page/' + model.pageId +

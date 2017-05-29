@@ -56,8 +56,8 @@
 
         function deletePage(pageId) {
             var page = findPageById(pageId);
-            var index = widgets.indexOf(page);
-            widgets.splice(index, 1);
+            var index = pages.indexOf(page);
+            pages.splice(index, 1);
         }
 
     }

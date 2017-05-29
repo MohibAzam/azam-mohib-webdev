@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-fixed-top gray-navbar">
+<nav class="navbar navbar-default navbar-fixed-top gray-navbar blue-brands">
     <div class="container-fluid">
         <a class="navbar-brand navbar-left" href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page">
             <span class="glyphicon glyphicon-chevron-left"></span>
@@ -17,13 +17,13 @@
         <label for="name">Name</label>
         <input id="name"
                class="form-control"
-               ng-model="page.name"
+               ng-model="model.page.name"
                placeholder="Page Name"/>
 
         <label for="description">Description</label>
         <input id="description"
                class="form-control"
-               ng-model="page.description"
+               ng-model="model.page.description"
                placeholder="Page Description"/>
 
         <a ng-click="model.deletePage()"
@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-bottom blue-brands">
     <div class="container-fluid">
         <a class="navbar-brand navbar-right" href="#!/user/{{model.userId}}">
             <span class="glyphicon glyphicon-user"></span>

@@ -7,36 +7,29 @@
                                    pageService,
                                    $location) {
 
-        var model = this;
-        model.userId = $routeParams['userId'];
-        model.websiteId = $routeParams.websiteId;
-        model.pageId = $routeParams.pageId;
+        var vm = this;
+        vm.userId = $routeParams['userId'];
+        vm.websiteId = $routeParams.websiteId;
+        vm.pageId = $routeParams.pageId;
 
         // event handlers
-        model.createPage = createPage;
-        model.updatePage = updatePage;
-        model.deletePage = deletePage;
+        vm.updatePage = updatePage;
+        vm.deletePage = deletePage;
 
         function init() {
-            model.pages = pageService.findPagesByWebsiteId(model.websiteId);
-            model.page = pageService.findPageById(model.pageId);
+            vm.pages = pageService.findPagesByWebsiteId(vm.websiteId);
+            vm.page = pageService.findPageById(vm.pageId);
         }
         init();
 
-        // implementation
-        function createPage(page) {
-            pageService.createWebsite(model.websiteId, page);
-            $location.url('/user/' + model.userId + '/website' + model.websiteId + '/page');
-        }
-
         function updatePage(page) {
-            pageService.updatePage(model.pageId, page);
-            $location.url('/user/' + model.userId + '/website' + model.websiteId + '/page');
+            pageService.updatePage(vm.pageId, page);
+            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
         }
 
         function deletePage() {
-            websiteService.deletePage(model.pageId);
-            $location.url('/user/' + model.userId + '/website' + model.websiteId + '/page');
+            pageService.deletePage(vm.pageId);
+            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
         }
     }
 })();
