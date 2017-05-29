@@ -4497,11 +4497,11 @@ var isHiddenWithinTree = function( elem, el ) {
 		// in that case, element will be second argument
 		elem = el || elem;
 
-		// Inline stylessheets trumps all
+		// Inline style trumps all
 		return elem.style.display === "none" ||
 			elem.style.display === "" &&
 
-			// Otherwise, check computed stylessheets
+			// Otherwise, check computed style
 			// Support: Firefox <=43 - 45
 			// Disconnected elements can have computed display: none, so first confirm that elem is
 			// in the document.
@@ -6167,7 +6167,7 @@ function curCSS( elem, name, computed ) {
 	var width, minWidth, maxWidth, ret,
 
 		// Support: Firefox 51+
-		// Retrieving stylessheets before computed somehow
+		// Retrieving style before computed somehow
 		// fixes an issue with getting wrong values
 		// on detached elements
 		style = elem.style;
@@ -6342,7 +6342,7 @@ function augmentWidthOrHeight( elem, name, extra, isBorderBox, styles ) {
 
 function getWidthOrHeight( elem, name, extra ) {
 
-	// Start with computed stylessheets
+	// Start with computed style
 	var valueIsBorderBox,
 		styles = getStyles( elem ),
 		val = curCSS( elem, name, styles ),
@@ -6353,8 +6353,8 @@ function getWidthOrHeight( elem, name, extra ) {
 		return val;
 	}
 
-	// Check for stylessheets in case a browser which returns unreliable values
-	// for getComputedStyle silently falls back to the reliable elem.stylessheets
+	// Check for style in case a browser which returns unreliable values
+	// for getComputedStyle silently falls back to the reliable elem.style
 	valueIsBorderBox = isBorderBox &&
 		( support.boxSizingReliable() || val === elem.style[ name ] );
 
@@ -6381,8 +6381,8 @@ function getWidthOrHeight( elem, name, extra ) {
 
 jQuery.extend( {
 
-	// Add in stylessheets property hooks for overriding the default
-	// behavior of getting and setting a stylessheets property
+	// Add in style property hooks for overriding the default
+	// behavior of getting and setting a style property
 	cssHooks: {
 		opacity: {
 			get: function( elem, computed ) {
@@ -6419,7 +6419,7 @@ jQuery.extend( {
 		"float": "cssFloat"
 	},
 
-	// Get and set the stylessheets property on a DOM Node
+	// Get and set the style property on a DOM Node
 	style: function( elem, name, value, extra ) {
 
 		// Don't set styles on text and comment nodes
@@ -6490,7 +6490,7 @@ jQuery.extend( {
 				return ret;
 			}
 
-			// Otherwise just get the value from the stylessheets object
+			// Otherwise just get the value from the style object
 			return style[ name ];
 		}
 	},
@@ -6541,7 +6541,7 @@ jQuery.each( [ "height", "width" ], function( i, name ) {
 			if ( computed ) {
 
 				// Certain elements can have dimension info if we invisibly show them
-				// but it must have a current display stylessheets that would benefit
+				// but it must have a current display style that would benefit
 				return rdisplayswap.test( jQuery.css( elem, "display" ) ) &&
 
 					// Support: Safari 8+

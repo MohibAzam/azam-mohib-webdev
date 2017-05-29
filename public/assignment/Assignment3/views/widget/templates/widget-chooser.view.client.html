@@ -1,0 +1,66 @@
+<nav class="navbar navbar-default navbar-fixed-top gray-navbar blue-brands">
+    <div class="container-fluid">
+        <a class="navbar-brand navbar-left"
+           href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="navbar-brand navbar-left">
+            Choose Widget
+        </a>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="widget-choice">
+        <a ng-click='model.handleChoice("HEADING")' class="blue">
+            <p>Header</p>
+        </a>
+    </div>
+    <div class="widget-choice">
+        <a class="blue">
+            <p>Label</p>
+        </a>
+    </div>
+    <div class="widget-choice">
+        <a class="blue">
+            <p>HTML</p>
+        </a>
+    </div>
+    <div class="widget-choice">
+        <a class="blue">
+            <p>Text Input</p>
+        </a>
+    </div>
+    <div class="widget-choice">
+        <a class="blue">
+            <p>Link</p>
+        </a>
+    </div>
+    <div class="widget-choice">
+        <a class="blue">
+            <p>Button</p>
+        </a>
+    </div>
+    <div class="widget-choice">
+        <a ng-click='model.handleChoice("IMAGE")' class="blue">
+            <p>Image</p>
+        </a>
+    </div>
+    <div class="widget-choice">
+        <a ng-click='model.handleChoice("YOUTUBE")' class="blue">
+            <p>Youtube</p>
+        </a>
+    </div>
+    <div class="widget-choice">
+        <a class="blue">
+            <p>Data Table</p>
+        </a>
+    </div>
+    <div class="widget-choice">
+        <a class="blue">
+            <p>Repeater</p>
+        </a>
+    </div>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

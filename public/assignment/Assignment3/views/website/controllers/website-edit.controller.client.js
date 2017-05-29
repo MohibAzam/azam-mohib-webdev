@@ -1,42 +1,43 @@
-/**
- * Created by mohib on 5/24/2017.
- */
-
 (function () {
     angular
         .module('WAM')
-        .controller('websiteNewController', websiteNewController);
+        .controller('websiteEditController', websiteEditController);
+    
+    function websiteEditController($routeParams,
+                                  websiteService,
+                                  $location) {
 
-    function websiteNewController($routeParams, websiteService, $location) {
-        var model = this;
-        model.userId = $routeParams['userId'];
-        model.websiteId = $routeParams.websiteId;
+        var vm = this;
 
-        model.createWebsite = createWebsite;
-        model.updateWebsite = updateWebsite;
-        model.deleteWebsite = deleteWebsite;
+        //Initialize the user and website Ids
+        vm.userId = $routeParams['userId'];
+        vm.websiteId = $routeParams.websiteId;
 
+        // event handlers
+        vm.updateWebsite = updateWebsite;
+        vm.deleteWebsite = deleteWebsite;
+
+        //Initialize the websites owned by the user
+        //and the website currently being edited
         function init() {
-            model.websites = websiteService.findAllWebsitesForUser(model.userId);
-            model.website = websiteService.findWebsiteById(model.websiteId);
+            vm.websites = websiteService.findAllWebsitesForUser(vm.userId);
+            vm.website = websiteService.findWebsiteById(vm.websiteId);
         }
         init();
 
-        function createWebsite(website) {
-            website.developerId = model.userId;
-            websiteService.createWebsite(website);
-            $location.url('/user/' + model.userId + '/website');
-        }
-
+        //Update the website based on the information provided
+        //in the incomplete website
         function updateWebsite(website) {
-            websiteService.updateWebsite();
+            websiteService.updateWebsite(vm.websiteId, website);
+            $location.url('/user/' + vm.userId + '/website');
+            vm.message = "Website " + website.name + " has been updated!";
         }
 
+        //Delete the current website
         function deleteWebsite(websiteId) {
             websiteService.deleteWebsite(websiteId);
-            $location.url('/user/' + model.userId + '/website');
+            $location.url('/user/' + vm.userId + '/website');
+            vm.message = "The website has been deleted!";
         }
     }
-
 })();
-

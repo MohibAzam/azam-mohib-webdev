@@ -1,0 +1,47 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="../../../vendor/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link href="../../stylessheets/styles.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Login</title>
+</head>
+<body ng-app="WAM">
+</body>
+</html> -->
+
+<div class="container-fluid">
+
+    <h1>Login</h1>
+
+    <div ng-show="vm.message" class="alert alert-danger">
+        {{vm.message}}
+    </div>
+
+    <!--ng model effectively allows the value of an html element to become a variable!-->
+
+    <label for="username">Username</label>
+    <input ng-model="username"
+           id="username"
+           placeholder="Username"
+           class="form-control"/>
+
+    <label for="username">Password</label>
+    <input ng-model="password"
+           id="password"
+           placeholder="Password"
+           type="password"
+           class="form-control"/>
+
+    <a ng-click="vm.login(username, password)"
+       class="btn btn-block btn-primary">
+        Login
+    </a>
+
+    <a href="#!/register"
+       class="btn btn-block btn-success">
+        Register
+    </a>
+
+</div>

@@ -1,21 +1,17 @@
-/**
- * Created by mohib on 5/24/2017.
- */
-
 (function () {
     angular
         .module('WAM')
         .controller('websiteListController', websiteListController);
-
+    
     function websiteListController($routeParams, websiteService) {
-        var model = this;
-        model.userId = $routeParams['userId'];
 
+        var vm = this;
+        vm.userId = $routeParams['userId'];
+
+        //initialize the websites for the given user
         function init() {
-            model.websites = websiteService.findAllWebsitesForUser(model.userId);
+            vm.websites = websiteService.findAllWebsitesForUser(vm.userId);
         }
         init();
     }
-
 })();
-

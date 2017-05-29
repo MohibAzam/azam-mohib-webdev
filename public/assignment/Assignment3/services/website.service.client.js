@@ -1,15 +1,11 @@
-/**
- * Created by mohib on 5/23/2017.
- */
-
 (function () {
     angular
         .module('WAM')
         .factory('websiteService', websiteService);
-
+    
     function websiteService() {
 
-        //This data can ONLY be manipulated THROUGH the provides services
+        //Collection of websites to use
         var websites = [
             { "_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem" },
             { "_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem" },
@@ -20,32 +16,39 @@
             { "_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem" }
         ];
 
-        return {
+        //The api we'll be using in this service
+        var api = {
             createWebsite: createWebsite,
-            updateWebsite: updateWebsite,
-            deleteWebsite: deleteWebsite,
+            findAllWebsitesForUser: findAllWebsitesForUser,
             findWebsiteById: findWebsiteById,
-            findAllWebsitesForUser: findAllWebsitesForUser
+            updateWebsite: updateWebsite,
+            deleteWebsite: deleteWebsite
         };
 
-        function findWebsiteById(websiteId) {
-            return websites.find(function (website) {
-                return website._id === websiteId;
-            });
+        return api;
 
-        }
-
-        function createWebsite(website) {
+        //A function to create a website from the given Id and website
+        function createWebsite(userId, website) {
             website._id = (new Date()).getTime() + "";
+            website.developerId = userId;
             website.created = new Date();
             website.updated = new Date();
             websites.push(website);
         }
 
-        function updateWebsite(websiteId) {
-
+        //Update the website of the given Id
+        //Using the material from the given (incomplete) website
+        function updateWebsite(websiteId, website) {
+            var oldSite = findWebsiteById(websiteId);
+            var index = websites.indexOf(oldSite);
+            website._id = oldSite._id;
+            website.created = oldSite.created;
+            website.updated = new Date();
+            website.developerId = oldSite.developerId;
+            websites[index] = website;
         }
 
+        //Delete the website of the given Id
         function deleteWebsite(websiteId) {
             var website = websites.find(function (website) {
                 return website._id === websiteId;
@@ -54,21 +57,22 @@
             websites.splice(index, 1);
         }
 
+        //Find a Website of the given Id
+        function findWebsiteById(websiteId) {
+            return websites.find(function (website) {
+                return website._id === websiteId;
+            });
+        }
 
+        //Find all of the Websites created by the given User
         function findAllWebsitesForUser(userId) {
             var resultSet = [];
             for(var w in websites) {
                 if(websites[w].developerId === userId) {
-                    // websites[w].created = new Date();
-                    // websites[w].updated = new Date();
                     resultSet.push(websites[w]);
                 }
             }
             return resultSet;
         }
-
-        return api;
-
     }
-
 })();

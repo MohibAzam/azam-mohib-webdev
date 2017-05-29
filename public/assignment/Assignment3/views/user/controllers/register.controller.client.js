@@ -2,38 +2,37 @@
     angular
         .module('WAM')
         .controller('registerController', registerController);
-
+    
     function registerController($location, userService) {
 
-        //All instances of $scope (originally an input into loginController
-        //have been replaced with instances of model
-        var model = this;
+        var vm = this;
 
-        model.register = register;
+        // event handler
+        vm.register = register;
 
-        function register(username, password, password2) {
+        //Handle the registration of a new user,
+        //checking to make sure their username is unique
+        //and their passwords match
+        function register(user) {
 
-            if(password !== password2) {
-                model.error = "Passwords must match";
+            if(user.password !== user.password2) {
+                vm.error = "Passwords must match";
                 return;
             }
 
-            var found = userService.findUserByUsername(username);
+            var found = userService.findUserByUsername(user.username);
 
-            if (found !== null) {
-                model.error = "Username is not available"
-            }
-            else {
-                var user = {
-                    username: username,
-                    password: password
+            if(found !== null) {
+                vm.error = "Username is not available";
+            } else {
+                var finalUser = {
+                    username: user.username,
+                    password: user.password
                 };
-                userService.createUser(user);
-                $location.url('/user/' + user._id);
+                userService.createUser(finalUser);
+                $location.url('/user/' + finalUser._id);
+
             }
         }
     }
 })();
-/**
- * Created by mohib on 5/22/2017.
- */

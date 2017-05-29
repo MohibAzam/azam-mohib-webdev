@@ -1,37 +1,9 @@
-<!--<!DOCTYPE html>
-<html lang="en" ng-app="WAM">
-<head>
-
-    <link href="vendor/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-    <link href="views/stylessheets/styles.css"/>
-
-    <script src="angular/angular.min.js"></script>
-    <script src="angular-route/angular-route.min.js"></script>
-    <script src="app.js"></script>
-    <script src="views/user/controllers/login.controller.client.js"></script>
-    <script src="views/user/controllers/profile.controller.client.js"></script>
-    <script src="views/user/controllers/register.controller.client.js"></script>
-    <script src="services/user.service.client.js"></script>
-
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-    <title>WAM</title>
-</head>
-<body>
-    <div ng-view></div>
-</body>
-</html>-->
-
-
 
 <!DOCTYPE html>
 <html lang="en" ng-app="WAM">
 <head>
-    <script src="angular/angular.min.js"></script>
-    <script src="angular/angular-route.min.js"></script>
-
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular/angular-route.min.js"></script>
     <script src="app.js"></script>
     <script src="config.js"></script>
 
@@ -47,10 +19,17 @@
     <script src="views/website/controllers/website-edit.controller.client.js"></script>
     <script src="services/website.service.client.js"></script>
 
-    <!-- TODO: page -->
+    <!-- page -->
+    <script src="views/page/controllers/page-list.controller.client.js"></script>
+    <script src="views/page/controllers/page-new.controller.client.js"></script>
+    <script src="views/page/controllers/page-edit.controller.client.js"></script>
+    <script src="services/page.service.client.js"></script>
 
     <!-- widget -->
     <script src="views/widget/controllers/widget-list.controller.client.js"></script>
+    <script src="views/widget/controllers/widget-chooser.controller.client.js"></script>
+    <script src="views/widget/controllers/widget-edit.controller.client.js"></script>
+    <script src="services/widget.service.client.js"></script>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -58,21 +37,29 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
 
-    <title>Theme Template for Bootstrap</title>
+    <title>WAM</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap theme -->
-    <link href="vendor/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Stylesheets -->
     <link href="views/stylessheets/styles.css" rel="stylesheet"/>
+    <link href="views/stylessheets/styles2.css" rel="stylesheet"/>
 
 </head>
 
 <body>
-<div class="container">
-    <div ng-view></div>
-</div>
 
+<ng-view></ng-view>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<!--<script src="vendor/bootstrap/dist/js/bootstrap.min.js"></script>-->
+<!--<script src="../../assets/js/docs.min.js"></script>-->
 </body>
 </html>

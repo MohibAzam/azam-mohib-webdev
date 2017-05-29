@@ -1,38 +1,33 @@
-/**
- * Created by mohib on 5/25/2017.
- */
-
 (function () {
     angular
         .module('WAM')
         .controller('widgetListController', widgetListController);
     
-    function widgetListController($sce) {
+    function widgetListController($routeParams, $sce, widgetService) {
 
+        //Initialize the Model and some Ids
         var model = this;
+        model.userId = $routeParams['userId'];
+        model.websiteId = $routeParams.websiteId;
+        model.pageId = $routeParams.pageId;
 
-        var widgets = [
-            { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
-            { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-            { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-                "url": "http://lorempixel.com/400/200/"},
-            { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"},
-            { "_id": "567", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
-            { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-                "url": "https://youtu.be/AM2Ivdi9c4E" },
-            { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-        ];
+        //Initialize the widgets in this model
+        function init() {
+            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+        }
+        init();
 
-        model.widgets = widgets;
+        //Event Handlers
         model.trustThisContent = trustThisContent;
         model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
         model.getWidgetUrlForType = getWidgetUrlForType;
 
-        function trustThisContent(html) {
-            // diligence to scrub any unsafe content
-            return $sce.trustAsHtml(html);
+        //Get the view url for the given widget type
+        function getWidgetUrlForType(type) {
+            return 'views/widget/templates/widget-'+type.toLowerCase()+'.view.client.html';
         }
 
+        //Create an embedded version of a given Youtube link
         function getYouTubeEmbedUrl(youTubeLink) {
             var embedUrl = 'https://www.youtube.com/embed/';
             var youTubeLinkParts = youTubeLink.split('/');
@@ -40,10 +35,12 @@
             embedUrl += id;
             console.log(embedUrl);
             return $sce.trustAsResourceUrl(embedUrl);
+
         }
 
-        function getWidgetUrlForType(type) {
-            return 'views/widget/templates/widget-'+type.toLowerCase()+'.view.client.html';
+        //Force the application to accept some text as HTML
+        function trustThisContent(html) {
+            return $sce.trustAsHtml(html);
         }
     }
 })();

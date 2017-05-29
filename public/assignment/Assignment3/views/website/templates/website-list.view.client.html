@@ -1,78 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <title>Website List</title>
-        <link href="../../../vendor/bootstrap/css/bootstrap.css" rel="stylesheet"/>
-        <link href="../../stylessheets/styles.css" rel="stylesheet"/>
-    </head>
-    <body>
+<nav class="navbar navbar-default navbar-fixed-top blue-navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand navbar-left" href="#!/user/{{model.userId}}">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="navbar-brand navbar-left">
+            Websites
+        </a>
+        <a class="navbar-brand navbar-right" href="#!/user/{{model.userId}}/website/new">
+            <span class="glyphicon glyphicon-plus"></span>
+        </a>
+    </div>
+</nav>
 
-        <nav class="navbar navbar-default navbar-fixed-top blue-navbar">
-            <div class="container-fluid">
-                <a class="navbar-brand navbar-left" href="../../user/profile.html">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                </a>
-                <a class="navbar-brand navbar-left" href="#">
-                    Websites
-                </a>
-                <a class="navbar-brand navbar-right" href="#!/user/{{model.userId}}/website/new">
-                    <span class="glyphicon glyphicon-plus"></span>
-                </a>
+<div class="container-fluid">
+    <ul class="list-group">
+
+        <li class="list-group-item heading">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-9 col-xs-9 heading">
+                    Title
+                </div>
+                <div class="col-lg-3 hidden-md hidden-sm hidden-xs heading">
+                    Date Created
+                </div>
+                <div class="col-lg-3 col-md-3 hidden-sm hidden-xs heading">
+                    Last Edited
+                </div>
+                <div class="move-right">
+                    Edit
+                </div>
             </div>
-        </nav>
+        </li>
 
-        <div class="container-fluid">
-            <ul class="list-group">
-                <li class="list-group-item heading">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-9 col-xs-9 heading">
-                            Title
-                        </div>
-                        <div class="col-lg-3 hidden-md hidden-sm hidden-xs heading">
-                            Date Created
-                        </div>
-                        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs heading">
-                            Last Edited
-                        </div>
-                        <div class="move-right">
-                            Edit
-                        </div>
-                    </div>
-                </li>
-
-                <li ng-repeat="website in model.websites" class="list-group-item">
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-9 col-xs-9">
-                            <a href="../../page/page-list.html">
-                                {{website.name}}
-                            </a>
-                        </div>
-                        <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
-                            {{website.created | date}}
-                        </div>
-                        <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
-                            {{website.updated | date}}
-                        </div>
-                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                            <a href="#!/user/{{model.user._id}}/website/{{website._id}}">
-                                <span class="glyphicon glyphicon-cog pull-right"></span>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-
-            </ul>
-        </div>
-
-        <nav class="navbar navbar-default navbar-fixed-bottom blue-navbar">
-            <div class="container-fluid">
-                <a class="navbar-brand navbar-right" href="#!/user/{{model.user._id}}">
-                    <span class="glyphicon glyphicon-user"></span>
-                </a>
+        <li ng-repeat="website in model.websites" class="list-group-item">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-9 col-xs-9">
+                    <a href="#!/user/{{model.userId}}/website/{{website._id}}/page">
+                        {{website.name}}
+                    </a>
+                </div>
+                <div class="col-lg-3 hidden-md hidden-sm hidden-xs">
+                    {{website.created | date}}
+                </div>
+                <div class="col-lg-3 col-md-3 hidden-sm hidden-xs">
+                    {{website.updated | date}}
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+                    <a href="#!/user/{{model.userId}}/website/{{website._id}}">
+                        <span class="glyphicon glyphicon-cog pull-right"></span>
+                    </a>
+                </div>
             </div>
-        </nav>
+        </li>
 
-    </body>
-</html>
+    </ul>
+</div>
+
+<div ng-include="'views/common/footer.view.client.html'"></div>

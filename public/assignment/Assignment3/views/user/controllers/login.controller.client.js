@@ -5,17 +5,19 @@
 
     function loginController($location, userService) {
 
-        var model = this;
+        //Instantiate the model itself
+        var vm = this;
 
-        model.login = function (username, password) {
+        //Login the given user (whose credentials are provided)
+        //If their credentials are invalid, deny them access
+        vm.login = function(user) {
 
-            var found = userService.findUserByCredentials(username, password);
-
-            if (found !== null) {
-                $location.url('/profile/' + found._id);
-            }
-            else {
-                model.message = "invalid credentials";
+            var found = userService.findUserByCredentials(user.username, user.password);
+            
+            if(found !== null) {
+                $location.url('/user/' + found._id);
+            } else {
+                vm.message = "Username " + user.username + " not found, please try again";
             }
         };
     }
