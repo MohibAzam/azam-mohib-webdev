@@ -36,13 +36,14 @@
         }
         
         function updateUser(userId, user) {
-            
+            var oldUser = findUserById(userId);
+            var index = users.indexOf(oldUser);
+            user._id = oldUser._id;
+            users[index] = user;
         }
         
         function deleteUser(userId) {
-            var user = users.find(function (user) {
-                return user._id === userId;
-            });
+            var user = findUserById(userId);
             var index = users.indexOf(user);
             users.splice(index, 1);
         }

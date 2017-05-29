@@ -31,7 +31,12 @@
         }
         
         function updateWebsite(websiteId, website) {
-            
+            var oldSite = findWebsiteById(websiteId);
+            var index = websites.indexOf(oldSite);
+            website._id = oldSite._id;
+            website.created = oldSite.created;
+            website.updated = new Date();
+            websites[index] = website;
         }
         
         function deleteWebsite(websiteId) {
@@ -52,8 +57,6 @@
             var resultSet = [];
             for(var w in websites) {
                 if(websites[w].developerId === userId) {
-                    // websites[w].created = new Date();
-                    // websites[w].updated = new Date();
                     resultSet.push(websites[w]);
                 }
             }

@@ -18,7 +18,11 @@
         ];
 
         return {
-
+            createWidget: createWidget,
+            findWidgetsByPageId: findWidgetsByPageId,
+            findWidgetById: findWidgetById,
+            updateWidget: updateWidget,
+            deleteWidget: deleteWidget
         };
 
         function createWidget(pageId, widget) {
@@ -28,10 +32,11 @@
         }
 
         function findWidgetsByPageId(pageId) {
-            var pageWidgets = new Array();
+            var pageWidgets = [];
             for(var w in widgets) {
-                if (w.pageId === pageId) {
-                    pageWidgets.push(w);
+                var widget = widgets[w];
+                if (widget.pageId === pageId) {
+                    pageWidgets.push(widget);
                 }
             }
             return pageWidgets;
@@ -39,13 +44,15 @@
 
         function findWidgetById(widgetId) {
             return widgets.find(function (widget) {
-                return widget._id === userId;
+                return widget._id === widgetId;
             });
         }
 
         function updateWidget(widgetId, widget) {
             var oldWidget = findWidgetById(widgetId);
             var index = widgets.indexOf(oldWidget);
+            widget._id = oldWidget._id;
+            widget.pageId = oldWidget.pageId;
             widgets[index] = widget;
         }
 
@@ -57,4 +64,4 @@
 
 
     }
-})
+})();
