@@ -7,9 +7,9 @@
 
         var model = this;
 
-        model.login = function (username, password) {
+        model.login = function(user) {
 
-            var found = userService.findUserByCredentials(username, password);
+            var found = userService.findUserByCredentials(user.username, user.password);
             
             if(found !== null) {
                 $location.url('/user/' + found._id);

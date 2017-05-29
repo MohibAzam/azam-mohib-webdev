@@ -6,6 +6,7 @@
     function configuration($routeProvider) {
 
         $routeProvider
+            //user routing
             .when('/', {
                 templateUrl: 'home.html'
             })
@@ -24,6 +25,7 @@
                 controller: 'profileController',
                 controllerAs: 'model'
             })
+            //website routing
             .when('/user/:userId/website', {
                 templateUrl: 'views/website/templates/website-list.view.client.html'
                 ,controller: 'websiteListController',
@@ -39,11 +41,36 @@
                 controller: 'websiteEditController',
                 controllerAs: 'model'
             })
-            // page routing TBD
+            // page routing
+            .when('/user/:userId/website/:websiteId/page', {
+                templateUrl: 'views/page/templates/page-list.view.client.html',
+                controller: 'pageListController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/new', {
+                templateUrl: 'views/page/templates/page-new.view.client.html',
+                controller: 'pageNewController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId', {
+                templateUrl: 'views/page/templates/page-edit.view.client.html',
+                controller: 'pageEditController',
+                controllerAs: 'model'
+            })
             // widget routing
             .when('/user/:userId/website/:websiteId/page/:pageId/widget', {
                 templateUrl: 'views/widget/templates/widget-list.view.client.html',
                 controller: 'widgetListController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/new', {
+                templateUrl: 'views/widget/templates/widget-chooser.view.client.html',
+                controller: 'widgetChooseController',
+                controllerAs: 'model'
+            })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId', {
+                templateUrl: 'views/widget/templates/widget-edit.view.client.html',
+                controller: 'widgetEditController',
                 controllerAs: 'model'
             })
 
