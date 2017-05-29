@@ -5,20 +5,17 @@
     
     function profileController($location, userService, $routeParams) {
 
-        var model = this;
+        var vm = this;
         var userId = $routeParams['userId'];
 
-        model.user = userService.findUserById(userId);
+        vm.user = userService.findUserById(userId);
 
-        model.updateUser = updateUser;
+        vm.updateUser = updateUser;
 
-        function updateUser(firstName, lastName) {
-            var user = {
-                firstName: firstName,
-                lastName: lastName
-            };
+        function updateUser(user) {
             userService.updateUser(userId, user);
             $location.url('/user/' + userId);
+            vm.message = "The changes have been saved!"
         }
     }
 })();

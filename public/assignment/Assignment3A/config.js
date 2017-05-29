@@ -8,12 +8,14 @@
         $routeProvider
             //user routing
             .when('/', {
-                templateUrl: 'home.html'
+                templateUrl: 'views/user/templates/login.view.client.html',
+                controller: 'loginController',
+                controllerAs: 'model'
             })
             .when('/login', {
                 templateUrl: 'views/user/templates/login.view.client.html',
                 controller: 'loginController',
-                controllerAs: 'vm'
+                controllerAs: 'model'
             })
             .when('/register', {
                 templateUrl: 'views/user/templates/register.view.client.html',
@@ -73,6 +75,6 @@
                 controller: 'widgetEditController',
                 controllerAs: 'model'
             })
-
+            .otherwise({redirectTo:'/'});
     }
 })();

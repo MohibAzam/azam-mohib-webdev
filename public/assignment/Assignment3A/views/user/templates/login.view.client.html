@@ -1,8 +1,8 @@
 <div class="container-fluid">
     <h1>Login</h1>
 
-    <div ng-show="vm.message" class="alert alert-danger">
-        {{vm.message}}
+    <div ng-show="model.message" class="alert alert-danger">
+        {{model.message}}
     </div>
 
     <label for="username">Username</label>
@@ -15,7 +15,7 @@
            class="form-control"
            type="password"/>
 
-    <a ng-click="vm.login(model.user)"
+    <a ng-click="model.login(model.user)"
        class="btn btn-block btn-primary">
         Login
     </a>

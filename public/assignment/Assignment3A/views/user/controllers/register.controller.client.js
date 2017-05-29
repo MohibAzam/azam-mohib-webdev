@@ -5,31 +5,31 @@
     
     function registerController($location, userService) {
 
-        var model = this;
+        var vm = this;
 
         // event handlers
-        model.register = register;
+        vm.register = register;
 
         // implementation
-        function register(username, password, password2) {
+        function register(user) {
 
-            if(password !== password2) {
-                model.error = "Passwords must match";
+            if(user.password !== user.password2) {
+                vm.error = "Passwords must match";
                 return;
             }
 
-            var found = userService.findUserByUsername(username);
+            var found = userService.findUserByUsername(user.username);
 
             if(found !== null) {
-                model.error = "Username is not available";
+                vm.error = "Username is not available";
             } else {
-                var user = {
-                    username: username,
-                    password: password
+                var finalUser = {
+                    username: user.username,
+                    password: user.password
                 };
-                // model.message = user;
-                userService.createUser(user);
-                $location.url('/user/' + user._id);
+                // vm.message = user;
+                userService.createUser(finalUser);
+                $location.url('/user/' + finalUser._id);
 
             }
         }

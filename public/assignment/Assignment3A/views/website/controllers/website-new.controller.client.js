@@ -7,22 +7,22 @@
                                   websiteService,
                                   $location) {
 
-        var model = this;
-        model.userId = $routeParams['userId'];
+        var vm = this;
+        vm.userId = $routeParams['userId'];
 
         // event handlers
-        model.createWebsite = createWebsite;
+        vm.createWebsite = createWebsite;
 
         function init() {
-            model.websites = websiteService.findAllWebsitesForUser(model.userId);
+            vm.websites = websiteService.findAllWebsitesForUser(vm.userId);
         }
         init();
 
         // implementation
         function createWebsite(website) {
-            website.developerId = model.userId;
-            websiteService.createWebsite(website);
-            $location.url('/user/' + model.userId + '/website');
+            websiteService.createWebsite(vm.userId, website);
+            $location.url('/user/' + vm.userId + '/website');
+            vm.message = "Website " + website.name + " has been created!";
         }
     }
 })();

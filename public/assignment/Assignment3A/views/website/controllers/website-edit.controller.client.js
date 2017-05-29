@@ -7,29 +7,30 @@
                                   websiteService,
                                   $location) {
 
-        var model = this;
-        model.userId = $routeParams['userId'];
-        model.websiteId = $routeParams.websiteId;
+        var vm = this;
+        vm.userId = $routeParams['userId'];
+        vm.websiteId = $routeParams.websiteId;
 
         // event handlers
-        model.createWebsite = createWebsite;
-        model.updateWebsite = updateWebsite;
-        model.deleteWebsite = deleteWebsite;
+        vm.updateWebsite = updateWebsite;
+        vm.deleteWebsite = deleteWebsite;
 
         function init() {
-            model.websites = websiteService.findAllWebsitesForUser(model.userId);
-            model.website = websiteService.findWebsiteById(model.websiteId);
+            vm.websites = websiteService.findAllWebsitesForUser(vm.userId);
+            vm.website = websiteService.findWebsiteById(vm.websiteId);
         }
         init();
 
         function updateWebsite(website) {
-            websiteService.updateWebsite();
-            $location.url('/user/' + model.userId + '/website');
+            websiteService.updateWebsite(vm.websiteId, website);
+            $location.url('/user/' + vm.userId + '/website');
+            vm.message = "Website " + website.name + " has been updated!";
         }
 
         function deleteWebsite(websiteId) {
             websiteService.deleteWebsite(websiteId);
-            $location.url('/user/' + model.userId + '/website');
+            $location.url('/user/' + vm.userId + '/website');
+            vm.message = "The website has been deleted!";
         }
     }
 })();

@@ -37,7 +37,7 @@
             website._id = oldSite._id;
             website.created = oldSite.created;
             website.updated = new Date();
-            website.developerId = oldSite.userId;
+            website.developerId = oldSite.developerId;
             websites[index] = website;
         }
         

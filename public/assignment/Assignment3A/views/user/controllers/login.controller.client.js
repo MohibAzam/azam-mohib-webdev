@@ -5,9 +5,9 @@
     
     function loginController($location, userService) {
 
-        var model = this;
+        var vm = this;
 
-        model.login = function(user) {
+        vm.login = function(user) {
 
             var found = userService.findUserByCredentials(user.username, user.password);
             
@@ -15,7 +15,7 @@
                 $location.url('/user/' + found._id);
                 // $scope.message = "Welcome " + username;
             } else {
-                model.message = "Username " + username + " not found, please try again";
+                vm.message = "Username " + user.username + " not found, please try again";
             }
         };
     }
