@@ -22,6 +22,8 @@
         function createPage(websiteId, page) {
             page.websiteId = websiteId;
             page._id = (new Date()).getTime() + "";
+            page.created = new Date();
+            page.updated = new Date();
             pages.push(page);
         }
 
@@ -40,6 +42,8 @@
             var oldPage = findPageById(pageId);
             page._id = oldPage._id;
             page.websiteId = oldPage.websiteId;
+            page.created = oldPage.created;
+            page.updated = new Date();
             var index = pages.indexOf(oldPage);
             pages[index] = page;
         }
@@ -55,7 +59,6 @@
             var index = widgets.indexOf(page);
             widgets.splice(index, 1);
         }
-
 
     }
 })();

@@ -23,8 +23,9 @@
             deleteWebsite: deleteWebsite
         };
         
-        function createWebsite(website) {
+        function createWebsite(userId, website) {
             website._id = (new Date()).getTime() + "";
+            website.developerId = userId;
             website.created = new Date();
             website.updated = new Date();
             websites.push(website);
@@ -36,6 +37,7 @@
             website._id = oldSite._id;
             website.created = oldSite.created;
             website.updated = new Date();
+            website.developerId = oldSite.userId;
             websites[index] = website;
         }
         
