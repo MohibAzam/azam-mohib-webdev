@@ -30,6 +30,7 @@
                 // model.message = user;
                 userService.createUser(user);
                 $location.url('/user/' + user._id);
+
             }
         }
     }

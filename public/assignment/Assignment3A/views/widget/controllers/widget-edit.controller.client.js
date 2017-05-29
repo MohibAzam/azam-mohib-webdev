@@ -2,13 +2,14 @@
     angular
         .module('WAM')
         .controller('widgetListController', widgetListController);
-    
-    function widgetListController($routeParams, $sce) {
+
+    function widgetListController($location, $routeParams, $sce) {
 
         var model = this;
         model.userId = $routeParams['userId'];
         model.websiteId = $routeParams.websiteId;
         model.pageId = $routeParams.pageId;
+        model.widgetId = $routeParams.widgetId;
 
         var widgets = [
             { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -28,7 +29,7 @@
         model.getWidgetUrlForType = getWidgetUrlForType;
 
         function getWidgetUrlForType(type) {
-            return 'views/widget/templates/widget-'+type.toLowerCase()+'.view.client.html';
+            return 'views/widget/templates/widget-' + type.toLowerCase() + '.view.client.html';
         }
 
         function getYouTubeEmbedUrl(youTubeLink) {

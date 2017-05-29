@@ -1,14 +1,9 @@
 (function () {
     angular
         .module('WAM')
-        .controller('widgetListController', widgetListController);
-    
-    function widgetListController($routeParams, $sce) {
+        .factory('widgetService', widgetService);
 
-        var model = this;
-        model.userId = $routeParams['userId'];
-        model.websiteId = $routeParams.websiteId;
-        model.pageId = $routeParams.pageId;
+    function widgetService() {
 
         var widgets = [
             { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -22,29 +17,44 @@
             { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
         ];
 
-        model.widgets = widgets;
-        model.trustThisContent = trustThisContent;
-        model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
-        model.getWidgetUrlForType = getWidgetUrlForType;
+        return {
 
-        function getWidgetUrlForType(type) {
-            return 'views/widget/templates/widget-'+type.toLowerCase()+'.view.client.html';
+        };
+
+        function createWidget(pageId, widget) {
+            widget.pageId = pageId;
+            widget._id = (new Date()).getTime() + "";
+            widgets.push(widget);
         }
 
-        function getYouTubeEmbedUrl(youTubeLink) {
-            var embedUrl = 'https://www.youtube.com/embed/';
-            var youTubeLinkParts = youTubeLink.split('/');
-            var id = youTubeLinkParts[youTubeLinkParts.length - 1];
-            embedUrl += id;
-            console.log(embedUrl);
-            return $sce.trustAsResourceUrl(embedUrl);
-
-            //https://www.youtube.com/embed/AM2Ivdi9c4E
+        function findWidgetsByPageId(pageId) {
+            var pageWidgets = new Array();
+            for(var w in widgets) {
+                if (w.pageId === pageId) {
+                    pageWidgets.push(w);
+                }
+            }
+            return pageWidgets;
         }
 
-        function trustThisContent(html) {
-            // diligence to scrub any unsafe content
-            return $sce.trustAsHtml(html);
+        function findWidgetById(widgetId) {
+            return widgets.find(function (widget) {
+                return widget._id === userId;
+            });
         }
+
+        function updateWidget(widgetId, widget) {
+            var oldWidget = findWidgetById(widgetId);
+            var index = widgets.indexOf(oldWidget);
+            widgets[index] = widget;
+        }
+
+        function deleteWidget(widgetId) {
+            var widget = findWidgetById(widgetId);
+            var index = widgets.indexOf(widget);
+            widgets.splice(index, 1);
+        }
+
+
     }
-})();
+})
