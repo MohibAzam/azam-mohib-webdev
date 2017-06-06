@@ -35,4 +35,4 @@ module.exports = function (app) {
     });
 };
 
-console.log('hello from app.js on server-side');
+console.log('server side app');
