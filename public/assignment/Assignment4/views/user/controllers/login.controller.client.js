@@ -12,11 +12,16 @@
         //If their credentials are invalid, deny them access
         vm.login = function(user) {
 
-            var found = userService.findUserByCredentials(user.username, user.password);
-            
-            if(found !== null) {
-                $location.url('/user/' + found._id);
-            } else {
+            userService.findUserByCredentials(user.username, user.password)
+                .then(login, handleError);
+
+            function login (found) {
+                if(found !== null) {
+                    $location.url('/user/' + found._id);
+                }
+            }
+
+            function handleError (error) {
                 vm.message = "Username " + user.username + " not found, please try again";
             }
         };

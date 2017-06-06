@@ -3,7 +3,7 @@
         .module('WAM')
         .factory('websiteService', websiteService);
 
-    function websiteService() {
+    function websiteService($http) {
 
         //Collection of websites to use
         var websites = [
@@ -29,39 +29,39 @@
 
         //A function to create a website from the given Id and website
         function createWebsite(userId, website) {
-            website._id = (new Date()).getTime() + "";
-            website.developerId = userId;
-            website.created = new Date();
-            website.updated = new Date();
-            websites.push(website);
+            var url = "/api/assignment/user/" + userId + "/website"
+            return $http.post(url, website)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         //Update the website of the given Id
         //Using the material from the given (incomplete) website
         function updateWebsite(websiteId, website) {
-            var oldSite = findWebsiteById(websiteId);
-            var index = websites.indexOf(oldSite);
-            website._id = oldSite._id;
-            website.created = oldSite.created;
-            website.updated = new Date();
-            website.developerId = oldSite.developerId;
-            websites[index] = website;
+            var url = "/api/assignment/website/" + websiteId;
+            return $http.put(url, website)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         //Delete the website of the given Id
         function deleteWebsite(websiteId) {
-            var website = websites.find(function (website) {
-                return website._id === websiteId;
-            });
-            var index = websites.indexOf(website);
-            websites.splice(index, 1);
+            var url = "/api/assignment/website/" + websiteId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         //Find a Website of the given Id
         function findWebsiteById(websiteId) {
-            return websites.find(function (website) {
-                return website._id === websiteId;
-            });
+            var url = "/api/assignment/website/" + websiteId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
         }
 
         //Find all of the Websites created by the given User

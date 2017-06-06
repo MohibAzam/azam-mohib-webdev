@@ -15,23 +15,37 @@
         //and their passwords match
         function register(user) {
 
-            if(user.password !== user.password2) {
+            if (user.password !== user.password2) {
                 vm.error = "Passwords must match";
                 return;
             }
 
-            var found = userService.findUserByUsername(user.username);
+            var pw = user.password;
 
-            if(found !== null) {
-                vm.error = "Username is not available";
-            } else {
-                var finalUser = {
-                    username: user.username,
-                    password: user.password
-                };
-                userService.createUser(finalUser);
-                $location.url('/user/' + finalUser._id);
+            var found = userService.findUserByUsername(user.username)
+                .then(handleFound);
 
+            function handleFound(found) {
+                console.log('got found:' + found);
+                if (found !== "") {
+                    vm.error = "Username is not available";
+                }
+                else {
+                    var finalUser = {
+                        username: user.username,
+                        password: pw
+                    };
+                    console.log(finalUser);
+                    userService.createUser(finalUser)
+                        .then(moveOnRegister);
+                }
+
+            }
+
+            function moveOnRegister(user) {
+                console.log('moving');
+                console.log(user);
+                $location.url('/user/' + user._id);
             }
         }
     }

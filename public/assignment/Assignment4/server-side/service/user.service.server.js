@@ -25,12 +25,25 @@ module.exports = function (app) {
     //Use delete for deletion operations
     app.delete('/api/assignment/user/:userId', deleteUser);
 
+    //The given users for us to make use of
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
         {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
         {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
         {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
     ];
+
+    function findUserByUsername(req, res) {
+        var user = req.query['username'];
+        for (var u in users) {
+            var user = users[u];
+            if (user.username === username) {
+                res.json(user);
+                return;
+            }
+        }
+        res.send(404);
+    }
 
     //each req represents a "request" object to the server.
     //Specifically, its body is based on the url
@@ -87,15 +100,21 @@ module.exports = function (app) {
         var username = req.query['username'];
         var password = req.query['password'];
         console.log([username, password]);
-        for (var u in users) {
-            var user = users[u];
-            if (user.username === username &&
-                user.password === password) {
+        var user = null;
+        user = users.find(function (user) {
+            if (user.username === username && password === undefined) {
                 res.json(user);
+                console.log('from first branch:' + user);
                 return;
             }
-        }
-        res.send(404);
+            else if (user.username === username && user.password === password) {
+                res.json(user);
+                console.log('from second branch:' + user);
+                return;
+            }
+        });
+        console.log('from final case:' + user);
+        res.json(user);
     }
 
     function findUserById(req, res) {

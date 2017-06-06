@@ -9,9 +9,11 @@
         vm.userId = $routeParams['userId'];
 
         //initialize the websites for the given user
-        function init() {
-            vm.websites = websiteService.findAllWebsitesForUser(vm.userId);
+        websiteService.findAllWebsitesForUser(vm.userId)
+            .then(renderWebsites);
+
+        function renderWebsites(websites) {
+            vm.websites = websites;
         }
-        init();
     }
 })();

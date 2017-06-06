@@ -2,6 +2,7 @@
     angular
         .module('WAM')
         .config(configuration);
+
     
     function configuration($routeProvider) {
 

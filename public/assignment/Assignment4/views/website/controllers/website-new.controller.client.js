@@ -13,18 +13,25 @@
         // event handlers
         vm.createWebsite = createWebsite;
 
-        //Initialize the websites owned by the user
-        function init() {
-            vm.websites = websiteService.findAllWebsitesForUser(vm.userId);
+        //initialize the websites for the given user
+        websiteService.findAllWebsitesForUser(vm.userId)
+            .then(renderWebsites);
+
+        function renderWebsites(websites) {
+            vm.websites = websites;
         }
-        init();
 
         //Create a new website based on the info provided
         //in the incomplete website
         function createWebsite(website) {
-            websiteService.createWebsite(vm.userId, website);
-            $location.url('/user/' + vm.userId + '/website');
-            vm.message = "Website " + website.name + " has been created!";
+            websiteService.createWebsite(vm.userId, website)
+                .then(function (website) {
+                    $location.url('/user/' + vm.userId + '/website');
+                    vm.message = "Website " + website.name + " has been created!";
+                })
+                .error(function (website) {
+                    vm.message = "Error: Website " + website.name + " failed to be created";
+                });
         }
     }
 })();

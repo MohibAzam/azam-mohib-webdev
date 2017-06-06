@@ -5,14 +5,6 @@
 
     function userService($http) {
 
-        //The given users for us to make use of
-        var users = [
-            {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
-            {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
-            {_id: "345", username: "charly",   password: "charly",   firstName: "Charly", lastName: "Garcia"  },
-            {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
-        ];
-
         //The api we will be using in this service
         var api = {
             createUser: createUser,
@@ -30,20 +22,21 @@
             //Make sure you register this route on the server!
             //Otherwise you get a 404
             var url = "/api/assignment/user"
-            $http.post(url, user)
+            return $http.post(url, user)
                 .then(function (response) {
+                    console.log(response.data);
                     return response.data;
                 });
         }
 
         //Find a user whose username matches the given one
         function findUserByUsername(username) {
-            var user = users.find(function (user) {
-                return user.username === username;
-            });
-            if(typeof user === 'undefined')
-                return null;
-            return user;
+            var url = "/api/assignment/user?username=" + username;
+            return $http.get(url)
+                .then(function (response) {
+                    console.log(response.data);
+                    return response.data;
+                });
         }
 
         //Update a user based on the information given
@@ -69,7 +62,11 @@
         //Find a user whose login credentials match
         //the given one
         function findUserByCredentials(username, password) {
-            var url = "/api/assignment/user?username=" + username + "&password=" + password;
+            var pw = password;
+            if (pw === null) {
+                pw = ".";
+            }
+            var url = "/api/assignment/user?username=" + username + "&password=" + pw;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
