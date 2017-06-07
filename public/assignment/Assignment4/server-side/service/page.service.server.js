@@ -13,10 +13,7 @@ module.exports = function (app) {
     app.use(bodyParser.json()); // for parsing application/json
     app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-    // Makes use of the parent-child relationship
-    // /user: Parent class (the list of all users
-    // /:userId: Specific instance of that parent
-    // /website: All websites objects belonging to the spec. instance
+    //The API of the Page Service on the Server-side
     app.get('/api/assignment/website/:websiteId/page', findPagesByWebsiteId);
 
     app.get('/api/assignment/page/:pageId', findPageById);
@@ -38,7 +35,6 @@ module.exports = function (app) {
     //whose material is taken from the given (incomplete) page
     function createPage(req, res) {
         var page = req.body;
-        console.log(page + " 2");
         page.websiteId = req.params.websiteId;
         page._id = (new Date()).getTime() + "";
         page.created = new Date();

@@ -7,7 +7,7 @@
         .module('WbdvDirectives', [])
         .directive('wbdvSortable', wbdvSortable);
 
-    function wbdvSortable($http, $routeParams) {
+    function wbdvSortable(widgetService, $routeParams) {
 
         var lastSorted;
         var newSorted;
@@ -40,22 +40,28 @@
                     if (!(foundFirstInd)) {
                         if (oldId !== newId) {
                             firstInd = w;
+                            foundFirstInd = true;
                         }
                     }
                     else {
                         if (oldId === newId) {
                             lastInd = w - 1;
+                            break;
                         }
                     }
                 }
                 console.log(w);
-                if (foundFirstInd) {
+                if (foundFirstInd && lastInd === -1) {
                     lastInd = w;
                 }
-                else {
+                else if (firstInd === -1) {
                     return;
                 }
-                $http.put('/page/:' + pageId + '/widget?initial=' + firstInd + '&final=' + lastInd, )
+                var url = '/api/assignment/page/' +
+                    pageId + '/widget?initial=' + firstInd +
+                    '&final=' + lastInd;
+                console.log(url);
+                return $http.put(url, pageId)
                     .then(function () {
                        console.log('sorted successfully');
                     });

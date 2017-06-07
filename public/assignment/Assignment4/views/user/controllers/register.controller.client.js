@@ -22,12 +22,14 @@
 
             var pw = user.password;
 
+            console.log(user.username);
+
             var found = userService.findUserByUsername(user.username)
                 .then(handleFound);
 
             function handleFound(found) {
                 console.log('got found:' + found);
-                if (found !== "") {
+                if (found === user.username) {
                     vm.error = "Username is not available";
                 }
                 else {
@@ -39,7 +41,6 @@
                     userService.createUser(finalUser)
                         .then(moveOnRegister);
                 }
-
             }
 
             function moveOnRegister(user) {

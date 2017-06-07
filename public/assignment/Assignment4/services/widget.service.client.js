@@ -11,10 +11,23 @@
             findWidgetsByPageId: findWidgetsByPageId,
             findWidgetById: findWidgetById,
             updateWidget: updateWidget,
-            deleteWidget: deleteWidget
+            deleteWidget: deleteWidget,
+            updateOrder: updateOrder
         };
 
         return api;
+
+        //update the order of the widgets
+        function updateOrder(pageId, firstInd, finalInd) {
+            var url = '/api/assignment/page/' +
+                pageId + '/widget?initial=' + firstInd +
+                '&final=' + lastInd;
+            console.log(url);
+            return $http.put(url, pageId)
+                .then(function () {
+                    console.log('sorted successfully');
+                });
+        }
 
         //Create a widget from the given pageId and widet
         function createWidget(pageId, widget) {
@@ -65,7 +78,5 @@
                     return response.data;
                 });
         }
-
-
     }
 })();

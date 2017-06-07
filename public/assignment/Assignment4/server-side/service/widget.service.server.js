@@ -24,7 +24,7 @@ module.exports = function (app) {
     //Use delete for deletion operations
     app.delete('/api/assignment/widget/:widgetId', deleteWidget);
 
-    app.put('/api/')
+    app.put('/api/assignment/page/:pageId/widget', updateOrder);
 
     var multer = require('../../../../../node_modules/multer/'); // npm install multer --save
     var upload = multer({ dest: __dirname+'/../../../../../public/uploads' });
@@ -44,6 +44,35 @@ module.exports = function (app) {
             "url": "https://youtu.be/AM2Ivdi9c4E" },
         { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ];
+
+    function updateOrder(req, res) {
+        console.log('arrived at function');
+        var pageId = req.params['pageId'];
+        var firstIndex = req.query['initial'];
+        var lastIndex = req.query['final'];
+        if (firstIndex < 0 || lastIndex < 0) {
+            res.sendStatus(404);
+        }
+        var pageWidgets = [];
+        for(var w in widgets) {
+            var widget = widgets[w];
+            if(widget.pageId === pageId) {
+                resultSet.push(widget);
+            }
+        }
+        var movedWidget = pageWidgets[firstIndex];
+        pageWidgets.splice(firstIndex, 1);
+        pageWidgets.splice(lastIndex, 0, movedWidget);
+        var pageAcc = 0;
+        for (var v in widgets) {
+            var currWidget = widgets[v];
+            if (widget.pageId === pageId) {
+                widgets[v] = pageWidgets[pageAcc];
+                pageAcc++;
+            }
+        }
+        res.sendStatus(200);
+    }
 
     function uploadImage(req, res) {
 

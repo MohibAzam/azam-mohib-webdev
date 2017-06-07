@@ -8,26 +8,20 @@ module.exports = function (app) {
     app.use(bodyParser.json()); // for parsing application/json
     app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-    //params
+    //The API for the user service on the Server-side
     app.get('/api/assignment/user/:userId', findUserById);
 
-    //a query will be used here (optional parameter so to speak)
     app.get('/api/assignment/user', findUserByCredentials);
 
-    app.get('/api/assignment/user/reg', findUserByUsername)
+    app.get('/api/assignment/user/reg', findUserByUsername);
 
-    //this has the same url as above, but it is able to be handled separately
-    //since it's a POST, not a GET
     app.post('/api/assignment/user', createUser);
 
-    //Use put when you're passing large objects as data for updating purposes
-    //it will be part of the req.body
     app.put('/api/assignment/user/:userId', updateUser);
 
-    //Use delete for deletion operations
     app.delete('/api/assignment/user/:userId', deleteUser);
 
-    //The given users for us to make use of
+    //The list of all users, held here on the server-side
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
         {_id: "234", username: "bob",      password: "bob",      firstName: "Bob",    lastName: "Marley"  },
@@ -35,33 +29,17 @@ module.exports = function (app) {
         {_id: "456", username: "jannunzi", password: "jannunzi", firstName: "Jose",   lastName: "Annunzi" }
     ];
 
-    function findUserByUsername(req, res) {
-        var user = req.query['username'];
-        for (var u in users) {
-            var user = users[u];
-            if (user.username === username) {
-                res.json(user);
-                return;
-            }
-        }
-        res.send(404);
-    }
-
-    //each req represents a "request" object to the server.
-    //Specifically, its body is based on the url
-    //req.params get the parameter data, for example
-    //while req.query allows you to use data enclosed in ?s
+    //Create user pased on the given material
     function createUser(req, res) {
-        //the body contains whatever was passed into
-        //this as a function input in the $http.post, so to speak
         var user = req.body;
         user._id = (new Date()).getTime() + "";
         console.log(user);
         users.push(user);
-        //Echoes the user back to the client
         res.send(user);
     }
 
+    //Update the user of a given userId
+    //with the given properties
     function updateUser(req, res) {
         var user = req.body;
         var id = req.params['userId'];
@@ -73,22 +51,10 @@ module.exports = function (app) {
                 return;
             }
         }
-        /*
-        var oldUser = users.find(function (user) {
-            return user._id === userId;
-        });
-        if (oldUser !== null) {
-            var index = users.indexOf(oldUser);
-            user._id = oldUser._id;
-            users[index] = user;
-            //Send status allows you to tell the client whether
-            //or not the server operation was successful.
-
-        }
-        */
         res.sendStatus(404);
     }
 
+    //Delete the user of the given userId
     function deleteUser(req, res) {
         var userId = req.params.userId;
         var user = users.find(function (user) {
@@ -99,6 +65,7 @@ module.exports = function (app) {
         res.sendStatus(200);
     }
 
+    //Find the user for the given username and password
     function findUserByCredentials(req, res)  {
         console.log('got here');
         var username = req.query['username'];
@@ -115,15 +82,16 @@ module.exports = function (app) {
         res.sendStatus(404);
     }
 
+    //Find a user for a given username
     function findUserByUsername(req, res) {
+        console.log('got to method');
         var username = req.query['username'];
-        var password = req.query['password'];
-        console.log([username, password]);
+        console.log(username);
         var user = null;
-        user = users.find(function (user) {
-            if (user.username === username) {
-                console.log('from first case:' + user);
-                res.json(user);
+        user = users.find(function (u) {
+            if (u.username === username) {
+                console.log('from first case:' + u);
+                res.json(u);
                 return;
             }
         });
@@ -131,6 +99,7 @@ module.exports = function (app) {
         res.json(user);
     }
 
+    //Find a user for a given userId
     function findUserById(req, res) {
         var userId = req.params['userId'];
         var user = users.find(function (user) {

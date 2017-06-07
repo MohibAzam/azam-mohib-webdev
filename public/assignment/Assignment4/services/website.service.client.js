@@ -18,7 +18,7 @@
 
         //A function to create a website from the given Id and website
         function createWebsite(userId, website) {
-            var url = "/api/assignment/user/" + userId + "/website"
+            var url = "/api/assignment/user/" + userId + "/website";
             return $http.post(url, website)
                 .then(function (response) {
                     return response.data;
