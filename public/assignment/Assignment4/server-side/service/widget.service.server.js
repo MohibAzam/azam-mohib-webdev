@@ -24,6 +24,12 @@ module.exports = function (app) {
     //Use delete for deletion operations
     app.delete('/api/assignment/widget/:widgetId', deleteWidget);
 
+    var multer = require('../../../../../node_modules/multer/'); // npm install multer --save
+    var upload = multer({ dest: '../'});
+
+    app.post ("/api/upload", upload.single('myFile'), uploadImage);
+
+
     //Widgets we'll be using for the sample webpage
     var widgets = [
         { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
@@ -36,6 +42,31 @@ module.exports = function (app) {
             "url": "https://youtu.be/AM2Ivdi9c4E" },
         { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ];
+
+    function uploadImage(req, res) {
+
+        var widgetId      = req.body.widgetId;
+        var width         = req.body.width;
+        var myFile        = req.file;
+
+        var userId = req.body.userId;
+        var websiteId = req.body.websiteId;
+        var pageId = req.body.pageId;
+
+        var originalname  = myFile.originalname; // file name on user's computer
+        var filename      = myFile.filename;     // new file name in upload folder
+        var path          = myFile.path;         // full path of uploaded file
+        var destination   = myFile.destination;  // folder where file is saved to
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+
+        widget = getWidgetById(widgetId);
+        widget.url = '/uploads/'+filename;
+
+        //var callbackUrl   = "/assignment/#/user/"+userId+"/website/"+websiteId+...;
+
+        res.redirect(callbackUrl);
+    }
 
     //each req represents a "request" object to the server.
     //Specifically, its body is based on the url
@@ -62,13 +93,16 @@ module.exports = function (app) {
         if (oldWidget !== null) {
             var index = widgets.indexOf(oldWidget);
             widget._id = oldWidget._id;
+            widget.pageId = oldWidget.pageId;
             widgets[index] = widget;
             //Send status allows you to tell the client whether
             //or not the server operation was successful.
             res.sendStatus(200);
             return;
         }
-        res.sendStatus(404);
+        else {
+            res.sendStatus(404);
+        }
     }
 
     function deleteWidget(req, res) {
@@ -84,15 +118,16 @@ module.exports = function (app) {
     function findWidgetsForPage(req, res)  {
         var resultSet = [];
         for(var w in widgets) {
-            if(widgets[w].pageId === req.params.widgetId) {
-                resultSet.push(widgets[w]);
+            var widget = widgets[w];
+            if(widget.pageId === req.params.widgetId) {
+                resultSet.push(widget);
             }
         }
         res.json(resultSet);
     }
 
     function findWidgetById(req, res) {
-        var widgetId = req.params['userId'];
+        var widgetId = req.params['widgetId'];
         var widget = widgets.find(function (widget) {
             return widget._id === widgetId;
         });

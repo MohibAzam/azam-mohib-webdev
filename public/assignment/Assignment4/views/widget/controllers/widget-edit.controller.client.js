@@ -13,11 +13,14 @@
         model.widgetId = $routeParams.widgetId;
 
         //Initialize the widgets in the page and the widget to be edited
-        function init() {
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
-            model.widget = widgetService.findWidgetById(model.widgetId);
+        console.log('starting widget service');
+        widgetService.findWidgetsByPageId(model.pageId)
+            .then(renderWidgets);
+
+        function renderWidgets(widgets) {
+            console.log(widgets);
+            model.widgets = widgets;
         }
-        init();
 
         //Event Handlers
         model.getEditUrlForType = getEditUrlForType;
@@ -32,20 +35,24 @@
         //Update the current widget based on the info
         //in the given widget
         function updateWidget(widget) {
-            widgetService.updateWidget(model.widgetId, widget);
-            $location.url('/user/' + model.userId +
-                '/website/' + model.websiteId +
-                '/page/' + model.pageId +
-                '/widget/');
+            widgetService.updateWidget(model.widgetId, widget)
+                .then(function () {
+                    $location.url('/user/' + model.userId +
+                        '/website/' + model.websiteId +
+                        '/page/' + model.pageId +
+                        '/widget/');
+                });
         }
 
         //Delete the current widget
         function deleteWidget() {
-            widgetService.deleteWidget(model.widgetId);
-            $location.url('/user/' + model.userId +
-                '/website/' + model.websiteId +
-                '/page/' + model.pageId +
-                '/widget/');
+            widgetService.deleteWidget(model.widgetId)
+                .then(function () {
+                    $location.url('/user/' + model.userId +
+                        '/website/' + model.websiteId +
+                        '/page/' + model.pageId +
+                        '/widget/');
+                });
         }
     }
 })();

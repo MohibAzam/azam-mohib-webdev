@@ -45,17 +45,20 @@
            ng-model="model.widget.width"
            placeholder="Image Size"/>
 
-    <label for="file">
-        Image
-    </label>
-    <input id="file"
-           multiple
-           type="file"
-           class="form-control"/>
+    <form action="/api/upload"   method="post" enctype="multipart/form-data">
+        <input  name="myFile"    type="file" class="form-control"/>
+        <input  name="width"     value="{{model.widget.width}}" style="display: none"/>
+        <input  name="userId"    value="{{model.userId}}"   style="display: none"/>
+        <input  name="websiteId" value="{{model.websiteId}}"   style="display: none"/>
+        <input  name="pageId"    value="{{model.pageId}}"   style="display: none"/>
+        <input  name="widgetId"  value="{{model.widget._id}}"   style="display: none"/>
+        <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
+    </form>
+
 
     <a ng-click="model.updateWidget(model.widget)"
        class="btn btn-block btn-primary">
-        Upload Image
+        Submit Image
     </a>
 
     <a ng-click="model.deleteWidget()"

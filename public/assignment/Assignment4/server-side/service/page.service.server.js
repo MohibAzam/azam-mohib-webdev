@@ -46,7 +46,6 @@ module.exports = function (app) {
         pages.push(page);
         console.log(page);
         res.send(page);
-        console.log(page + " 3");
     }
 
     //Find all of the pages in the given website's Id

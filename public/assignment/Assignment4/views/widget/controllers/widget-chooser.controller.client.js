@@ -15,10 +15,14 @@
         model.pageId = $routeParams.pageId;
 
         //initialize the widgets for the Page
-        function init() {
-            model.widgets = widgetService.findWidgetsByPageId(model.pageId);
+        console.log('starting widget service');
+        widgetService.findWidgetsByPageId(model.pageId)
+            .then(renderWidgets);
+
+        function renderWidgets(widgets) {
+            console.log(widgets);
+            model.widgets = widgets;
         }
-        init();
 
         //Event handler
         model.handleChoice = handleChoice;
@@ -30,11 +34,13 @@
             var widgetChoice = {
                 widgetType: choice
             };
-            widgetService.createWidget(model.pageId, widgetChoice);
-            $location.url('/user/' + model.userId +
-                '/website/' + model.websiteId +
-                '/page/' + model.pageId +
-                '/widget/' + widgetChoice._id);
+            widgetService.createWidget(model.pageId, widgetChoice)
+                .then(function () {
+                    $location.url('/user/' + model.userId +
+                        '/website/' + model.websiteId +
+                        '/page/' + model.pageId +
+                        '/widget/' + widgetChoice._id);
+                });
         }
     }
 })();
