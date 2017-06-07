@@ -82,7 +82,7 @@
             })
             .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/search', {
                 templateUrl: 'views/widget/templates/widget-flickr-search.view.client.html',
-                controller: 'FlickrImageSearchController',
+                controller: 'flickrImageSearchController',
                 controllerAs: 'model'
             })
 

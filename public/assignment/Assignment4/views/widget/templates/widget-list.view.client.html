@@ -19,25 +19,21 @@
         </div>
     </nav>
 
-    <ul >
-        <li>123</li>
-        <li>456</li>
-    </ul>
-
     <div class="container-fluid">
-
-    <div ng-repeat="widget in model.widgets"
-         class="wd-widget"
-         widgetDraggable>
-        <div class="wd-toolbar">
-            <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
-                <span class="glyphicon glyphicon-cog"></span>
-            </a>
-            <span class="glyphicon glyphicon-align-justify"></span>
-        </div>
-        <div ng-include="model.getWidgetUrlForType(widget.widgetType)"></div>
+        <ul wbdv-sortable id="widgets-list">
+            <div ng-repeat="widget in model.widgets"
+                 class="wd-widget"
+                 id={{widget._id}}>
+                <div class="wd-toolbar">
+                    <a href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
+                        <span class="glyphicon glyphicon-cog"></span>
+                    </a>
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </div>
+                <div ng-include="model.getWidgetUrlForType(widget.widgetType)"></div>
+            </div>
+        </ul>
     </div>
-</div>
 
     <nav class="navbar navbar-default navbar-fixed-bottom blue-brands">
         <div class="container-fluid">

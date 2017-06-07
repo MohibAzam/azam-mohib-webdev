@@ -24,6 +24,8 @@ module.exports = function (app) {
     //Use delete for deletion operations
     app.delete('/api/assignment/widget/:widgetId', deleteWidget);
 
+    app.put('/api/')
+
     var multer = require('../../../../../node_modules/multer/'); // npm install multer --save
     var upload = multer({ dest: __dirname+'/../../../../../public/uploads' });
 
