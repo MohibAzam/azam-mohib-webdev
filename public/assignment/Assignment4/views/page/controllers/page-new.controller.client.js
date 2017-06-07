@@ -18,16 +18,21 @@
         vm.createPage = createPage;
 
         //Initialize by getting the pages in the website
-        function init() {
-            vm.pages = pageService.findPagesByWebsiteId(vm.websiteId);
+        pageService.findPagesByWebsiteId(vm.websiteId)
+            .then(renderPages);
+
+        function renderPages(pages) {
+            vm.pages = pages;
         }
-        init();
 
         //Create a new Page in the Website based on the given information
         function createPage(page) {
             console.log(page);
-            pageService.createPage(vm.websiteId, page);
-            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
+            pageService.createPage(vm.websiteId, page)
+                .then(function (page) {
+                    $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
+                    vm.page = "Page " + page.name + " has been created!";
+                });
             console.log('done');
         }
     }

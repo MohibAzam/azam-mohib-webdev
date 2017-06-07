@@ -19,24 +19,35 @@
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
 
-        //Initialize by getting the pages in the website
-        //and the page currently being edited
-        function init() {
-            vm.pages = pageService.findPagesByWebsiteId(vm.websiteId);
-            vm.page = pageService.findPageById(vm.pageId);
+        //initialize the websites for the given user
+        pageService.findPagesByWebsiteId(vm.websiteId)
+            .then(renderPages);
+
+        function renderPages(pages) {
+            vm.pages = pages;
         }
-        init();
+
+        pageService.findPageById(vm.pageId)
+            .then(function (page) {
+                vm.page = page;
+            });
 
         //Update the current page with the information in the given page
         function updatePage(page) {
-            pageService.updatePage(vm.pageId, page);
-            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
+            pageService.updatePage(vm.pageId, page)
+                .then(function () {
+                    $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
+                    vm.message = "Page " + page.name + " has been updated!";
+                });
         }
 
         //Delete the current page
         function deletePage() {
-            pageService.deletePage(vm.pageId);
-            $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
+            pageService.deletePage(vm.pageId)
+                .then(function () {
+                    $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
+                    vm.message = "The page has been deleted!";
+                });
         }
     }
 })();

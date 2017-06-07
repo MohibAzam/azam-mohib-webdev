@@ -13,9 +13,13 @@
         vm.websiteId = $routeParams.websiteId;
 
         //Initialize by getting the pages in the website
-        function init() {
-            vm.pages = pageService.findPagesByWebsiteId(vm.websiteId);
+        console.log('starting page service');
+        pageService.findPagesByWebsiteId(vm.websiteId)
+            .then(renderPages);
+
+        function renderPages(pages) {
+            console.log(pages);
+            vm.pages = pages;
         }
-        init();
     }
 })();

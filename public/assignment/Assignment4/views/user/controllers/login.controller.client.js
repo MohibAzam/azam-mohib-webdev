@@ -19,6 +19,9 @@
                 if(found !== null) {
                     $location.url('/user/' + found._id);
                 }
+                else {
+                    vm.message = "Username " + user.username + " not found, please try again";
+                }
             }
 
             function handleError (error) {

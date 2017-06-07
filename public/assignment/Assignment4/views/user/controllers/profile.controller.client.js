@@ -21,25 +21,20 @@
 
         //event handler
         vm.updateUser = updateUser;
+        vm.deleteUser = deleteUser;
 
         function deleteUser(user) {
-            userService.deleteUser(user._id)
-                .then(function (user) {
+            userService.deleteUser(userId)
+                .then(function () {
                     $location.url('/login');
-                })
-                .error(function (user) {
-                    vm.message = "An error has occurred";
                 });
         }
 
         //Update the user for the new changes given on their profile
         function updateUser(user) {
-            userService.createUser(user)
-                .then(function (user) {
+            userService.updateUser(userId, user)
+                .then(function () {
                     vm.message = "The changes have been saved!";
-                })
-                .error(function (user) {
-                    vm.message = "An error has occurred";
                 });
         }
     }

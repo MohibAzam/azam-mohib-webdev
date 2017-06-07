@@ -21,7 +21,7 @@
         function createUser(user) {
             //Make sure you register this route on the server!
             //Otherwise you get a 404
-            var url = "/api/assignment/user"
+            var url = "/api/assignment/user";
             return $http.post(url, user)
                 .then(function (response) {
                     console.log(response.data);
@@ -31,7 +31,7 @@
 
         //Find a user whose username matches the given one
         function findUserByUsername(username) {
-            var url = "/api/assignment/user?username=" + username;
+            var url = "/api/assignment/user/reg?username=" + username;
             return $http.get(url)
                 .then(function (response) {
                     console.log(response.data);
@@ -62,11 +62,7 @@
         //Find a user whose login credentials match
         //the given one
         function findUserByCredentials(username, password) {
-            var pw = password;
-            if (pw === null) {
-                pw = ".";
-            }
-            var url = "/api/assignment/user?username=" + username + "&password=" + pw;
+            var url = "/api/assignment/user?username=" + username + "&password=" + password;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;

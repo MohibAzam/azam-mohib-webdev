@@ -29,9 +29,11 @@
                     $location.url('/user/' + vm.userId + '/website');
                     vm.message = "Website " + website.name + " has been created!";
                 })
+                /*
                 .error(function (website) {
                     vm.message = "Error: Website " + website.name + " failed to be created";
                 });
+                */
         }
     }
 })();

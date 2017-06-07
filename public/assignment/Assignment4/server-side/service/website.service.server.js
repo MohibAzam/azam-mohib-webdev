@@ -47,9 +47,11 @@ module.exports = function (app) {
     }
 
     function updateWebsite(req, res) {
-        var webSite = req.params['websiteId'];
+        var websiteId = req.params['websiteId'];
         var website = req.body;
-        var oldSite = findWebsiteById(websiteId);
+        var oldSite = websites.find(function (website) {
+            return website._id === websiteId;
+        });
         if (oldSite !== null) {
             var index = websites.indexOf(oldSite);
             website._id = oldSite._id;
@@ -72,22 +74,15 @@ module.exports = function (app) {
         });
         var index = websites.indexOf(website);
         websites.splice(index, 1);
-        website = websites.find(function (website) {
-            return website._id === websiteId;
-        });
-        if (website === null) {
-            res.sendStatus(200);
-        }
-        else {
-            res.sendStatus(404);
-        }
+        res.sendStatus(200);
     }
 
     function findWebsiteById(req, res) {
         var websiteId = req.params['websiteId'];
-        return websites.find(function (website) {
+        var website = websites.find(function (website) {
             return website._id === websiteId;
         });
+        res.json(website);
     }
 
     function findAllWebsitesForUser(req, res) {

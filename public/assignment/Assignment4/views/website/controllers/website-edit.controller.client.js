@@ -34,25 +34,29 @@
         //in the incomplete website
         function updateWebsite(website) {
             websiteService.updateWebsite(vm.websiteId, website)
-                .then(function (site) {
+                .then(function () {
                     $location.url('/user/' + vm.userId + '/website');
                     vm.message = "Website " + website.name + " has been updated!";
                 })
+                /*
                 .error(function (error) {
                     vm.message = "An error has occurred";
                 });
+                */
         }
 
         //Delete the current website
         function deleteWebsite(websiteId) {
             websiteService.deleteWebsite(websiteId)
-                .then(function (site) {
+                .then(function () {
                     $location.url('/user/' + vm.userId + '/website');
                     vm.message = "The website has been deleted!";
                 })
+                /*
                 .error(function (error) {
                     vm.message = "An error has occurred";
                 });
+                */
         }
     }
 })();

@@ -2,8 +2,12 @@ module.exports = function(app) {
 
     var userServApp = require ('./service/user.service.server');
     var websiteServApp = require ('./service/website.service.server');
+    var pageApp = require ('./service/page.service.server');
+    var widgetApp = require ('./service/widget.service.server');
     userServApp(app);
     websiteServApp(app);
+    pageApp(app);
+    widgetApp(app);
 
     app.get('/websites', sendWebsites);
     app.get('/goodbye', sayHello);

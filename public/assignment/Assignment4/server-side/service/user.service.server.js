@@ -14,6 +14,8 @@ module.exports = function (app) {
     //a query will be used here (optional parameter so to speak)
     app.get('/api/assignment/user', findUserByCredentials);
 
+    app.get('/api/assignment/user/reg', findUserByUsername)
+
     //this has the same url as above, but it is able to be handled separately
     //since it's a POST, not a GET
     app.post('/api/assignment/user', createUser);
@@ -63,6 +65,15 @@ module.exports = function (app) {
     function updateUser(req, res) {
         var user = req.body;
         var id = req.params['userId'];
+        for (var u in users) {
+            if (id === users[u]._id) {
+                users[u] = user;
+                console.log(user);
+                res.sendStatus(200);
+                return;
+            }
+        }
+        /*
         var oldUser = users.find(function (user) {
             return user._id === userId;
         });
@@ -72,44 +83,47 @@ module.exports = function (app) {
             users[index] = user;
             //Send status allows you to tell the client whether
             //or not the server operation was successful.
-            res.sendStatus(200);
-            return
+
         }
+        */
         res.sendStatus(404);
     }
 
     function deleteUser(req, res) {
-        var id = req.params.userId;
+        var userId = req.params.userId;
         var user = users.find(function (user) {
             return user._id === userId;
         });
         var index = users.indexOf(user);
         users.splice(index, 1);
-        user = users.find(function (user) {
-            return user._id === userId;
-        });
-        if (user === null) {
-            res.sendStatus(200);
-        }
-        else {
-            res.sendStatus(404);
-        }
+        res.sendStatus(200);
     }
 
     function findUserByCredentials(req, res)  {
+        console.log('got here');
+        var username = req.query['username'];
+        var password = req.query['password'];
+        console.log([username, password]);
+        var user = users.find(function (user) {
+            if (user.username === username && user.password === password) {
+                console.log('from first case:' + user);
+                res.json(user);
+                return;
+            }
+        });
+        console.log('from final case:' + user);
+        res.sendStatus(404);
+    }
+
+    function findUserByUsername(req, res) {
         var username = req.query['username'];
         var password = req.query['password'];
         console.log([username, password]);
         var user = null;
         user = users.find(function (user) {
-            if (user.username === username && password === undefined) {
+            if (user.username === username) {
+                console.log('from first case:' + user);
                 res.json(user);
-                console.log('from first branch:' + user);
-                return;
-            }
-            else if (user.username === username && user.password === password) {
-                res.json(user);
-                console.log('from second branch:' + user);
                 return;
             }
         });

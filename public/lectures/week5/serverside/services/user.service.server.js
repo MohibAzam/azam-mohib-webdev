@@ -66,7 +66,7 @@ module.exports = function (app) {
     }
 
     function deleteUser(req, res) {
-        var id = req.params.userId;
+        var userId = req.params.userId;
         var user = users.find(function (user) {
             return user._id === userId;
         });
