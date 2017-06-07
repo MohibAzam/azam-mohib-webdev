@@ -35,11 +35,11 @@
                 widgetType: choice
             };
             widgetService.createWidget(model.pageId, widgetChoice)
-                .then(function () {
+                .then(function (widget) {
                     $location.url('/user/' + model.userId +
                         '/website/' + model.websiteId +
                         '/page/' + model.pageId +
-                        '/widget/' + widgetChoice._id);
+                        '/widget/' + widget._id);
                 });
         }
     }

@@ -22,6 +22,12 @@
             model.widgets = widgets;
         }
 
+        widgetService.findWidgetById(model.widgetId)
+            .then(function (widget) {
+                console.log(widget);
+                model.widget = widget;
+            });
+
         //Event Handlers
         model.getEditUrlForType = getEditUrlForType;
         model.updateWidget = updateWidget;

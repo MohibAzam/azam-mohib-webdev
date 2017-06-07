@@ -30,11 +30,13 @@
             var widgetChoice = {
                 widgetType: choice
             };
-            widgetService.createWidget(model.pageId, widgetChoice);
-            $location.url('/user/' + model.userId +
-                '/website/' + model.websiteId +
-                '/page/' + model.pageId +
-                '/widget/' + widgetChoice._id);
+            widgetService.createWidget(model.pageId, widgetChoice)
+                .then(function (widget) {
+                    $location.url('/user/' + model.userId +
+                        '/website/' + model.websiteId +
+                        '/page/' + model.pageId +
+                        '/widget/' + widget._id);
+                });
         }
     }
 })();

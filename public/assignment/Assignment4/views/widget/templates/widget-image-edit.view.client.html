@@ -45,6 +45,10 @@
            ng-model="model.widget.width"
            placeholder="Image Size"/>
 
+    <a class="btn btn-info" href='#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{model.widget._id}}/search'>
+        Search
+    </a>
+
     <form action="/api/upload"   method="post" enctype="multipart/form-data">
         <input  name="myFile"    type="file" class="form-control"/>
         <input  name="width"     value="{{model.widget.width}}" style="display: none"/>

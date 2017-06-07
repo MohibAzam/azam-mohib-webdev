@@ -80,6 +80,11 @@
                 controller: 'widgetEditController',
                 controllerAs: 'model'
             })
+            .when('/user/:userId/website/:websiteId/page/:pageId/widget/:widgetId/search', {
+                templateUrl: 'views/widget/templates/widget-flickr-search.view.client.html',
+                controller: 'FlickrImageSearchController',
+                controllerAs: 'model'
+            })
 
             //All else fails, go back to the login page
             .otherwise({redirectTo:'/'});

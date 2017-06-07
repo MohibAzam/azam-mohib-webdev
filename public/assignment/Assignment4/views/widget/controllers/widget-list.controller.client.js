@@ -21,6 +21,11 @@
             model.widgets = widgets;
         }
 
+        widgetService.findWidgetById(model.widgetId)
+            .then(function (widget) {
+                model.widget = widget;
+            });
+
         //Event Handlers
         model.trustThisContent = trustThisContent;
         model.getYouTubeEmbedUrl = getYouTubeEmbedUrl;
@@ -34,6 +39,7 @@
         //Create an embedded version of a given Youtube link
         function getYouTubeEmbedUrl(youTubeLink) {
             var embedUrl = 'https://www.youtube.com/embed/';
+            console.log(youTubeLink);
             var youTubeLinkParts = youTubeLink.split('/');
             var id = youTubeLinkParts[youTubeLinkParts.length - 1];
             embedUrl += id;
