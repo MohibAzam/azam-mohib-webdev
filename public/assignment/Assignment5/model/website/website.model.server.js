@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var websiteSchema = require('website.schema.server.js');
+var websiteSchema = require('./website.schema.server.js');
 
 //mongoose.model notes the model name followed by
 //the schema used by the data in the model
@@ -12,6 +12,8 @@ websiteModel.findAllWebsites = findAllWebsites;
 websiteModel.deleteWebsite = deleteWebsite;
 websiteModel.updateWebsite = updateWebsite;
 
+var pageModel = require('../page/page.model.server.js');
+
 //Anybody who requires this file will be able to access
 //the websiteModel and its functions
 module.exports = websiteModel;
@@ -20,6 +22,7 @@ function createWebsite(userId, website) {
     //This inserts new data into the database
     //We will return a promise so that
     //whoever calls this function can handle it properly
+    website._user = userId;
     return websiteModel.create(website);
 }
 
@@ -57,6 +60,7 @@ function findAllWebsitesForUser(userId) {
 }
 
 function deleteWebsite(websiteId) {
+
     return websiteModel.remove({_id: websiteId});
 }
 

@@ -36,6 +36,7 @@ module.exports = function (app) {
 
 
     //Widgets we'll be using for the sample webpage
+
     var widgets = [
         { "_id": "123", "widgetType": "HEADING", "pageId": "321", "size": 2, "text": "GIZMODO"},
         { "_id": "234", "widgetType": "HEADING", "pageId": "321", "size": 4, "text": "Lorem ipsum"},
@@ -47,6 +48,7 @@ module.exports = function (app) {
             "url": "https://youtu.be/AM2Ivdi9c4E" },
         { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ];
+
 
     function updateOrder(req, res) {
         console.log('arrived at function');
@@ -94,17 +96,23 @@ module.exports = function (app) {
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
 
-        var widget = widgets.find(function (widget) {
-            return widget._id === widgetId;
-        });
-        widget.url = '/uploads/'+filename;
+        widgetModel
+            .findWidgetById(widgetId)
+            .then(function (widget) {
+                moveOn(widget);
+            });
 
-        var callbackUrl   = "/assignment/Assignment4/index.html#!/user/" + userId
-            + "/website/" + websiteId
-            + "/page/" + pageId
-            + "/widget/" + widgetId;
+        function moveOn(widget) {
+            widget.url = '/uploads/'+filename;
 
-        res.redirect(callbackUrl);
+            var callbackUrl   = "/assignment/Assignment4/index.html#!/user/" + userId
+                + "/website/" + websiteId
+                + "/page/" + pageId
+                + "/widget/" + widgetId;
+
+            res.redirect(callbackUrl);
+        }
+
     }
 
     //each req represents a "request" object to the server.

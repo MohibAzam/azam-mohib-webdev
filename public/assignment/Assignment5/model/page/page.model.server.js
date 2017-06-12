@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var pageSchema = require('page.schema.server.js');
+var pageSchema = require('./page.schema.server.js');
 
 //mongoose.model notes the model name followed by
 //the schema used by the data in the model
@@ -12,14 +12,17 @@ pageModel.findAllPages = findAllPages;
 pageModel.deletePage = deletePage;
 pageModel.updatePage = updatePage;
 
+var widgetModel = require('../widget/widget.model.server.js');
+
 //Anybody who requires this file will be able to access
 //the pageModel and its functions
 module.exports = pageModel;
 
-function createPage(page) {
+function createPage(websiteId, page) {
     //This inserts new data into the database
     //We will return a promise so that
     //whoever calls this function can handle it properly
+    page._website = websiteId;
     return pageModel.create(page);
 }
 
@@ -58,5 +61,10 @@ function findAllPagesForWebsite(websiteId) {
 
 function deletePage(pageId) {
     return pageModel.remove({_id: pageId});
+}
+
+function deleteAllPagesForWebsite(websiteId) {
+    widgetModel.deleteAllWidgetsForPage()
+    return pageModel.remove({_website: websiteId});
 }
 

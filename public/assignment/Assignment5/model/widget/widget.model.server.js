@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var widgetSchema = require('page.schema.server.js');
+var widgetSchema = require('./widget.schema.server.js');
 
 //mongoose.model notes the model name followed by
 //the schema used by the data in the model
@@ -11,6 +11,7 @@ widgetModel.findAllWidgetsForPage = findAllWidgetsForPage;
 widgetModel.findAllWidgets = findAllWidgets;
 widgetModel.deleteWidget = deleteWidget;
 widgetModel.updateWidget = updateWidget;
+widgetModel.deleteAllWidgetsForPage = deleteAllWidgetsForPage;
 
 //Anybody who requires this file will be able to access
 //the widgetModel and its functions
@@ -47,7 +48,7 @@ function findWidgetById(widgetId) {
 
 function findAllWidgetsForPage(pageId) {
     //find returns a specific array of websites that meet the given conditions
-    return widgetModel.find({page: pageId})
+    return widgetModel.find({_page: pageId})
     //This will allow us to list off the user itself
         .populate('_page')
         //You can string together multiple transformations, such as .sort()
@@ -60,3 +61,6 @@ function deleteWidget(widgetId) {
     return widgetModel.remove({_id: widgetId});
 }
 
+function deleteAllWidgetsForPage(pageId) {
+    return widgetModel.remove({_page: pageId});
+}

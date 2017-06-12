@@ -40,8 +40,8 @@ module.exports = function (app) {
     //whose material is taken from the given (incomplete) page
     function createPage(req, res) {
         var page = req.body;
+        var websiteId = req.params.websiteId;
         /*
-        page.websiteId = req.params.websiteId;
         page._id = (new Date()).getTime() + "";
         page.created = new Date();
         page.updated = new Date();
@@ -49,7 +49,7 @@ module.exports = function (app) {
         console.log(page);
         res.send(page);
         */
-        pageModel.createPage(page)
+        pageModel.createPage(websiteId, page)
             .then(function (page) {
                 res.json(page);
             });
