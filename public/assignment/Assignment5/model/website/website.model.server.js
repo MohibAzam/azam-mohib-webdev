@@ -16,7 +16,7 @@ websiteModel.updateWebsite = updateWebsite;
 //the websiteModel and its functions
 module.exports = websiteModel;
 
-function createWebsite(website) {
+function createWebsite(userId, website) {
     //This inserts new data into the database
     //We will return a promise so that
     //whoever calls this function can handle it properly
