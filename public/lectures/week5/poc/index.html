@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="pocApp">
+<head>
+    <link href="../vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <script src="../vendor/angular/angular.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container-fluid"
+        ng-controller="pocController as model">
+
+        <h1>OMDB POC</h1>
+        <input ng-model="model.title"
+               class="form-control"
+               placeholder="guardians of the galaxy"/>
+
+        <button class="btn btn-primary btn-block"
+                ng-click="model.searchMovie(mdel.title)">
+            Search
+        </button>
+        <h2>Search Results</h2>
+
+        {{model.movies}};
+
+    </div>
+
+</body>
+</html>

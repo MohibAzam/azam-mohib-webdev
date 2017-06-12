@@ -33,7 +33,7 @@ todoModel.create(todo1, function (err, doc) {
     }
 });
 
-createTodo({title: 'Upload videos'})
+createTodo({title: 'Upload videos'});
 
 findAllTodos()
     .then(function (todos) {
