@@ -5,6 +5,9 @@ var app = require('express');
 var bodyParser = require('body-parser');
 
 module.exports = function (app) {
+
+    var widgetModel = require('../../model/widget/widget.model.server.js');
+
     app.use(bodyParser.json()); // for parsing application/json
     app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -112,17 +115,26 @@ module.exports = function (app) {
         //the body contains whatever was passed into
         //this as a function input in the $http.post, so to speak
         var widget = req.body;
+        /*
         widget._id = (new Date()).getTime() + "";
         widget.pageId = req.params['pageId'];
         console.log(widget);
         widgets.push(widget);
         //Echoes the user back to the client
         res.send(widget);
+        */
+        widgetModel
+            .createWidget(widget)
+            .then(function (widget) {
+                res.json(widget);
+            });
+
     }
 
     function updateWidget(req, res) {
         var widget = req.body;
         var widgetId = req.params['widgetId'];
+        /*
         var oldWidget = widgets.find(function (widget) {
             return widget._id === widgetId;
         });
@@ -139,19 +151,34 @@ module.exports = function (app) {
         else {
             res.sendStatus(404);
         }
+        */
+        widgetModel
+            .updateWidget(widgetId, widget)
+            .then(function (status) {
+                res.sendStatus(200);
+            })
     }
 
     function deleteWidget(req, res) {
         var widgetId = req.params.widgetId;
+        /*
         var widget = widgets.find(function (widget) {
             return widget._id === widgetId;
         });
         var index = widgets.indexOf(widget);
         widgets.splice(index, 1);
         res.sendStatus(200);
+        */
+        widgetModel
+            .deleteWidget(widgetId)
+            .then(function (status) {
+                res.sendStatus(200);
+            });
     }
 
     function findWidgetsForPage(req, res)  {
+        var pageId = req.params.pageId;
+        /*
         var resultSet = [];
         for(var w in widgets) {
             var widget = widgets[w];
@@ -160,14 +187,27 @@ module.exports = function (app) {
             }
         }
         res.json(resultSet);
+        */
+        widgetModel
+            .findAllWidgetsForPage(pageId)
+            .then(function (widgets) {
+                res.json(widgets);
+            })
     }
 
     function findWidgetById(req, res) {
         var widgetId = req.params['widgetId'];
+        /*
         var widget = widgets.find(function (widget) {
             return widget._id === widgetId;
         });
         res.send(widget);
+        */
+        widgetModel
+            .findWidgetById(widgetId)
+            .then(function (widget) {
+                res.json(widget);
+            });
     }
 
 }

@@ -10,7 +10,7 @@ module.exports = function (app) {
     app.use(bodyParser.json()); // for parsing application/json
     app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
-    var websiteModel = require('../../model/user/website.model.server.js');
+    var websiteModel = require('../../model/website/website.model.server.js');
 
     // Makes use of the parent-child relationship
     // /user: Parent class (the list of all users

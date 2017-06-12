@@ -29,9 +29,9 @@ module.exports = function (app) {
         //so we can instead use the user.model.server
         //instead of manipulating it here
         userModel.createUser(user)
-            .then(function () {
-                console.log('hey');
-                res.json()
+            .then(function (user) {
+                console.log(user);
+                res.json(user);
             })
 
     }
