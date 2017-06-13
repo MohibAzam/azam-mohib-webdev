@@ -32,8 +32,8 @@ function addWidget(pageId, widgetId) {
 }
 
 function removeWidget(pageId, widgetId) {
-    return websiteModel
-        .findWebsiteById(pageId)
+    return pageModel
+        .findPageById(pageId)
         .then(function (page) {
             var index = page.widgets.indexOf(widgetId);
             page.widgets.splice(index, 1);
@@ -45,10 +45,13 @@ function createPage(websiteId, page) {
     //This inserts new data into the database
     //We will return a promise so that
     //whoever calls this function can handle it properly
+    console.log('in model');
     page._website = websiteId;
     return pageModel.create(page)
         .then(function (page) {
-            return websiteModel.addPage(websiteId, page._id);
+            console.log(page);
+            return;
+            //return websiteModel.addPage(websiteId, page._id);
         });
 }
 
@@ -63,7 +66,7 @@ function updatePage(pageId, page) {
         $set : {
             name: page.name,
             description: page.description,
-            lastModified: Date.now
+            //lastModified: Date.now
         }
     })
 }
@@ -77,12 +80,14 @@ function findPageById(pageId) {
 function findAllPagesForWebsite(websiteId) {
     //find returns a specific array of websites that meet the given conditions
     return pageModel.find({_website: websiteId})
+        /*
     //This will allow us to list off the user itself
         .populate('_website', 'name')
         //You can string together multiple transformations, such as .sort()
         //exec() is called to end the list of transformations and run through
         //all of the ones that have been listed
         .exec();
+        */
 }
 
 function deletePage(pageId) {
@@ -94,7 +99,8 @@ function deletePage(pageId) {
                     var websiteId = page._website._id;
                     return pageModel.remove({_id: pageId})
                         .then(function (status) {
-                            return websiteModel.removePage(websiteId, pageId);
+                            return;
+                            //return websiteModel.removePage(websiteId, pageId);
                         });
                 });
         });

@@ -52,8 +52,8 @@ module.exports = function (app) {
         res.send(website);
         */
         websiteModel.createWebsite(userId, website)
-            .then(function () {
-                res.json();
+            .then(function (website) {
+                res.json(website);
             });
     }
 

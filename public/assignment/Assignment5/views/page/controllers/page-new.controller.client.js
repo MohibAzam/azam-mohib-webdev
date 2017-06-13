@@ -30,10 +30,10 @@
             console.log(page);
             pageService.createPage(vm.websiteId, page)
                 .then(function (page) {
+                    console.log('got callback');
                     $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
                     vm.page = "Page " + page.name + " has been created!";
                 });
-            console.log('done');
         }
     }
 })();

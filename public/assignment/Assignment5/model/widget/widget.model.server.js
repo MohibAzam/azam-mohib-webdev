@@ -24,10 +24,11 @@ function createWidget(pageId, widget) {
     //We will return a promise so that
     //whoever calls this function can handle it properly
     widget._page = pageId;
-    return widgetModel.create(widget)
-        .then(function (widget) {
-            return pageModel.addWidget(pageId, widget._id);
-        });
+    return widgetModel.create(widget);
+        //.then(function (widget) {
+            //return;
+            //return pageModel.addWidget(pageId, widget._id);
+        //});
 }
 
 function findAllWidgets() {
@@ -37,13 +38,8 @@ function findAllWidgets() {
 
 function updateWidget(widgetId, widget) {
     return widgetModel.update({_id: widgetId}, {
-        //$set : website
-        $set : {
-            name: widget.name,
-            description: widget.description,
-            lastModified: Date.now
-        }
-    })
+        $set : widget
+    });
 }
 
 function findWidgetById(widgetId) {
@@ -70,7 +66,8 @@ function deleteWidget(widgetId) {
             var pageId = widget._page._id;
             return widget.remove({_id: widgetId})
                 .then(function (status) {
-                    return pageModel.removeWidget(pageId, widgetId);
+                    return;
+                    //return pageModel.removeWidget(pageId, widgetId);
                 });
         });
 }

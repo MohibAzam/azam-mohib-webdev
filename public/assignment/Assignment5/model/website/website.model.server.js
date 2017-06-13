@@ -23,9 +23,11 @@ var pageModel = require('../page/page.model.server.js');
 module.exports = websiteModel;
 
 function addPage(websiteId, pageId) {
+    console.log('in addPage');
     return websiteModel
         .findWebsiteById(websiteId)
         .then(function (website) {
+            console.log('in callback for addPage');
             website.pages.push(pageId);
             return website.save();
         });

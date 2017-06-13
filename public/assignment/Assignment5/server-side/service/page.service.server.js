@@ -5,7 +5,6 @@
  * Created by mohib on 6/5/2017.
  */
 
-
 var app = require('express');
 var bodyParser = require('body-parser');
 
@@ -39,6 +38,7 @@ module.exports = function (app) {
     //Create a new Page for the given website's Id,
     //whose material is taken from the given (incomplete) page
     function createPage(req, res) {
+        console.log('in server');
         var page = req.body;
         var websiteId = req.params.websiteId;
         /*
@@ -49,8 +49,10 @@ module.exports = function (app) {
         console.log(page);
         res.send(page);
         */
+        console.log('sending ' + page + ' and ' + websiteId);
         pageModel.createPage(websiteId, page)
             .then(function (page) {
+                console.log('got model callback');
                 res.json(page);
             });
     }

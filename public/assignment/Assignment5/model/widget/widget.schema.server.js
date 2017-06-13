@@ -6,7 +6,7 @@ var widgetSchema = mongoose.Schema({
     //have default values
     name: String,
     description: String,
-    type: {type: String, enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT'], require: true},
+    widgetType: {type: String, enum: ['HEADING', 'IMAGE', 'YOUTUBE', 'HTML', 'INPUT'], require: true},
     _page: {type: mongoose.Schema.Types.ObjectId, ref: 'PageModel'},
     size: Number,
     rows: Number,
