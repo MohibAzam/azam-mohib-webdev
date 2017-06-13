@@ -49,10 +49,27 @@ function reorderWidget(pageId, start, end) {
      */
     return widgetModel.findAllWidgetsForPage(pageId)
         .then(function (widgets) {
+            var newWidget;
             for (var w in widgets) {
                 if (w === end) {
-                    var widget = widgets[w];
-
+                    newWidget = widgets[w];
+                }
+            }
+            if(newWidget === undefined) {
+                return;
+            }
+            var nextNewWidget;
+            var makeReplacements;
+            for(var d in widgets) {
+                if (w === start) {
+                    makeReplacements = true;
+                }
+                if (w === end) {
+                    makeReplacements = false;
+                }
+                if (makeReplacements) {
+                    nextNewWidget = widgets[w];
+                    widgetModel.updateWidget(nextNewWidget._id, newWidget);
                 }
             }
         });
