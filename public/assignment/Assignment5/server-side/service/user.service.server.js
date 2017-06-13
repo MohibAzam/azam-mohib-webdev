@@ -12,7 +12,7 @@ module.exports = function (app) {
 
     app.get('/api/assignment/user', findUserByCredentials);
 
-    app.get('/api/assignment/user/reg', findUserByUsername);
+    app.get('/api/assignment/user/', findUserByUsername);
 
     app.post('/api/assignment/user', createUser);
 
@@ -71,7 +71,7 @@ module.exports = function (app) {
     //Find a user for a given username
     function findUserByUsername(req, res) {
         console.log('got to method');
-        var username = req.query['username'];
+        var username = req.params['username'];
         userModel
             .findUserByUsername(username)
             .then(function (user) {

@@ -24,8 +24,9 @@
 
             console.log(user.username);
 
-            /*
 
+
+            /*
             var found = userService.findUserByUsername(user.username)
                 .then(handleFound);
 

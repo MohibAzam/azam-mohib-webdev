@@ -32,7 +32,7 @@
         //Find a user whose username matches the given one
         function findUserByUsername(username) {
             console.log('client-side method');
-            var url = "/api/assignment/user/reg?username=" + username;
+            var url = "/api/assignment/user/" + username;
             return $http.get(url)
                 .then(function (response) {
                     console.log(response.data);

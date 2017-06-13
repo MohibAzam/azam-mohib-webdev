@@ -12,11 +12,13 @@ userModel.updateUser = updateUser;
 userModel.addWebsite = addWebsite;
 userModel.removeWebsite = removeWebsite;
 
+var websiteModel = require('../website/website.model.server.js');
+
 module.exports = userModel;
 
 function addWebsite(userId, websiteId) {
     return userModel
-        .findUserById(userId)
+        .findById(userId)
         .then(function (user) {
             user.websites.push(websiteId);
             return user.save();
@@ -24,9 +26,11 @@ function addWebsite(userId, websiteId) {
 }
 
 function removeWebsite(userId, websiteId) {
+    console.log('in here');
     return userModel
-        .findUserById(userId)
+        .findById(userId)
         .then(function (user) {
+            console.log(user);
             var index = user.websites.indexOf(websiteId);
             user.websites.splice(index, 1);
             return user.save();
@@ -63,7 +67,7 @@ function findUserByUsername(username) {
 }
 
 function deleteUser(userId) {
-    return pageModel.deleteAllPagesForWebsite(w.websiteId)
+    return websiteModel.deleteAllWebsitesForUser(userId)
         .then(function () {
             return userModel.remove({_id: userId});
         });

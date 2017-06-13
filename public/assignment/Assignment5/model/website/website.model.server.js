@@ -21,7 +21,7 @@ module.exports = websiteModel;
 function addPage(websiteId, pageId) {
     console.log('in addPage');
     return websiteModel
-        .findWebsiteById(websiteId)
+        .findById(websiteId)
         .then(function (website) {
             console.log('in callback for addPage');
             website.pages.push(pageId);
@@ -31,7 +31,7 @@ function addPage(websiteId, pageId) {
 
 function removePage(websiteId, pageId) {
     return websiteModel
-        .findWebsiteById(websiteId)
+        .findById(websiteId)
         .then(function (website) {
             var index = website.pages.indexOf(pageId);
             website.pages.splice(index, 1);
@@ -41,10 +41,12 @@ function removePage(websiteId, pageId) {
 
 function createWebsite(userId, website) {
     website._user = userId;
-    return websiteModel.create(website)
+    return websiteModel.create(website);
+        /*
         .then(function (website) {
             return userModel.addWebsite(userId, website._id);
         });
+        */
 }
 
 function findAllWebsites() {
@@ -74,23 +76,29 @@ function findAllWebsitesForUser(userId) {
 }
 
 function deleteWebsite(websiteId) {
+    console.log('stage 0');
     return pageModel.deleteAllPagesForWebsite(websiteId)
         .then(function (response) {
+            console.log('stage 1');
             return websiteModel
-                .findWebsiteById(websiteId)
+                .findById(websiteId)
                 .then(function (website) {
-                    var userId = website._user._id;
-                    return websiteModel.remove({_id: websiteId})
+                    console.log('stage 2');
+                    var userId = website._user;
+                    return websiteModel.remove({_id: websiteId});
+                        /*
                         .then(function (status) {
+                            console.log('stage 3');
                             return userModel.removeWebsite(userId, websiteId);
                         });
+                        */
                 });
         });
 }
 
 function deleteAllWebsitesForUser(userId) {
 
-    websiteModel
+    return websiteModel
         .findAllWebsitesForUser(userId)
         .then(function (websites) {
             splicePagesAndWebsites(websites);
@@ -99,11 +107,12 @@ function deleteAllWebsitesForUser(userId) {
     function splicePagesAndWebsites(websites) {
         for(var w in websites) {
             var website = websites[w];
-            pageModel.deleteAllPagesForWebsite(website._id)
+            pageModel.deleteAllPagesForWebsite(website._id);
+                /*
                 .then(function () {
                     return websiteModel.remove({_id: website._id});
                 });
+                */
         }
-        return;
     }
 }
