@@ -52,7 +52,7 @@ function reorderWidget(pageId, start, end) {
             var newWidget;
             for (var w in widgets) {
                 if (w === end) {
-                    newWidget = widgets[w];
+                    newWidget = widgets[w - 1];
                 }
             }
             if(newWidget === undefined) {
@@ -72,6 +72,7 @@ function reorderWidget(pageId, start, end) {
                     widgetModel.updateWidget(nextNewWidget._id, newWidget);
                 }
             }
+            return;
         });
 }
 
