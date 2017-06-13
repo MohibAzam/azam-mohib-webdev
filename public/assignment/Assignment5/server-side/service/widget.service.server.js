@@ -51,6 +51,7 @@ module.exports = function (app) {
 
 
     function updateOrder(req, res) {
+        /*
         console.log('arrived at function');
         var pageId = req.params['pageId'];
         var firstIndex = req.query['initial'];
@@ -77,6 +78,14 @@ module.exports = function (app) {
             }
         }
         res.sendStatus(200);
+        */
+        var pageId = req.params['pageId'];
+        var firstIndex = req.query['initial'];
+        var lastIndex = req.query['final'];
+        widgetModel.reorderWidget(pageId, firstIndex, lastIndex)
+            .then(function () {
+                res.sendStatus(200);
+            });
     }
 
     function uploadImage(req, res) {

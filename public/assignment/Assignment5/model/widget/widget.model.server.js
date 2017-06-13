@@ -12,10 +12,51 @@ widgetModel.findAllWidgets = findAllWidgets;
 widgetModel.deleteWidget = deleteWidget;
 widgetModel.updateWidget = updateWidget;
 widgetModel.deleteAllWidgetsForPage = deleteAllWidgetsForPage;
+widgetModel.reorderWidget = reorderWidget;
 
 var pageModel = require('../page/page.model.server.js');
 
 module.exports = widgetModel;
+
+function reorderWidget(pageId, start, end) {
+    /*
+     console.log('arrived at function');
+     var pageId = req.params['pageId'];
+     var firstIndex = req.query['initial'];
+     var lastIndex = req.query['final'];
+     if (firstIndex < 0 || lastIndex < 0) {
+     res.sendStatus(404);
+     }
+     var pageWidgets = [];
+     for(var w in widgets) {
+     var widget = widgets[w];
+     if(widget.pageId === pageId) {
+     resultSet.push(widget);
+     }
+     }
+     var movedWidget = pageWidgets[firstIndex];
+     pageWidgets.splice(firstIndex, 1);
+     pageWidgets.splice(lastIndex, 0, movedWidget);
+     var pageAcc = 0;
+     for (var v in widgets) {
+     var currWidget = widgets[v];
+     if (widget.pageId === pageId) {
+     widgets[v] = pageWidgets[pageAcc];
+     pageAcc++;
+     }
+     }
+     res.sendStatus(200);
+     */
+    return widgetModel.findAllWidgetsForPage(pageId)
+        .then(function (widgets) {
+            for (var w in widgets) {
+                if (w === end) {
+                    var widget = widgets[w];
+
+                }
+            }
+        });
+}
 
 function createWidget(pageId, widget) {
     widget._page = pageId;
