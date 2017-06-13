@@ -115,52 +115,21 @@ module.exports = function (app) {
 
     }
 
-    //each req represents a "request" object to the server.
-    //Specifically, its body is based on the url
-    //req.params get the parameter data, for example
-    //while req.query allows you to use data enclosed in ?s
+    //Create a new widget
     function createWidget(req, res) {
-        //the body contains whatever was passed into
-        //this as a function input in the $http.post, so to speak
         var widget = req.body;
         var pageId = req.params['pageId'];
-        /*
-        widget._id = (new Date()).getTime() + "";
-        widget.pageId = req.params['pageId'];
-        console.log(widget);
-        widgets.push(widget);
-        //Echoes the user back to the client
-        res.send(widget);
-        */
         widgetModel
             .createWidget(pageId, widget)
             .then(function (widget) {
                 res.json(widget);
             });
-
     }
 
+    //Update the given widget
     function updateWidget(req, res) {
         var widget = req.body;
         var widgetId = req.params['widgetId'];
-        /*
-        var oldWidget = widgets.find(function (widget) {
-            return widget._id === widgetId;
-        });
-        if (oldWidget !== null) {
-            var index = widgets.indexOf(oldWidget);
-            widget._id = oldWidget._id;
-            widget.pageId = oldWidget.pageId;
-            widgets[index] = widget;
-            //Send status allows you to tell the client whether
-            //or not the server operation was successful.
-            res.sendStatus(200);
-            return;
-        }
-        else {
-            res.sendStatus(404);
-        }
-        */
         widgetModel
             .updateWidget(widgetId, widget)
             .then(function (status) {
@@ -168,16 +137,9 @@ module.exports = function (app) {
             })
     }
 
+    //Delete the noted widget
     function deleteWidget(req, res) {
         var widgetId = req.params.widgetId;
-        /*
-        var widget = widgets.find(function (widget) {
-            return widget._id === widgetId;
-        });
-        var index = widgets.indexOf(widget);
-        widgets.splice(index, 1);
-        res.sendStatus(200);
-        */
         widgetModel
             .deleteWidget(widgetId)
             .then(function (status) {
@@ -185,18 +147,9 @@ module.exports = function (app) {
             });
     }
 
+    //Find the widgets from the given page
     function findWidgetsForPage(req, res)  {
         var pageId = req.params.pageId;
-        /*
-        var resultSet = [];
-        for(var w in widgets) {
-            var widget = widgets[w];
-            if(widget.pageId === req.params.pageId) {
-                resultSet.push(widget);
-            }
-        }
-        res.json(resultSet);
-        */
         widgetModel
             .findAllWidgetsForPage(pageId)
             .then(function (widgets) {
@@ -204,14 +157,9 @@ module.exports = function (app) {
             })
     }
 
+    //Find the widget with the given id
     function findWidgetById(req, res) {
         var widgetId = req.params['widgetId'];
-        /*
-        var widget = widgets.find(function (widget) {
-            return widget._id === widgetId;
-        });
-        res.send(widget);
-        */
         widgetModel
             .findWidgetById(widgetId)
             .then(function (widget) {

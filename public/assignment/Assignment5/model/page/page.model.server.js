@@ -96,11 +96,14 @@ function deletePage(pageId) {
             return pageModel
                 .findPageById(pageId)
                 .then(function (page) {
-                    var websiteId = page._website._id;
+                    var websiteId = page._website;
                     return pageModel.remove({_id: pageId})
                         .then(function (status) {
-                            return;
-                            //return websiteModel.removePage(websiteId, pageId);
+                            console.log('in page delete callback');
+                            console.log(websiteModel);
+                            console.log(websiteId);
+                            console.log(pageId);
+                            return websiteModel.removePage(websiteId, pageId);
                         });
                 });
         });
@@ -108,7 +111,7 @@ function deletePage(pageId) {
 
 function deleteAllPagesForWebsite(websiteId) {
 
-    pageModel
+    return pageModel
         .findAllPagesForWebsite(websiteId)
         .then(function (pages) {
             spliceWidgetsAndPages(pages);
@@ -122,7 +125,6 @@ function deleteAllPagesForWebsite(websiteId) {
                     return pageModel.remove({_id: page._id});
                 });
         }
-        return;
     }
 }
 

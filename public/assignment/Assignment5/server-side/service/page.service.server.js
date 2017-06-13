@@ -27,13 +27,6 @@ module.exports = function (app) {
     app.delete('/api/assignment/page/:pageId', deletePage);
 
     //The given pages for us to use
-    /*
-    var pages = [
-        { "_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem" },
-        { "_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem" },
-        { "_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem" }
-    ];
-    */
 
     //Create a new Page for the given website's Id,
     //whose material is taken from the given (incomplete) page
@@ -41,14 +34,6 @@ module.exports = function (app) {
         console.log('in server');
         var page = req.body;
         var websiteId = req.params.websiteId;
-        /*
-        page._id = (new Date()).getTime() + "";
-        page.created = new Date();
-        page.updated = new Date();
-        pages.push(page);
-        console.log(page);
-        res.send(page);
-        */
         console.log('sending ' + page + ' and ' + websiteId);
         pageModel.createPage(websiteId, page)
             .then(function (page) {
@@ -60,20 +45,6 @@ module.exports = function (app) {
     //Find all of the pages in the given website's Id
     function findPagesByWebsiteId(req, res) {
         var websiteId = req.params['websiteId'];
-        /*
-        console.log('starting sitePages');
-        var sitePages = [];
-        for(var p in pages) {
-            var page = pages[p];
-            console.log(page);
-            if (page.websiteId === websiteId) {
-                sitePages.push(page);
-                console.log(page + " has been added");
-            }
-        }
-        console.log('done sitePages:' + sitePages);
-        res.json(sitePages);
-        */
         pageModel.findAllPagesForWebsite(websiteId)
             .then(function (websites) {
                 res.json(websites);
@@ -84,24 +55,6 @@ module.exports = function (app) {
     function updatePage(req, res) {
         var page = req.body;
         var pageId = req.params['pageId'];
-        /*
-        var oldPage = pages.find(function (page) {
-            return page._id === pageId;
-        });
-        if (oldPage !== null) {
-            page._id = oldPage._id;
-            page.websiteId = oldPage.websiteId;
-            page.created = oldPage.created;
-            page.updated = new Date();
-            var index = pages.indexOf(oldPage);
-            pages[index] = page;
-            res.sendStatus(200);
-            return;
-        }
-        else {
-            res.sendStatus(404);
-        }
-        */
         pageModel.updatePage(pageId, page)
             .then(function (status) {
                 res.sendStatus(200);
@@ -111,12 +64,6 @@ module.exports = function (app) {
     //Find a Page whose Id matches the given Id
     function findPageById(req, res) {
         var pageId = req.params['pageId'];
-        /*
-        var page = pages.find(function (page) {
-            return page._id === pageId;
-        });
-        res.send(page);
-        */
         pageModel
             .findPageById(pageId)
             .then(function (website) {
@@ -127,14 +74,6 @@ module.exports = function (app) {
     //Delete the Page of the given Id
     function deletePage(req, res) {
         var pageId = req.params.pageId;
-        /*
-        var page = pages.find(function (page) {
-            return page._id === pageId;
-        });
-        var index = pages.indexOf(page);
-        pages.splice(index, 1);
-        res.sendStatus(200);
-        */
         pageModel.deletePage(pageId)
             .then(function (status) {
                 res.sendStatus(200);

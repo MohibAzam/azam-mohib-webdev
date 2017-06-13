@@ -24,10 +24,6 @@ module.exports = function (app) {
     function createUser(req, res) {
         console.log('yo');
         var user = req.body;
-        //With the MongoDB, we no longer need to keep
-        //the data within the local server
-        //so we can instead use the user.model.server
-        //instead of manipulating it here
         userModel.createUser(user)
             .then(function (user) {
                 console.log(user);
