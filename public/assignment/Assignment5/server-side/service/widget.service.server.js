@@ -123,6 +123,7 @@ module.exports = function (app) {
         //the body contains whatever was passed into
         //this as a function input in the $http.post, so to speak
         var widget = req.body;
+        var pageId = req.params['pageId'];
         /*
         widget._id = (new Date()).getTime() + "";
         widget.pageId = req.params['pageId'];
@@ -132,7 +133,7 @@ module.exports = function (app) {
         res.send(widget);
         */
         widgetModel
-            .createWidget(widget)
+            .createWidget(pageId, widget)
             .then(function (widget) {
                 res.json(widget);
             });

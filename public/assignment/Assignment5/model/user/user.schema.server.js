@@ -10,7 +10,10 @@ var userSchema = mongoose.Schema({
     lastName: String,
     dateCreated: {type: Date, default: Date.now},
     email: String,
-    phone: String
+    phone: String,
+    websites: [
+        {type: mongoose.Schema.Types.ObjectId, ref: 'WebsiteModel'}
+    ]
     //you can either have the parents have references to its children
     //or make the children have references to their parent
     //i.e. either user -> websites or website -> user can work

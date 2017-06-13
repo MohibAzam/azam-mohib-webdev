@@ -13,15 +13,21 @@ widgetModel.deleteWidget = deleteWidget;
 widgetModel.updateWidget = updateWidget;
 widgetModel.deleteAllWidgetsForPage = deleteAllWidgetsForPage;
 
+var pageModel = require('../page/page.model.server.js');
+
 //Anybody who requires this file will be able to access
 //the widgetModel and its functions
 module.exports = widgetModel;
 
-function createWidget(widget) {
+function createWidget(pageId, widget) {
     //This inserts new data into the database
     //We will return a promise so that
     //whoever calls this function can handle it properly
-    return widgetModel.create(widget);
+    widget._page = pageId;
+    return widgetModel.create(widget)
+        .then(function (widget) {
+            return pageModel.addWidget(pageId, widget._id);
+        });
 }
 
 function findAllWidgets() {
@@ -50,7 +56,7 @@ function findAllWidgetsForPage(pageId) {
     //find returns a specific array of websites that meet the given conditions
     return widgetModel.find({_page: pageId})
     //This will allow us to list off the user itself
-        .populate('_page')
+        .populate('_page', 'name')
         //You can string together multiple transformations, such as .sort()
         //exec() is called to end the list of transformations and run through
         //all of the ones that have been listed
@@ -58,7 +64,15 @@ function findAllWidgetsForPage(pageId) {
 }
 
 function deleteWidget(widgetId) {
-    return widgetModel.remove({_id: widgetId});
+    return widgetModel
+        .findWidgetById(widgetId)
+        .then(function (widget) {
+            var pageId = widget._page._id;
+            return widget.remove({_id: widgetId})
+                .then(function (status) {
+                    return pageModel.removeWidget(pageId, widgetId);
+                });
+        });
 }
 
 function deleteAllWidgetsForPage(pageId) {

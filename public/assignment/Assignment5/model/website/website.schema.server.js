@@ -13,7 +13,10 @@ var websiteSchema = mongoose.Schema({
 
     description: {type: String, require: true},
     dateCreated: {type: Date, default: Date.now},
-    lastModified: {type: Date, default: Date.now}
+    pages: [
+        {type: mongoose.Schema.Types.ObjectId, ref: 'PageModel'}
+    ],
+    lastModified: {type: Date}
 
 }, {collection: "website"});/**
  * Created by mohib on 6/11/2017.

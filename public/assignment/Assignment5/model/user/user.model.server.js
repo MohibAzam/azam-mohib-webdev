@@ -11,6 +11,27 @@ userModel.findUserByCredentials = findUserByCredentials;
 userModel.findUserByUsername = findUserByUsername;
 userModel.deleteUser = deleteUser;
 userModel.updateUser = updateUser;
+userModel.addWebsite = addWebsite;
+userModel.removeWebsite = removeWebsite;
+
+function addWebsite(userId, websiteId) {
+    return userModel
+        .findUserById(userId)
+        .then(function (user) {
+            user.websites.push(websiteId);
+            return user.save();
+        });
+}
+
+function removeWebsite(userId, websiteId) {
+    return userModel
+        .findUserById(userId)
+        .then(function (user) {
+            var index = user.websites.indexOf(websiteId);
+            user.websites.splice(index, 1);
+            return user.save();
+        });
+}
 
 //Anybody who requires this file will be able to access
 //the userModel and its functions
@@ -34,7 +55,6 @@ function updateUser(userId, user) {
     //you can update the fields individually
     //or set it to be the new object outright
     return userModel.update({_id: userId}, {
-        //$set : user
         $set : {
             firstName: user.firstName,
             lastName: user.lastName,
@@ -64,6 +84,9 @@ function findUserByUsername(username) {
 }
 
 function deleteUser(userId) {
-    return userModel.remove({_id: userId});
+    return pageModel.deleteAllPagesForWebsite(w.websiteId)
+        .then(function () {
+            return userModel.remove({_id: userId});
+        });
 }
 
