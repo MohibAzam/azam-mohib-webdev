@@ -1,11 +1,33 @@
-<div ng-model="model.widget.text"
-     text-angular
-     ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+<nav class="navbar navbar-default navbar-fixed-top gray-navbar blue-brands">
+    <div class="container-fluid">
+
+        <a class="navbar-brand navbar-left"
+           href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="navbar-brand navbar-left">
+            Widget Edit
+        </a>
+
+        <a class="navbar-brand navbar-right" ng-click="model.updateWidget(model.widget)">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div ng-model="model.widget.text"
+         text-angular
+         ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
         ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
         ['indent','outdent'],['html']]">
+    </div>
+
+    <a ng-click="model.deleteWidget()"
+       class="btn btn-block btn-danger">
+        Delete
+    </a>
 </div>
 
-<a ng-click="model.updateWidget(model.widget)"
-   class="btn btn-block btn-primary">
-    Submit
-</a>
