@@ -1,0 +1,56 @@
+<nav class="navbar navbar-default navbar-fixed-top gray-navbar blue-brands">
+    <div class="container-fluid">
+
+        <a class="navbar-brand navbar-left"
+           href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="navbar-brand navbar-left">
+            Widget Edit
+        </a>
+
+        <a class="navbar-brand navbar-right"
+           ng-click="model.updateWidget(model.widget)">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <label for="name">
+        Name
+    </label>
+    <input id="name"
+           class="form-control"
+           placeholder="Video Name"/>
+
+    <label for="text">
+        Text
+    </label>
+    <input id="text" class="form-control" placeholder="Video Text"/>
+
+    <label for="url">
+        URL (use the URL you get with the share button!)
+    </label>
+    <input id="url"
+           class="form-control"
+           ng-model="model.widget.url"
+           placeholder="Video URL"/>
+
+    <label for="width">
+        Width (give a number followed by a % sign)
+    </label>
+    <input id="width"
+           class="form-control"
+           ng-model="model.widget.width"
+           placeholder="Video Size"/>
+
+    <a ng-click="model.deleteWidget()"
+       class="btn btn-block btn-danger">
+        Delete
+    </a>
+
+</div>

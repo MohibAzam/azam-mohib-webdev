@@ -1,0 +1,45 @@
+<nav class="navbar navbar-default navbar-fixed-top gray-navbar blue-brands">
+    <div class="container-fluid">
+
+        <a class="navbar-brand navbar-left"
+           href="#!/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+
+        <a class="navbar-brand navbar-left">
+            Widget Edit
+        </a>
+
+        <a class="navbar-brand navbar-right" ng-click="model.updateWidget(model.widget)">
+            <span class="glyphicon glyphicon-ok"></span>
+        </a>
+
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <label for="text">
+        Text
+    </label>
+    <input id="text" ng-model="model.widget.text" class="form-control"/>
+
+    <label for="rows">
+        Rows
+    </label>
+    <input id="rows" ng-model="model.widget.rows" class="form-control" type="number"/>
+
+    <label for="placeholder">
+        Placeholder
+    </label>
+    <input id="placeholder" ng-model="model.widget.placeholder" class="form-control"/>
+
+    <label for="formatted">
+        Formatted
+    </label>
+    <input id="formatted" ng-model="model.widget.formatted" type="checkbox"/>
+
+    <a ng-click="model.deleteWidget()"
+       class="btn btn-block btn-danger">
+        Delete
+    </a>
+</div>

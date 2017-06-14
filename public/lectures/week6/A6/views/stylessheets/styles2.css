@@ -1,0 +1,8 @@
+.gray-navbar {
+    background-color: gainsboro;
+    font-weight: bold;
+}
+
+.blue-brands .navbar-brand {
+    color: dodgerblue;
+}
