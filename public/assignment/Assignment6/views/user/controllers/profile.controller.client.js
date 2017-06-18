@@ -26,6 +26,7 @@
         //event handler
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
+        vm.logout = logout;
 
         function deleteUser(user) {
             userService.deleteUser(userId)
@@ -39,6 +40,14 @@
             userService.updateUser(userId, user)
                 .then(function () {
                     vm.message = "The changes have been saved!";
+                });
+        }
+
+        function logout() {
+            userService
+                .logout()
+                .then(function () {
+                    $location.url('login')
                 });
         }
     }

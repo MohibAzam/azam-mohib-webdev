@@ -71,6 +71,14 @@ module.exports = function (app) {
 
     app.get('/api/assignment/checkLoggedIn', checkLoggedIn);
 
+    app.post('/api/assignment/logout', logout);
+
+
+    function logout(req, res) {
+        req.logout();
+        res.sendStatus(200);
+    }
+
     function checkLoggedIn(req, res) {
         //Added by passport that checks to see if the given user
         //has been authenticated (logged in)

@@ -11,6 +11,7 @@
             findUserByCredentials: findUserByCredentials,
             findUserById: findUserById,
             login: login,
+            logout: logout,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
             deleteUser: deleteUser,
@@ -18,6 +19,14 @@
         };
 
         return api;
+
+        function logout() {
+            var url = "/api/assignment/logout";
+            return $http.post(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function checkLoggedIn() {
             var url = "/api/assignment/checkLoggedIn";
