@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Bootstrap -->
+    <link href="vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>Login</h1>
+        <label for="username">
+            Username
+        </label>
+        <input ng-model="model.user.username"
+               id="username"
+               class="form-control"/>
+
+        <label>Password</label>
+        <input ng-model="model.user.password"
+               class="form-control"
+               type="password"/>
+
+        <a class="btn btn-block btn-primary">
+            Login
+        </a>
+
+        OR
+
+        <a class="btn btn-block black">Login through Steam</a>
+    </div>
+
+    <div class="container-fluid">
+
+        <h1>Don't have an account? Register here!</h1>
+
+        <label>Username</label>
+        <input ng-model="model.user.username"
+               id="reg-username"
+               class="form-control"/>
+
+        <label>Password</label>
+        <input ng-model="model.user.password"
+               class="form-control"
+               type="password"/>
+
+        <label>Confirm Password</label>
+        <input ng-model="model.user.password"
+               class="form-control"
+               type="password"/>
+
+        <a class="btn btn-block black">Register through Steam</a>
+
+    </div>
+</body>
+</html>

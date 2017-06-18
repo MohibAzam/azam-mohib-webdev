@@ -22,6 +22,10 @@ module.exports = function(app) {
     pageApp(app);
     widgetApp(app);
 
+    var passport = require('passport');
+    app.use(passport.initialize());
+    app.use(passport.session());
+
     app.get('/websites', sendWebsites);
     app.get('/goodbye', sayHello);
 
@@ -61,7 +65,7 @@ module.exports = function(app) {
 /*
 var app = require('express');
 
-require("../service/user.service.server.js");
+require("../service/user.service.project-serv.js");
 
 app.get('/websites', sendWebsites);
 

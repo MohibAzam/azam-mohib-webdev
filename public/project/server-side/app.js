@@ -1,7 +1,25 @@
+var mongoose = require('mongoose');
+mongoose.Promise = require('q').Promise;
+if(process.env.MLAB_USERNAME) { // check if running remotely
+    var username = process.env.MLAB_USERNAME; // get from environment
+    var password = process.env.MLAB_PASSWORD;
+    var connectionString = 'mongodb://' + username + ':' + password;
+    connectionString += '@ds137101.mlab.com:37101/heroku_2gx4wpp3'; // user yours
+    mongoose.connect(connectionString);
+}
+else {
+    mongoose.connect('mongodb://localhost/test/webdev_summer1_2017');
+}
+
+
 module.exports = function(app) {
 
-    app.get('/websites', sendWebsites);
-    app.get('/goodbye', sayHello);
+    var testApp = require ('./apiTest.service.server');
+    testApp(app);
+
+    //app.get('/websites', sendWebsites);
+    //app.get('/goodbye', sayHello);
+
 
     var connectionString = 'mongodb://127.0.0.1:27017/test'; // for local
     if(process.env.MLAB_USERNAME) { // check if running remotely
@@ -32,14 +50,14 @@ module.exports = function(app) {
     function sayHello() {
         console.log('hey');
     }
-}();
+}
 
 
 
 /*
  var app = require('express');
 
- require("../service/user.service.server.js");
+ require("../service/user.service.project-serv.js");
 
  app.get('/websites', sendWebsites);
 

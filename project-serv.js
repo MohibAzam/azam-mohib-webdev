@@ -10,14 +10,18 @@ app.use(express.static(__dirname + '/public'));
 
 //require ("./test/app.js")(app);
 
-var myApp = require('../../server_side/app.js');
+//var myApp = require('../../server_side/app.js');
 
-myApp = require ("./server-side/app.js");
+var myApp = require ("./public/project/server-side/app.js");
 console.log(myApp);
 //myApp.sayHello();
 //myApp('this is the message');
 
 myApp(app);
+
+console.log('test');
+
+require("./public/lectures/ejs/hello");
 
 var port = process.env.PORT || 3000;
 

@@ -7,7 +7,56 @@ var bodyParser = require('body-parser');
 module.exports = function (app) {
     var userModel = require('../../model/user/user.model.server.js');
 
+    var passport = require('passport');
+    var LocalStrategy = require('passport-local');
+
+    //Passport isn't doing the actual authentication,
+    //we are, but it gives us the tools to do so,
+    //and we notify them as we do authentication
+    passport.use(new LocalStrategy(localStrategy));
+
+    //Functions to tell us that passport received a request
+    //and is trying to decrypt the cookie.
+    //Tells passport how to identify users
+    //Serialize sends the data into the cookie
+    passport.serializeUser(serializeUser);
+    passport.deserializeUser(deserializeUser);
+
+    //This method is the methodology used for local authentication
+    //First two arguments are obviously username and pw
+    //Third argument allows you to chain multiple functions
+
+    //If you use $https, it encrypts the information
+    //between the browser and server. The browser and server
+    //agree on keys and sends encrypted data back and forth
+    //(note that heroku requires a paid account to do this)
+    function localStrategy(username, password, done) {
+        userModel
+            .findUserByCredentials(username, password)
+            .then(
+                function(user) {
+                    if (!user) {
+                        //This gets executed if the user does not exist
+                        //Returns false to indicate it's unauthorized
+                        return done(null, false);
+                    }
+                    //This gets executed if it does
+                    return done(null, user);
+                },
+                function(err) {
+                    if (err) {
+                        return done(err);
+                    }
+                }
+            );
+    }
+
     //The API for the user service on the Server-side
+
+    //Tells passport to use local strategy to check the request that is coming
+    //then let us know if the given user/password is valid
+    app.post('/api/assignment/login', passport.authenticate('local'), login);
+
     app.get('/api/assignment/user/:userId', findUserById);
 
     app.get('/api/assignment/user', findUserByCredentials);
@@ -19,6 +68,12 @@ module.exports = function (app) {
     app.put('/api/assignment/user/:userId', updateUser);
 
     app.delete('/api/assignment/user/:userId', deleteUser);
+
+    //Log the given user in
+    function login(req, res) {
+        var user = req.user;
+        res.json(user);
+    }
 
     //Create user pased on the given material
     function createUser(req, res) {
@@ -89,6 +144,25 @@ module.exports = function (app) {
             .then(function (user) {
                 res.json(user);
             });
+    }
+
+    function serializeUser(user, done) {
+        done(null, user);
+    }
+
+    function deserializeUser(user, done) {
+        userModel
+            .findUserById(user._id)
+            .then(
+                function(user){
+                    //States the cookie is good and user was found,
+                    //seeing as findById gave us a result.
+                    done(null, user);
+                },
+                function(err){
+                    done(err, null);
+                }
+            );
     }
 
 }

@@ -12,7 +12,9 @@
         //If their credentials are invalid, deny them access
         vm.login = function(user) {
 
-            userService.findUserByCredentials(user.username, user.password)
+            userService
+                //.findUserByCredentials(user.username, user.password)
+                .login(user.username, user.password)
                 .then(login, handleError);
 
             function login (found) {
