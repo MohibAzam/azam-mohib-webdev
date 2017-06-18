@@ -69,6 +69,19 @@ module.exports = function (app) {
 
     app.delete('/api/assignment/user/:userId', deleteUser);
 
+    app.get('/api/assignment/checkLoggedIn', checkLoggedIn);
+
+    function checkLoggedIn(req, res) {
+        //Added by passport that checks to see if the given user
+        //has been authenticated (logged in)
+        if(req.isAuthenticated()) {
+            res.json(req.user);
+        }
+        else {
+            res.send('0');
+        }
+    }
+
     //Log the given user in
     function login(req, res) {
         var user = req.user;

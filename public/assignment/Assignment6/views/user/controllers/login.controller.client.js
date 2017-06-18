@@ -19,7 +19,7 @@
 
             function login (found) {
                 if(found !== null) {
-                    $location.url('/user/' + found._id);
+                    $location.url('/profile');
                 }
                 else {
                     vm.message = "Username " + user.username + " not found, please try again";

@@ -24,10 +24,17 @@
                 controller: 'registerController',
                 controllerAs: 'model'
             })
-            .when('/user/:userId', {
+            //refactored thanks to passport so we don't need to include
+            //the id in the url
+            .when('/profile', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                //States the following things must be resolved
+                //Before navigation and controller instantiation starts
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
             })
 
             //website routing
@@ -89,4 +96,11 @@
             //All else fails, go back to the login page
             .otherwise({redirectTo:'/'});
     }
+
+    function checkLoggedIn(userService) {
+        //this, and all other resolve functions, will return a promise
+        //The navigation will proceed once all promises are resolved
+        return userService.checkLoggedIn();
+    }
+
 })();

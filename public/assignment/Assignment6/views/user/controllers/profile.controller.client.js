@@ -3,18 +3,22 @@
         .module('WAM')
         .controller('profileController', profileController);
     
-    function profileController($location, userService, $routeParams) {
+    function profileController(currentUser, $location, userService, $routeParams) {
 
         //Self-instantiation
         var vm = this;
 
-        var userId = $routeParams['userId'];
-        userService
-            .findUserById(userId)
+        var userId = currentUser._id;
+        //userService
+            //.findUserById(userId)
             //Continue to use .then here on the data that gets returned
             //by findUserById, since we don't know when we'll get back from them
-            .then(renderUser);
+            //.then(renderUser);
 
+        function init() {
+            renderUser(currentUser);
+        }
+        init();
         function renderUser (user) {
             vm.user = user;
         }

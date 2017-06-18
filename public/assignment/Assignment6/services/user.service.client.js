@@ -13,10 +13,19 @@
             login: login,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            checkLoggedIn: checkLoggedIn
         };
 
         return api;
+
+        function checkLoggedIn() {
+            var url = "/api/assignment/checkLoggedIn";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                })
+        }
         
         function login(username, password) {
             var url = "/api/assignment/login";
