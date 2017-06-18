@@ -10,6 +10,8 @@ module.exports = function (app) {
     var passport = require('passport');
     var LocalStrategy = require('passport-local');
 
+    var bcrypt = require("bcrypt-nodejs");
+
     //Passport isn't doing the actual authentication,
     //we are, but it gives us the tools to do so,
     //and we notify them as we do authentication
@@ -35,13 +37,15 @@ module.exports = function (app) {
             .findUserByCredentials(username, password)
             .then(
                 function(user) {
-                    if (!user) {
+                    if (user && bcrypt.compareSync(password, user.password)) {
+                        //This gets executed if the user is found
+                        return done(null, user);
+                    }
+                    else {
                         //This gets executed if the user does not exist
                         //Returns false to indicate it's unauthorized
                         return done(null, false);
                     }
-                    //This gets executed if it does
-                    return done(null, user);
                 },
                 function(err) {
                     if (err) {
@@ -73,6 +77,22 @@ module.exports = function (app) {
 
     app.post('/api/assignment/logout', logout);
 
+    app.post('/api/assignment/register', register);
+
+    function register(req, res) {
+        var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
+        userModel
+            .createUser(user)
+            .then(function (user) {
+                req.login(user, function (status) {
+                    //This added function input
+                    //provides a callback to help operate
+                    //both the login and the user creation
+                    res.json(user);
+                });
+            })
+    }
 
     function logout(req, res) {
         req.logout();
@@ -98,8 +118,8 @@ module.exports = function (app) {
 
     //Create user pased on the given material
     function createUser(req, res) {
-        console.log('yo');
         var user = req.body;
+        user.password = bcrypt.hashSync(user.password);
         userModel.createUser(user)
             .then(function (user) {
                 console.log(user);

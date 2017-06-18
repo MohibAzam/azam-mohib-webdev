@@ -52,13 +52,14 @@
                 password: pw
             };
             console.log(finalUser);
-            userService.createUser(finalUser)
+            userService
+                .register(finalUser)
                 .then(moveOnRegister);
 
             function moveOnRegister(user) {
                 console.log('moving');
                 console.log(user);
-                $location.url('/user/' + user._id);
+                $location.url('/profile');
             }
         }
     }
