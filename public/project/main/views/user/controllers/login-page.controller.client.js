@@ -1,3 +1,62 @@
 /**
  * Created by mohib on 6/17/2017.
  */
+
+(function () {
+    angular
+        .module('MioDB')
+        .controller('loginController', loginController);
+
+    function loginController($location, userService) {
+        var vm = this;
+
+        vm.login = function(username, password) {
+            if (!(username && password)) {
+                vm.error = "Please fill in both the username and the password fields";
+            }
+            else {
+                userService
+                    .login(username, password)
+                    .then(login, handleError);
+            }
+
+            function login(found) {
+                if (found !== null) {
+                    $location.url('/profile');
+                }
+                else {
+                    vm.error = "Invalid credentials, please try again.";
+                }
+            }
+
+            function handleError(error) {
+                vm.error = "Invalid credentials, please try again";
+            }
+
+        };
+
+        vm.register = function(username, password, password2) {
+            if (!(username, password, password2)) {
+                vm.error = "Please fill in all of the provided fields";
+                return;
+            }
+            if (!(password === password2)) {
+                vm.error = "Provided passwords do not match";
+                return;
+            }
+            userService.findUserByUsername(user.username)
+                .then(function (found) {
+                    if (found === null || !(found.username !== username)) {
+                        finishRegistration();
+                    }
+                    else {
+                        vm.error = "The username is already taken!";
+                        return;
+                    }
+                });
+            function finishRegistration() {
+
+            }
+        }
+    }
+})

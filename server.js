@@ -75,6 +75,8 @@ myApp(app);
 
 require("./public/lectures/ejs/hello");
 
+//require("./public/lectures/week7/ejs/crud");
+
 var port = process.env.PORT || 3000;
 
 app.listen(port);
