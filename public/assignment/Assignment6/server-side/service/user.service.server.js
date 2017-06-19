@@ -14,7 +14,10 @@ module.exports = function (app) {
     var googleConfig = {
         clientID     : '716524462943-pskf85rdtc8012bka33goqg39u5fcr7s.apps.googleusercontent.com',
         clientSecret : 'G83qDVF4y0Q1bP5Jup4JcjKm',
-        callbackURL  : 'http://localhost:3000/auth/google/callback'
+        //Note: Replace the callback URL with the localhost:3000
+        //If you wish to use this locally.
+        //This should work fine on Heroku
+        callbackURL  : 'https://azam-mohib-webdev.herokuapp.com/auth/google/callback'
     };
     passport.use(new GoogleStrategy(googleConfig, googleStrategy));
 

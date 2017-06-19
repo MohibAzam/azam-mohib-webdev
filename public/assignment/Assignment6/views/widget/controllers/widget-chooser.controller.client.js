@@ -33,6 +33,7 @@
         function handleChoice(choice, widgetName) {
             if (!(widgetName)) {
                 vm.error = "You must provide a name for the website";
+                return;
             }
             else {
                 var widgetChoice = {
