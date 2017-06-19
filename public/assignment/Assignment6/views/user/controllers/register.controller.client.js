@@ -52,19 +52,37 @@
             }
             */
 
-            var finalUser = {
-                username: user.username,
-                password: pw
-            };
-            console.log(finalUser);
-            userService
-                .register(finalUser)
-                .then(moveOnRegister);
+            var found = userService.findUserByUsername(user.username)
+                .then(function (found) {
+                    console.log('this is what was found');
+                    console.log(found);
+                    if (found === null) {
+                        moveOn();
+                    }
+                    else if (found.username === user.username) {
+                        vm.error = "Username is not available";
+                        return;
+                    }
+                    else {
+                        moveOn();
+                    }
+                });
 
-            function moveOnRegister(user) {
-                console.log('moving');
-                console.log(user);
-                $location.url('/profile');
+            function moveOn() {
+                var finalUser = {
+                    username: user.username,
+                    password: pw
+                };
+                console.log(finalUser);
+                userService
+                    .register(finalUser)
+                    .then(moveOnRegister);
+
+                function moveOnRegister(user) {
+                    console.log('moving');
+                    console.log(user);
+                    $location.url('/profile');
+                }
             }
         }
     }
