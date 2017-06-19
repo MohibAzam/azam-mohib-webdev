@@ -41,13 +41,19 @@
         //Update the current widget based on the info
         //in the given widget
         function updateWidget(widget) {
-            widgetService.updateWidget(model.widgetId, widget)
-                .then(function () {
-                    $location.url('/user/' + model.userId +
-                        '/website/' + model.websiteId +
-                        '/page/' + model.pageId +
-                        '/widget/');
-                });
+            if (widget === undefined || !(widget.name)) {
+                vm.error = "You must provide a name for the widget";
+                return;
+            }
+            else {
+                widgetService.updateWidget(model.widgetId, widget)
+                    .then(function () {
+                        $location.url('/user/' + model.userId +
+                            '/website/' + model.websiteId +
+                            '/page/' + model.pageId +
+                            '/widget/');
+                    });
+            }
         }
 
         //Delete the current widget

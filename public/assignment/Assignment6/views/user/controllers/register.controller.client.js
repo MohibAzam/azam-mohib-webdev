@@ -15,6 +15,11 @@
         //and their passwords match
         function register(user) {
 
+            if (user === undefined || (!(user.username && user.password && user.password2))) {
+                vm.error = "You must fill in the Username and Password fields";
+                return;
+            }
+
             if (user.password !== user.password2) {
                 vm.error = "Passwords must match";
                 return;

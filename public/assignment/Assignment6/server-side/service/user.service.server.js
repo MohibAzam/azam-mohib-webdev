@@ -34,14 +34,21 @@ module.exports = function (app) {
     //(note that heroku requires a paid account to do this)
     function localStrategy(username, password, done) {
         userModel
-            .findUserByCredentials(username, password)
+            .findUserByUsername(username)
             .then(
                 function(user) {
+                    console.log('in conditional');
+                    if (user) {
+                        console.log('true');
+                    }
+                    console.log(bcrypt.compareSync(password, user.password));
                     if (user && bcrypt.compareSync(password, user.password)) {
                         //This gets executed if the user is found
+                        console.log('correct choice');
                         return done(null, user);
                     }
                     else {
+                        console.log('incorrect');
                         //This gets executed if the user does not exist
                         //Returns false to indicate it's unauthorized
                         return done(null, false);

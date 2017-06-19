@@ -11,23 +11,27 @@
         //Login the given user (whose credentials are provided)
         //If their credentials are invalid, deny them access
         vm.login = function(user) {
-
-            userService
+            if (user === undefined || !(user.username && user.password)) {
+                vm.message = "You must fill in the Username and Password fields";
+            }
+            else {
+                userService
                 //.findUserByCredentials(user.username, user.password)
-                .login(user.username, user.password)
-                .then(login, handleError);
+                    .login(user.username, user.password)
+                    .then(login, handleError);
 
-            function login (found) {
-                if(found !== null) {
-                    $location.url('/profile');
+                function login (found) {
+                    if(found !== null) {
+                        $location.url('/profile');
+                    }
+                    else {
+                        vm.message = "Username " + user.username + " not found, please try again";
+                    }
                 }
-                else {
+
+                function handleError (error) {
                     vm.message = "Username " + user.username + " not found, please try again";
                 }
-            }
-
-            function handleError (error) {
-                vm.message = "Username " + user.username + " not found, please try again";
             }
         };
     }

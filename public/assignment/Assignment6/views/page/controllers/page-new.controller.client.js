@@ -27,13 +27,18 @@
 
         //Create a new Page in the Website based on the given information
         function createPage(page) {
-            console.log(page);
-            pageService.createPage(vm.websiteId, page)
-                .then(function (page) {
-                    console.log('got callback');
-                    $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
-                    vm.page = "Page " + page.name + " has been created!";
-                });
+            if (page === undefined || !(page.name)) {
+                vm.error = "You must provide a name for the page";
+            }
+            else {
+                console.log(page);
+                pageService.createPage(vm.websiteId, page)
+                    .then(function (page) {
+                        console.log('got callback');
+                        $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
+                        vm.page = "Page " + page.name + " has been created!";
+                    });
+            }
         }
     }
 })();

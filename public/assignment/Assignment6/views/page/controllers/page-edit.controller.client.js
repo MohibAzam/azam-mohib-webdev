@@ -34,11 +34,16 @@
 
         //Update the current page with the information in the given page
         function updatePage(page) {
-            pageService.updatePage(vm.pageId, page)
-                .then(function () {
-                    $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
-                    vm.message = "Page " + page.name + " has been updated!";
-                });
+            if (page === undefined || !(page.name)) {
+                vm.error = "You must provide a name for the page";
+            }
+            else {
+                pageService.updatePage(vm.pageId, page)
+                    .then(function () {
+                        $location.url('/user/' + vm.userId + '/website/' + vm.websiteId + '/page');
+                        vm.message = "Page " + page.name + " has been updated!";
+                    });
+            }
         }
 
         //Delete the current page

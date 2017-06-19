@@ -11,8 +11,18 @@
 </nav>
 
 <div class="container-fluid">
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <label for="name">Widget Name</label>
+    <input id="name"
+           ng-model="model.widget.name"
+           class="form-control"/>
+
     <div class="widget-choice">
-        <a ng-click='model.handleChoice("HEADING")' class="blue">
+        <a ng-click='model.handleChoice("HEADING", model.widget.name)' class="blue">
             <p>Header</p>
         </a>
     </div>
@@ -22,12 +32,12 @@
         </a>
     </div>
     <div class="widget-choice">
-        <a ng-click='model.handleChoice("HTML")' class="blue">
+        <a ng-click='model.handleChoice("HTML", model.widget.name)' class="blue">
             <p>HTML</p>
         </a>
     </div>
     <div class="widget-choice">
-        <a ng-click='model.handleChoice("TEXT")' class="blue">
+        <a ng-click='model.handleChoice("TEXT", model.widget.name)' class="blue">
             <p>Text Input</p>
         </a>
     </div>
@@ -42,12 +52,12 @@
         </a>
     </div>
     <div class="widget-choice">
-        <a ng-click='model.handleChoice("IMAGE")' class="blue">
+        <a ng-click='model.handleChoice("IMAGE", model.widget.name)' class="blue">
             <p>Image</p>
         </a>
     </div>
     <div class="widget-choice">
-        <a ng-click='model.handleChoice("YOUTUBE")' class="blue">
+        <a ng-click='model.handleChoice("YOUTUBE", model.widget.name)' class="blue">
             <p>Youtube</p>
         </a>
     </div>

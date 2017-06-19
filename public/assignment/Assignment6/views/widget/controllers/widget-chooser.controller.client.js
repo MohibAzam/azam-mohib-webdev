@@ -30,17 +30,23 @@
         //Given some possible widgetType from the widget-chooser,
         //create a brand new widget of that type and immediately
         //have the user edit it
-        function handleChoice(choice) {
-            var widgetChoice = {
-                widgetType: choice
-            };
-            widgetService.createWidget(model.pageId, widgetChoice)
-                .then(function (widget) {
-                    $location.url('/user/' + model.userId +
-                        '/website/' + model.websiteId +
-                        '/page/' + model.pageId +
-                        '/widget/' + widget._id);
-                });
+        function handleChoice(choice, widgetName) {
+            if (!(widgetName)) {
+                vm.error = "You must provide a name for the website";
+            }
+            else {
+                var widgetChoice = {
+                    widgetType: choice,
+                    name: widgetName
+                };
+                widgetService.createWidget(model.pageId, widgetChoice)
+                    .then(function (widget) {
+                        $location.url('/user/' + model.userId +
+                            '/website/' + model.websiteId +
+                            '/page/' + model.pageId +
+                            '/widget/' + widget._id);
+                    });
+            }
         }
     }
 })();

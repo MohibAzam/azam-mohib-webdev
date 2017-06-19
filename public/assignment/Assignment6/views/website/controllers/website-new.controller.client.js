@@ -24,16 +24,22 @@
         //Create a new website based on the info provided
         //in the incomplete website
         function createWebsite(website) {
-            websiteService.createWebsite(vm.userId, website)
-                .then(function (website) {
-                    $location.url('/user/' + vm.userId + '/website');
-                    vm.message = "Website " + website.name + " has been created!";
-                })
+
+            if (website === undefined || !(website.name)) {
+                vm.error = "You must provide a name for the website";
+            }
+            else {
+                websiteService.createWebsite(vm.userId, website)
+                    .then(function (website) {
+                        $location.url('/user/' + vm.userId + '/website');
+                        vm.message = "Website " + website.name + " has been created!";
+                    })
                 /*
-                .error(function (website) {
-                    vm.message = "Error: Website " + website.name + " failed to be created";
-                });
-                */
+                 .error(function (website) {
+                 vm.message = "Error: Website " + website.name + " failed to be created";
+                 });
+                 */
+            }
         }
     }
 })();

@@ -18,6 +18,11 @@
 </nav>
 
 <div class="container-fluid">
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
     <div ng-model="model.widget.text"
          text-angular
          ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],

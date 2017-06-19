@@ -33,16 +33,21 @@
         //Update the website based on the information provided
         //in the incomplete website
         function updateWebsite(website) {
-            websiteService.updateWebsite(vm.websiteId, website)
-                .then(function () {
-                    $location.url('/user/' + vm.userId + '/website');
-                    vm.message = "Website " + website.name + " has been updated!";
-                })
+            if (website === undefined || !(website.name)) {
+                vm.error = "You must provide a name for the website";
+            }
+            else {
+                websiteService.updateWebsite(vm.websiteId, website)
+                    .then(function () {
+                        $location.url('/user/' + vm.userId + '/website');
+                        vm.message = "Website " + website.name + " has been updated!";
+                    })
                 /*
-                .error(function (error) {
-                    vm.message = "An error has occurred";
-                });
-                */
+                 .error(function (error) {
+                 vm.message = "An error has occurred";
+                 });
+                 */
+            }
         }
 
         //Delete the current website
