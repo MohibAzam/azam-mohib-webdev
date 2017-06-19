@@ -7,6 +7,10 @@ var userSchema = mongoose.Schema({
     lastName: String,
     dateCreated: {type: Date, default: Date.now},
     email: String,
+    google: {
+        id:    String,
+        token: String
+    },
     phone: String,
     websites: [
         {type: mongoose.Schema.Types.ObjectId, ref: 'WebsiteModel'}

@@ -9,6 +9,52 @@ module.exports = function (app) {
 
     var passport = require('passport');
     var LocalStrategy = require('passport-local');
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
+    var googleConfig = {
+        clientID     : '716524462943-pskf85rdtc8012bka33goqg39u5fcr7s.apps.googleusercontent.com',
+        clientSecret : 'G83qDVF4y0Q1bP5Jup4JcjKm',
+        callbackURL  : 'http://localhost:3000/auth/google/callback'
+    };
+    passport.use(new GoogleStrategy(googleConfig, googleStrategy));
+
+    function googleStrategy(token, refreshToken, profile, done) {
+        console.log(profile);
+        userModel
+            .findUserByGoogleId(profile.id)
+            .then(
+                function(user) {
+                    if(user) {
+                        return done(null, user);
+                    } else {
+                        var email = profile.emails[0].value;
+                        var emailParts = email.split("@");
+                        var newGoogleUser = {
+                            username:  emailParts[0],
+                            firstName: profile.name.givenName,
+                            lastName:  profile.name.familyName,
+                            email:     email,
+                            google: {
+                                id:    profile.id,
+                                token: token
+                            }
+                        };
+                        return userModel.createUser(newGoogleUser);
+                    }
+                },
+                function(err) {
+                    if (err) { return done(err); }
+                }
+            )
+            .then(
+                function(user){
+                    return done(null, user);
+                },
+                function(err){
+                    if (err) { return done(err); }
+                }
+            );
+    }
 
     var bcrypt = require("bcrypt-nodejs");
 
@@ -85,6 +131,15 @@ module.exports = function (app) {
     app.post('/api/assignment/logout', logout);
 
     app.post('/api/assignment/register', register);
+
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+    app.get('/auth/google/callback',
+        passport.authenticate('google', {
+            successRedirect: '/assignment/Assignment6/index.html#!/profile',
+            failureRedirect: '/assignment/Assignment6/index.html#!/login'
+        }));
+
 
     function register(req, res) {
         var user = req.body;

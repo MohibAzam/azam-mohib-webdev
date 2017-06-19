@@ -7,6 +7,7 @@ userModel.createUser = createUser;
 userModel.findUserById = findUserById;
 userModel.findUserByCredentials = findUserByCredentials;
 userModel.findUserByUsername = findUserByUsername;
+userModel.findUserByGoogleId = findUserByGoogleId;
 userModel.deleteUser = deleteUser;
 userModel.updateUser = updateUser;
 userModel.addWebsite = addWebsite;
@@ -64,6 +65,10 @@ function findUserByCredentials(username, password) {
 
 function findUserByUsername(username) {
     return userModel.findOne({username: username});
+}
+
+function findUserByGoogleId(googleId) {
+    return userModel.findOne({'google.id': googleId});
 }
 
 function deleteUser(userId) {
