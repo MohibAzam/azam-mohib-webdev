@@ -9,7 +9,7 @@ module.exports = function (app) {
 
     var passport = require('passport');
     var LocalStrategy = require('passport-local');
-    var GoogleStrategy = require('passport-google-oauth').loca;
+    var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
     var googleConfig = {
         clientID     : '716524462943-pskf85rdtc8012bka33goqg39u5fcr7s.apps.googleusercontent.com',
@@ -244,7 +244,7 @@ module.exports = function (app) {
             });
     }
 
-    //Find a user for a given userId
+    //Find a user for a given userIderr
     function findUserById(req, res) {
         var userId = req.params['userId'];
         userModel

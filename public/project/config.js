@@ -10,9 +10,14 @@
 
         $routeProvider
 
-            .when('/', {
+            .when('/test', {
                 templateUrl: 'testingGround/apiTest.view.client.html',
                 controller: 'testController',
+                controllerAs: 'model'
+            })
+            .when('/', {
+                templateUrl: 'views/user/templates/login-page.view.client.html',
+                controller: 'loginController',
                 controllerAs: 'model'
             })
             .otherwise({redirectTo: '/'});

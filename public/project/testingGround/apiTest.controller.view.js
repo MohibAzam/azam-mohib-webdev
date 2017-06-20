@@ -46,21 +46,6 @@
                             model.games[g].website = model.games[g].websites[0].url;
                             console.log(model.games[g].website);
                         }
-                        /*
-                        var genreString = "";
-                        for (var genre in model.games[g].genres) {
-                            testService.searchGenres(model.games[g].genres[genre])
-                                .then(function (response) {
-                                    console.log(response);
-                                    genreString += response[0].name;
-                                    genreString += " ";
-                                    console.log(genreString);
-                                });
-                        };
-                        model.games[g].genre = genreString;
-                        delete genreString;
-                        delete genre;
-                        */
                     }
                 });
         }
