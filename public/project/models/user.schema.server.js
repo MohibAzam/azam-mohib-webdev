@@ -8,11 +8,13 @@ var userSchema = mongoose.Schema({
     dateCreated: {type: Date, default: Date.now},
     email: String,
     description: String,
-
+    comments: [
+        {username: String, message: String}
+    ],
     steam: {
         openID: String
     }
 
-}, {collection: user});
+}, {collection: "miodb-user"});
 
 module.exports = userSchema;

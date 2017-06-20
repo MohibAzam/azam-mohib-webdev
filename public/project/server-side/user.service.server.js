@@ -3,7 +3,7 @@
  */
 module.exports = function (app) {
     //TODO: Set this path
-    var userModel = require('...');
+    var userModel = require('../models/user.model.server');
 
     var passport = require('passport');
     var LocalStrategy = require('passport-local');
@@ -63,6 +63,7 @@ module.exports = function (app) {
     app.get('/api/mioDB/user/:userId', findUserById);
     app.put('/api/mioDB/user/:userId', updateUser);
     app.delete('/api/mioDB/user/:userId', deleteUser);
+    app.put('/api/mioDB/addComment/:profileUserId/:writerId', addComment);
 
     app.post('/api/mioDB/login', passport.authenticate('local'), login);
     app.post('/api/mioDB/logout', logout);
@@ -79,7 +80,7 @@ module.exports = function (app) {
     app.get('/auth/steam/return',
         //TODO: Configure these settings
         passport.authenticate('steam', {
-            successRedirect: '???',
+            successRedirect: '/profile',
             failureRedirect: '/login'
         }),
         function(req, res) {
@@ -131,6 +132,17 @@ module.exports = function (app) {
         var userId = req.params.userId;
         userModel
             .deleteUser(userId)
+            .then(function (status) {
+                res.sendStatus(200);
+            });
+    }
+
+    function addComment(req, res) {
+        var profileUserId = req.params.profileUserId;
+        var writerId = req.params.writerId;
+        var message = req.body;
+        userModel
+            .addComment(profileUserId, writerId, message)
             .then(function (status) {
                 res.sendStatus(200);
             });

@@ -17,7 +17,8 @@
             login: login,
             logout: logout,
             register: register,
-            checkLoggedIn: checkLoggedIn
+            checkLoggedIn: checkLoggedIn,
+            addComment: addComment
         };
 
         return api;
@@ -95,6 +96,15 @@
         function checkLoggedIn() {
             var url = "/api/mioDB/checkLoggedIn";
             return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function addComment(profileUserId, writerId, message) {
+            console.log('in user service client');
+            var url = "/api/mioDB/addComment/" + profileUserId + "/" + writerId;
+            return $http.put(url, message)
                 .then(function (response) {
                     return response.data;
                 });

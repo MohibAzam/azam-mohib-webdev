@@ -1,0 +1,19 @@
+(function (){
+    angular
+        .module("<%= name %>")
+        .config(configuration);
+
+    function configuration($routeProvider) {
+        $routeProvider
+            .when("/", {
+                template: "Default Template"
+            })
+            .when("/<%= entityName %>", {
+                templateUrl:
+                template: "Movie List"
+            });
+            .when("/<%= entityName %>/:<%= entityName%>", {
+                template: "Movie Edit"
+            });
+    }
+})();

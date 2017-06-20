@@ -27,6 +27,7 @@
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
         vm.logout = logout;
+        vm.addComment = addComment;
 
         function deleteUser(user) {
             userService.deleteUser(userId)
@@ -47,7 +48,15 @@
             userService
                 .logout()
                 .then(function () {
-                    $location.url('login')
+                    $location.url('/login')
+                });
+        }
+
+        function addComment(String) {
+            userService
+                .addComment(userId, userId)
+                .then(function () {
+                    $location.url('/profile');
                 });
         }
     }

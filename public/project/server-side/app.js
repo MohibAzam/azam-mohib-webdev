@@ -16,10 +16,15 @@ module.exports = function(app) {
 
     var testApp = require ('./apiTest.service.server');
     testApp(app);
+    var userServApp = require ('./user.service.server');
+    userServApp(app);
 
     //app.get('/websites', sendWebsites);
     //app.get('/goodbye', sayHello);
 
+    var passport = require('passport');
+    app.use(passport.initialize());
+    app.use(passport.session());
 
     var connectionString = 'mongodb://127.0.0.1:27017/test'; // for local
     if(process.env.MLAB_USERNAME) { // check if running remotely
@@ -51,14 +56,3 @@ module.exports = function(app) {
         console.log('hey');
     }
 }
-
-
-
-/*
- var app = require('express');
-
- require("../service/user.service.project-serv.js");
-
- app.get('/websites', sendWebsites);
-
- */

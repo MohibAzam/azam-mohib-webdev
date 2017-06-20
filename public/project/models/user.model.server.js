@@ -10,7 +10,7 @@ userModel.findUserById = findUserById;
 userModel.findUserByOpenId = findUserByOpenId;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
-
+userModel.addComment = addComment;
 module.exports = userModel;
 
 function createUser(user) {
@@ -42,4 +42,17 @@ function updateUser(userId, user) {
 
 function deleteUser(userId) {
     return userModel.remove({_id: userId});
+}
+
+function addComment(profileUserId, writerId, message) {
+    var profileUser = userModel.findById(profileUserId);
+    var writerUser = userModel.findById(writerId);
+    var comments = profileUser.comments;
+    var newComment = [{username: writerUser.username, message: message}];
+    comments = newComment.concat(comments);
+    return userModel.update({_id: profileUserId}, {
+        $set: {
+            comments: comments
+        }
+    });
 }

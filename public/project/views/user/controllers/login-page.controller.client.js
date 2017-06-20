@@ -13,6 +13,7 @@
         vm.login = function(username, password) {
             if (!(username && password)) {
                 vm.error = "Please fill in both the username and the password fields";
+                return;
             }
             else {
                 userService
@@ -36,7 +37,8 @@
         };
 
         vm.register = function(username, password, password2) {
-            if (!(username, password, password2)) {
+            console.log('function call');
+            if (!(username && password && password2)) {
                 vm.error = "Please fill in all of the provided fields";
                 return;
             }
@@ -44,9 +46,9 @@
                 vm.error = "Provided passwords do not match";
                 return;
             }
-            userService.findUserByUsername(user.username)
+            userService.findUserByUsername(username)
                 .then(function (found) {
-                    if (found === null || !(found.username !== username)) {
+                    if (found === null || found.username !== username) {
                         finishRegistration();
                     }
                     else {
@@ -55,7 +57,16 @@
                     }
                 });
             function finishRegistration() {
+                var finalUser = {
+                    username: username,
+                    password: password
+                };
 
+                userService
+                    .register(finalUser)
+                    .then(function (response) {
+                        $location.url('/profile');
+                    });
             }
         }
     }

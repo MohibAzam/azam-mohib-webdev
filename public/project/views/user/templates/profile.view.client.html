@@ -1,30 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div class="container-fluid">
-        <h1>Statistics</h1>
-        <h2>Name</h2>
-        <h2>Join date</h2>
-        <h2>Games owned</h2>
-        <h2>Games played</h2>
-        <h2>Games beaten</h2>
-        <h2>Games completed</h2>
-        <a class="btn btn-block btn-primary">Edit profile info</a>
+<div class="container-fluid">
+    <h1>Statistics</h1>
+    <h2>Name</h2>
+    <p></p>
+    <h2>Join date</h2>
+    <p>{{model.user.dateCreated}}</p>
+    <h2>Games owned</h2>
+    <h2>Games played</h2>
+    <h2>Games beaten</h2>
+    <h2>Games completed</h2>
+    <a href="#!/profile-edit" class="btn btn-block btn-primary">Edit profile info</a>
+</div>
+<div class="container-fluid">
+    <a class="btn btn-block btn-primary">See my games list</a>
+    <a class="btn btn-block btn-success">See my wishlist</a>
+</div>
+<div class="container-fluid">
+    <h1>Profile Comments</h1>
+    <textarea rows="3"
+              placeholder="Write a Comment..."
+              ng-model="model.comment"></textarea>
+    <a class="btn btn-primary"
+        ng-click="model.addComment(model.comment)">Submit comment</a>
+    <div class="container fluid">
+        <ul class="list-group">
+            <li ng-repeat="comment in model.user.comments"
+                class="list-group-item">
+                <strong>{{comment.username}}: </strong><p>{{comment.message}}</p>
+            </li>
+        </ul>
     </div>
-    <div class="container-fluid">
-        <a class="btn btn-block btn-primary">See my games list</a>
-        <a class="btn btn-block btn-success">See my wishlist</a>
-    </div>
-    <div class="container-fluid">
-        <h1>Profile Comments</h1>
-        <textarea rows="3"></textarea>
-        <div class="container fluid">
-
-        </div>
-    </div>
-</body>
-</html>
+</div>
