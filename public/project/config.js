@@ -15,11 +15,11 @@
                 controller: 'testController',
                 controllerAs: 'model'
             })
-            .when('/', {
+            .when('/login', {
                 templateUrl: 'views/user/templates/login-page.view.client.html',
                 controller: 'loginController',
                 controllerAs: 'model'
             })
-            .otherwise({redirectTo: '/'});
+            .otherwise({redirectTo: '/test'});
     }
 })();
