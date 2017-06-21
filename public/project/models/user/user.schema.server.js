@@ -11,6 +11,9 @@ var userSchema = mongoose.Schema({
     comments: [
         {username: String, time: String, message: String}
     ],
+    wishlist: [
+        {_game: String, name: String, cover: String}
+    ],
     steam: {
         openID: String
     }

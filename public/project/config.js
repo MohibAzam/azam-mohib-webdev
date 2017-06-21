@@ -16,12 +16,12 @@
                 controllerAs: 'model'
             })
             .when('/login', {
-                templateUrl: 'views/user/templates/user/login-page.view.client.html',
+                templateUrl: 'views/user/templates/login-page.view.client.html',
                 controller: 'loginController',
                 controllerAs: 'model'
             })
             .when('/profile/:userId', {
-                templateUrl: 'views/user/templates/user/profile.view.client.html',
+                templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
                 controllerAs: 'model',
                 resolve: {
@@ -29,7 +29,7 @@
                 }
             })
             .when('/profile-edit', {
-                templateUrl: 'views/user/templates/user/profile-edit.view.client.html',
+                templateUrl: 'views/user/templates/profile-edit.view.client.html',
                 controller: 'profileEditController',
                 controllerAs: 'model',
                 resolve: {

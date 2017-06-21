@@ -18,6 +18,10 @@
 <div class="container-fluid">
     <a class="btn btn-block btn-primary">See games list</a>
     <a class="btn btn-block btn-success">See wishlist</a>
+    <a class="btn btn-block btn-warning"
+       ng-show="model.showPersonal"
+       ng-click="model.logout()">Logout
+    </a>
 </div>
 
 <div class="container-fluid">

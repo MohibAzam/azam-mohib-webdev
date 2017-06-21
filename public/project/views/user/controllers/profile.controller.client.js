@@ -40,9 +40,13 @@
         function logout() {
             userService
                 .logout()
-                .then(function () {
-                    $location.url = '/login';
+                .then(function (response) {
+                    moveOn();
                 });
+
+            function moveOn() {
+                $location.url = '/login';
+            }
         }
 
         function addComment(comment) {

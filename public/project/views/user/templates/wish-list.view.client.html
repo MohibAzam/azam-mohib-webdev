@@ -1,0 +1,14 @@
+<div>
+    <h1>{{model.user.username}}'s Wishlist</h1>
+
+    <div class="container fluid">
+        <ul class="list-group">
+            <li ng-repeat="game in model.user.wishlist"
+                class="list-group-item"
+                ng-click="model.redirectTo(game._game)">
+                <img ng-src="{{game.cover}}"/>
+                {{game.name}}
+            </li>
+        </ul>
+    </div>
+</div>
