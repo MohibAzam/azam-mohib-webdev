@@ -1,0 +1,20 @@
+<div>
+
+    <div>
+        <h1>Search</h1>
+        <input ng-model="model.gameName"
+               id="game"
+               class="form-control"/>
+        <button ng-click="model.searchGames(model.gameName)">Get the Games</button>
+        <ul class="list-group">
+            <li ng-repeat="game in model.games"
+                class="list-group-item"
+                ng-click="model.initGame(game)">
+                <img ng-src="{{game.cover}}"/>
+                {{game.name}}
+                {{game.genre}}
+            </li>
+        </ul>
+    </div>
+
+</div>

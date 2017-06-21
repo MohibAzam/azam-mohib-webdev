@@ -13,15 +13,26 @@ gameModel.createGame = createGame;
 gameModel.findGameById = findGameById;
 gameModel.updateGame = updateGame;
 gameModel.deleteGame = deleteGame;
-gameModel.addComment = addComment;
+//gameModel.addComment = addComment;
 gameModel.addRating = addRating;
+gameModel.findGameByApiId = findGameByApiId;
 
 function createGame(game) {
-    return gameModel.create(game);
+    var existingGame = gameModel.findGameByApiId(game.gameId);
+    if (existingGame === undefined) {
+        return gameModel.create(game);
+    }
+    else {
+        return existingGame;
+    }
 }
 
 function findGameById(gameId) {
     return gameModel.findById(gameId);
+}
+
+function findGameByApiId(gameId) {
+    return gameModel.findOne({gameId: gameId});
 }
 
 function updateGame(gameId, game) {
@@ -44,6 +55,7 @@ function deleteGame(gameId) {
     return gameModel.remove({_id: gameId});
 }
 
+/*
 function addComment(gameId, writerId, message) {
     var game = gameModel.findById(gameId);
     var writerUser = userModel.findById(writerId);
@@ -56,6 +68,7 @@ function addComment(gameId, writerId, message) {
         }
     });
 }
+*/
 
 function addRating(gameId, userId, score) {
     var game = gameModel.findById(gameId);

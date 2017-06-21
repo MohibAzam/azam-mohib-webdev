@@ -3,10 +3,9 @@
  */
 var mongoose = require('mongoose');
 
-//TODO: Finish schema
 var gameSchema = mongoose.schema({
-    gameId: String,
-    gameName: String,
+    gameId: {type: String, require: true},
+    gameName: {type: String, require: true},
     gameCover: String,
     gameGenres: String,
     gameDescription: String,
@@ -14,9 +13,11 @@ var gameSchema = mongoose.schema({
     gamePublishers: String,
     gameReleases: String,
     gameEsrb: String,
+    /*
     gameRating: [
         {username: String, rating: Number}
     ],
+    */
     comments: [
         {username: String, message: String}
     ]

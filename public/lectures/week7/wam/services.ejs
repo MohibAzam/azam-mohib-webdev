@@ -1,0 +1,19 @@
+(function () {
+    angular
+        .module('WAM')
+        .service("<%= entityName%>Service");
+
+    function <%= entityName %>Service($http) {
+        this.findAll = findAll;
+        this.create<%= entityName %> = create<%= entityName %>
+
+        function create<%= %>
+
+        function findAll(id) {
+            var url = "/wam/api/<%= entityName %>/" + id;
+            $http.get(url
+                    .then(function (response) {
+                        return response.data;
+                    }
+        }
+    }

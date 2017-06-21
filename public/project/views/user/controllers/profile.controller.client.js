@@ -59,8 +59,8 @@
             updatedUser.comments.reverse();
             userService
                 .updateUser(userId, updatedUser)
-                .then(function () {
-                    $location.url = '/profile/' + userId;
+                .then(function (response) {
+                    $location.url('/profile/' + userId);
                 });
         }
 

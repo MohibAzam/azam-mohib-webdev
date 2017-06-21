@@ -6,11 +6,58 @@ module.exports = function(application) {
     app.get('/wam/config.js', configJs);
 
     app.get('/wam/:entityName/templates/:type/:templateName', templatesHtml);
+    app.get('/wam/:entityName/controllers/:type/:fileName', controllersJs);
+    app.get('/wam/:entityName/service/:fileName', servicesJs);
+
+    var model = require('./model.js');
+
+    app.get('/wam/api/:entityName', findAll);
+    app.get('/wam/api/:entityName/:id', findById);
+    app.post('/wam/api/:entityName', create);
+
+    function create(req, res) {
+        var entityName = req.params.entityName;
+        model.create(entityName, req.body)
+            .then(function (response) {
+                res.json(response);
+            });
+    }
+
+    function findAll(req, res) {
+        var entityName = req.params.entityName;
+        //Have model retrieve data dependent on
+        //the entityName. Parameters allow filtering
+        model.findAll(entityName, {})
+            .then(function (response) {
+                res.json(response);
+            });
+    }
+
+    function findById(req, res) {
+        var entityName = req.params.entityName;
+
+    }
+
+    function servicesJs(req, res) {
+        var entityName = req.params.entityName;
+        application.entityName = entityName;
+        res.render('lectures/undergraduate/wam/services', application);
+    }
+
+    function controllersJs(req, res) {
+        var entityName = req.params.entityName;
+        var type = req.params.type;
+        application.entityName = entityName;
+        res.render('lectures/undergraduate/wam/controllers');
+    }
 
     function templatesHtml(req, res) {
         var entityName = req.params.entityName;
         var type = req.params.type;
-        res.render('lectures/undergraduate/wam/configJs', application);
+        application.entityName = entityName;
+        application.entity = application.entities[entityName];
+        application.fields = application.entity.fields;
+        res.render('lectures/undergraduate/wam/templates'+type, application);
     }
 
     function configJs(req, res) {

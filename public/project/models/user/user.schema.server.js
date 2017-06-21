@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-//TODO: Finish this Schema
+//TODO: Finish the Steam Login info
 var userSchema = mongoose.Schema({
     username: {type: String, require: true},
     password: {type: String, require: true},
@@ -8,13 +8,19 @@ var userSchema = mongoose.Schema({
     dateCreated: {type: Date, default: Date.now},
     email: String,
     description: String,
+    followingList: [
+        {type: String}
+    ],
     comments: [
         {username: String, time: String, message: String}
     ],
     wishlist: [
-        {_game: String, name: String, cover: String}
+        {type: mongoose.Schema.Types.ObjectId, ref: 'GameModel'}
     ],
-    steam: {
+    gamelist: [
+        {type: mongoose.Schema.Types.ObjectId, ref: 'UserGameModel'}
+    ],
+    team: {
         openID: String
     }
 

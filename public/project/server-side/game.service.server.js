@@ -11,11 +11,12 @@ module.exports = function (app) {
 
     app.post('/api/mioDB/game', createGame);
     app.get('/api/mioDB/game/:gameId', findGameById);
+    app.get('/api/mioDB/game', findGameByApiId);
     app.put('/api/mioDB/game/:gameId', updateGame);
     app.delete('/api/mioDB/game/:gameId', deleteGame);
-    app.put('/api/mioDB/game/:gameId/comment/:userId', addComment);
+    //app.put('/api/mioDB/game/:gameId/comment/:userId', addComment);
 
-    function createGame() {
+    function createGame(req, res) {
         var game = req.body;
         gameModel
             .createGame(game)
@@ -24,7 +25,7 @@ module.exports = function (app) {
             });
     }
 
-    function findGameById() {
+    function findGameById(req, res) {
         var gameId = req.params['gameId'];
         gameModel
             .findGameById(gameId)
@@ -33,17 +34,26 @@ module.exports = function (app) {
             });
     }
 
-    function updateGame() {
-        var gameId = req.params['gameId'];
+    function findGameByApiId(req, res) {
+        var apiId = req.query['apiId'];
+        gameModel
+            .findGameByApiId(apiId)
+            .then(function (game) {
+                res.json(game);
+            });
+    }
+
+    function updateGame(req, res) {
+        var apiId = req.params['apiId'];
         var game = req.body;
         gameModel
-            .updateGame(gameId, game)
+            .updateGame(apiId, game)
             .then(function (game) {
                 res.sendStatus(200);
             });
     }
 
-    function deleteGame() {
+    function deleteGame(req, res) {
         var gameId = req.params['gameId'];
         gameModel
             .deleteGame(gameId)
@@ -52,6 +62,7 @@ module.exports = function (app) {
             });
     }
 
+    /*
     function addComment() {
         var gameId = req.params['gameId'];
         var userId = req.params['userId'];
@@ -62,5 +73,6 @@ module.exports = function (app) {
                 res.sendStatus(200);
             });
     }
+    */
 
 }

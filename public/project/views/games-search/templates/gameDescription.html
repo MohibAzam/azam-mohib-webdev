@@ -1,0 +1,37 @@
+<div>
+    <div ng-show="model.game">
+        <h1>{{model.game.name}}</h1>
+        <img ng-src="{{model.game.cover}}" width="50%"/>
+        <h2>Details</h2>
+        <h3 ng-show="model.game.description">Summary</h3>
+        <p>{{model.game.summary}}</p>
+        <h3 ng-show="model.game.genres">Genres</h3>
+        <p>{{model.allGenres}}</p>
+        <h4 ng-show="model.game.website" ng-href="{{model.game.website}}">More info</h4>
+    </div>
+
+    <a class="btn btn-block btn-primary"
+       ng-show="model.user"
+       ng-click="model.addToGameList()">Add to GamesList</a>
+
+    <a class="btn btn-block btn-success"
+       ng-show="model.user"
+       ng-click="model.addToWishList()">Add to Wishlist</a>
+
+    <h2>Game Comments</h2>
+    <textarea rows="3"
+              placeholder="Write a Comment..."
+              ng-model="model.comment"></textarea>
+    <a class="btn btn-primary"
+       ng-click="model.addComment(model.comment)">Submit comment</a>
+    <div class="container fluid">
+        <ul class="list-group">
+            <li ng-repeat="comment in model.game.comments"
+                class="list-group-item">
+                <p><a ng-click="model.redirectTo(comment.username)">{{comment.username}}</a> ({{comment.time}}) :</p>
+                <p>{{comment.message}}</p>
+            </li>
+        </ul>
+    </div>
+
+</div>
