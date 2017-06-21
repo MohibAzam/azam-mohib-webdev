@@ -18,6 +18,10 @@ module.exports = function(app) {
     testApp(app);
     var userServApp = require ('./user.service.server');
     userServApp(app);
+    //var userGameServApp = require('./userGame.service.server');
+    //userGameServApp(app);
+    //var gameServApp = require('./game.service.server');
+    //gameServApp(app);
 
     //app.get('/websites', sendWebsites);
     //app.get('/goodbye', sayHello);

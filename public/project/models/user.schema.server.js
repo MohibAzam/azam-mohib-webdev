@@ -9,7 +9,7 @@ var userSchema = mongoose.Schema({
     email: String,
     description: String,
     comments: [
-        {username: String, message: String}
+        {username: String, time: String, message: String}
     ],
     steam: {
         openID: String

@@ -25,7 +25,8 @@
         <ul class="list-group">
             <li ng-repeat="comment in model.user.comments"
                 class="list-group-item">
-                <strong>{{comment.username}}: </strong><p>{{comment.message}}</p>
+                <p><strong>{{comment.username}} </strong> ({{comment.time}}) :</p>
+                <p>{{comment.message}}</p>
             </li>
         </ul>
     </div>

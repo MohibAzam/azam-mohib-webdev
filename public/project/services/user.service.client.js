@@ -101,9 +101,10 @@
                 });
         }
 
-        function addComment(profileUserId, writerId, message) {
+        function addComment(profileUserId, message) {
             console.log('in user service client');
-            var url = "/api/mioDB/addComment/" + profileUserId + "/" + writerId;
+            var url = "/api/mioDB/comment/" + profileUserId;
+            console.log(message);
             return $http.put(url, message)
                 .then(function (response) {
                     return response.data;

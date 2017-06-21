@@ -28,8 +28,15 @@
         }
 
         function addComment(comment) {
+            var date = new Date();
+            date = date.toUTCString();
+            var message = {username: currentUser.username, time: date, message: comment};
+            var updatedUser = vm.user;
+            updatedUser.comments.reverse();
+            updatedUser.comments.push(message);
+            updatedUser.comments.reverse();
             userService
-                .addComment(userId, userId, comment)
+                .updateUser(userId, updatedUser)
                 .then(function () {
                     $location.url = '/profile';
                 });

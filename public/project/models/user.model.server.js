@@ -35,7 +35,8 @@ function updateUser(userId, user) {
         $set: {
             name: user.name,
             email: user.email,
-            description: user.description
+            description: user.description,
+            comments: user.comments
         }
     });
 }
@@ -44,12 +45,17 @@ function deleteUser(userId) {
     return userModel.remove({_id: userId});
 }
 
-function addComment(profileUserId, writerId, message) {
+function addComment(profileUserId, message) {
     var profileUser = userModel.findById(profileUserId);
-    var writerUser = userModel.findById(writerId);
+    console.log(profileUser);
     var comments = profileUser.comments;
-    var newComment = [{username: writerUser.username, message: message}];
-    comments = newComment.concat(comments);
+    console.log(comments);
+    if (comments === undefined) {
+        comments = new Array();
+    }
+    comments.reverse();
+    comments.push(message);
+    comments.reverse();
     return userModel.update({_id: profileUserId}, {
         $set: {
             comments: comments

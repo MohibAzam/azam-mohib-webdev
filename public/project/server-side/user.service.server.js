@@ -63,7 +63,7 @@ module.exports = function (app) {
     app.get('/api/mioDB/user/:userId', findUserById);
     app.put('/api/mioDB/user/:userId', updateUser);
     app.delete('/api/mioDB/user/:userId', deleteUser);
-    app.put('/api/mioDB/addComment/:profileUserId/:writerId', addComment);
+    app.put('/api/mioDB/comment/:profileUserId', addComment);
 
     app.post('/api/mioDB/login', passport.authenticate('local'), login);
     app.post('/api/mioDB/logout', logout);
@@ -138,11 +138,12 @@ module.exports = function (app) {
     }
 
     function addComment(req, res) {
-        var profileUserId = req.params.profileUserId;
-        var writerId = req.params.writerId;
+        console.log('got to addComment');
+        var profileUserId = req.params['profileUserId'];
         var message = req.body;
+        console.log('sending to model');
         userModel
-            .addComment(profileUserId, writerId, message)
+            .addComment(profileUserId, message)
             .then(function (status) {
                 res.sendStatus(200);
             });

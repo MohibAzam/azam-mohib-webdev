@@ -3,11 +3,12 @@
  */
 var mongoose = require('mongoose');
 
+//TODO: Add the date of being added, beaten, and completed
 var userGameSchema = mongoose.schema({
     gameId: String,
     gameName: String,
     gameCover: String,
-    ownerId: String,
+    _user: String,
     playingStatus: {type: String,
         enum: [
             'notPlaying',
@@ -37,4 +38,6 @@ var userGameSchema = mongoose.schema({
             'other'
         ]},
     notes: String
-})
+}, {collection: "miodb-userGame"});
+
+module.exports = userGameSchema;
