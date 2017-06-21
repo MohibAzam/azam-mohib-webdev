@@ -3,21 +3,39 @@
         .module('MioDB')
         .controller('profileController', profileController);
 
-    function profileController(currentUser, $location, userService) {
+    function profileController(currentUser, $location, userService, $routeParams) {
         var vm = this;
+        console.log(currentUser._id);
 
-        var userId = currentUser._id;
+        var userId = $routeParams['userId'];
+        console.log(userId);
+        vm.loggedInUser = currentUser;
 
         function init() {
-            renderUser(currentUser);
+            userService
+                .findUserById(userId)
+                .then(function (user) {
+                    renderUser(user);
+                    currentAndViewing();
+                });
         }
-        init();
+
         function renderUser(user) {
             vm.user = user;
         }
 
+        function currentAndViewing() {
+            if (currentUser._id === userId) {
+                vm.showPersonal = 'true';
+                console.log(vm.showPersonal);
+            }
+        }
+
+        init();
+
         vm.logout = logout;
         vm.addComment = addComment;
+        vm.redirectTo = redirectTo;
 
         function logout() {
             userService
@@ -38,7 +56,15 @@
             userService
                 .updateUser(userId, updatedUser)
                 .then(function () {
-                    $location.url = '/profile';
+                    $location.url = '/profile/' + userId;
+                });
+        }
+
+        function redirectTo(username) {
+            userService
+                .findUserByUsername(username)
+                .then(function (user) {
+                    $location.url = '/profile/' + user._id;
                 });
         }
     }

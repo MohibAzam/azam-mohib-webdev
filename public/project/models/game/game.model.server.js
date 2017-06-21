@@ -7,7 +7,7 @@ var gameSchema = require('./game.schema.server.js');
 
 var gameModel = mongoose.model('GameModel', gameSchema);
 
-var userModel = require('./user.model.server.js');
+var userModel = require('../user/user.model.server.js');
 
 gameModel.createGame = createGame;
 gameModel.findGameById = findGameById;

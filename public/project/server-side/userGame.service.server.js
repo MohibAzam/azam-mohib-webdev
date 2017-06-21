@@ -8,7 +8,7 @@ module.exports = function (app) {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
 
-    var userGameModel = require('../models/userGame.model.server');
+    var userGameModel = require('../models/userGame/userGame.model.server');
 
     app.post('/api/mioDB/user/:userId/userGame', createUserGame);
     app.get('/api/mioDB/userGame/:userGameId', findUserGameById);

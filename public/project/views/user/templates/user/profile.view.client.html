@@ -1,19 +1,25 @@
 <div class="container-fluid">
-    <h1>Statistics</h1>
-    <h2>Name</h2>
-    <p></p>
+    <h1>{{model.user.username}}'s Profile</h1>
+    <h2 ng-show="model.user.name">Name</h2>
+    <p ng-show="model.user.name"></p>
     <h2>Join date</h2>
     <p>{{model.user.dateCreated}}</p>
     <h2>Games owned</h2>
     <h2>Games played</h2>
     <h2>Games beaten</h2>
     <h2>Games completed</h2>
-    <a href="#!/profile-edit" class="btn btn-block btn-primary">Edit profile info</a>
+    <a href="#!/profile-edit"
+       ng-show="model.showPersonal"
+       class="btn btn-block btn-primary">
+        Edit profile info
+    </a>
 </div>
+
 <div class="container-fluid">
-    <a class="btn btn-block btn-primary">See my games list</a>
-    <a class="btn btn-block btn-success">See my wishlist</a>
+    <a class="btn btn-block btn-primary">See games list</a>
+    <a class="btn btn-block btn-success">See wishlist</a>
 </div>
+
 <div class="container-fluid">
     <h1>Profile Comments</h1>
     <textarea rows="3"
@@ -25,7 +31,7 @@
         <ul class="list-group">
             <li ng-repeat="comment in model.user.comments"
                 class="list-group-item">
-                <p><strong>{{comment.username}} </strong> ({{comment.time}}) :</p>
+                <p><a ng-click="model.redirectTo(comment.username)">{{comment.username}}</a> ({{comment.time}}) :</p>
                 <p>{{comment.message}}</p>
             </li>
         </ul>

@@ -23,7 +23,8 @@
 
             function login(found) {
                 if (found !== null) {
-                    $location.url('/profile');
+                    console.log(found._id);
+                    $location.url('/profile/' + found._id);
                 }
                 else {
                     vm.error = "Invalid credentials, please try again.";
@@ -65,7 +66,7 @@
                 userService
                     .register(finalUser)
                     .then(function (response) {
-                        $location.url('/profile');
+                        $location.url('/profile/' + response._id);
                     });
             }
         }

@@ -3,7 +3,7 @@
  */
 module.exports = function (app) {
     //TODO: Set this path
-    var userModel = require('../models/user.model.server');
+    var userModel = require('../models/user/user.model.server');
 
     var passport = require('passport');
     var LocalStrategy = require('passport-local');

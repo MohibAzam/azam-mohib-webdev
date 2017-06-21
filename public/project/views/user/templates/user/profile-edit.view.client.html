@@ -1,0 +1,31 @@
+<div class="container fluid">
+    <h1>Edit Profile</h1>
+
+    <div ng-show="model.message"
+         class="alert alert-success">
+        {{model.message}}
+    </div>
+
+    <div class="container-fluid">
+        <label>Password</label>
+        <input ng-model="model.user.password"
+               class="form-control"
+               type="password"/>
+
+        <label>Name</label>
+        <input ng-model="model.user.name"
+               class="form-control"/>
+
+        <label>Email</label>
+        <input ng-model="model.user.email"
+               class="form-control"/>
+
+        <label>About Me</label>
+        <input ng-model="model.user.description"
+               class="form-control"/>
+    </div>
+    <a ng-click="model.updateUser(model.user)" class="btn btn-block btn-danger">Save Changes</a>
+    <a ng-click="model.logout()" class="btn btn-block btn-warning">Logout</a>
+    <a ng-click="model.deleteUser()" class="btn btn-block btn-danger">Delete Account</a>
+
+</div>
