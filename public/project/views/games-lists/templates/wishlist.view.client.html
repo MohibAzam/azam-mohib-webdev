@@ -8,10 +8,10 @@
     <div class="container fluid">
         <ul class="list-group">
             <li ng-repeat="game in model.user.wishlist"
-                class="list-group-item"
-                ng-click="model.redirectTo(game.gameId)">
-                <img ng-src="{{game.gameCover}}"/>
-                {{game.gameName}}
+                class="list-group-item">
+                <img ng-src="{{game.gameCover}}"
+                     ng-click="model.redirectTo(game.gameId)"/>
+                <a ng-click="model.redirectTo(game.gameId)">{{game.gameName}}</a>
                 <a ng-show="model.showPersonal"
                    ng-click="model.deleteGame(game)"
                    class="btn btn-warning">Remove</a>
