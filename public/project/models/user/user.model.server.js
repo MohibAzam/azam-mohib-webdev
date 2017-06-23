@@ -37,7 +37,7 @@ function updateUser(userId, user) {
             description: user.description,
             comments: user.comments,
             wishlist: user.wishlist,
-            followingList: user.followingList,
+            following: user.following,
             gamelist: user.gamelist
         }
     });

@@ -51,12 +51,15 @@
 
         function deleteGame(game) {
             var newUser = vm.user;
-            newUser.wishlist.splice(game, 1);
-            userService
-                .updateUser(userId, newUser)
-                .then(function (response) {
-                    vm.message = "Game deleted";
-                });
+            var gameInd = newUser.wishlist.indexOf(game);
+            if (gameInd > -1) {
+                newUser.wishlist.splice(gameInd, 1);
+                userService
+                    .updateUser(userId, newUser)
+                    .then(function (response) {
+                        vm.message = "Game deleted";
+                    });
+            }
         }
 
         function redirectTo(gameId) {

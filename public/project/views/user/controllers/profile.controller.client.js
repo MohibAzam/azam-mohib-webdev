@@ -31,6 +31,20 @@
                 vm.showPersonal = 'true';
                 console.log(vm.showPersonal);
             }
+            else {
+                checkIfFollowing();
+            }
+        }
+
+        function checkIfFollowing() {
+            var followingList = currentUser.following;
+            var resultInd = followingList.indexOf(vm.user.username);
+            if (resultInd === -1) {
+                vm.notFollowing = true;
+            }
+            else {
+                vm.following = true;
+            }
         }
 
         init();
@@ -38,6 +52,8 @@
         vm.logout = logout;
         vm.addComment = addComment;
         vm.redirectTo = redirectTo;
+        vm.follow = follow;
+        vm.unFollow = unFollow;
 
         function logout() {
             userService
@@ -71,6 +87,31 @@
                 .findUserByUsername(username)
                 .then(function (user) {
                     $location.url('/profile/' + user._id);
+                });
+        }
+
+        function follow() {
+            var newUser = currentUser;
+            newUser.following.push(vm.user.username);
+            userService
+                .updateUser(currentUser._id, newUser)
+                .then(function (response) {
+                    vm.following = true;
+                    vm.notFollowing = false;
+                    vm.message = "You are now following " + vm.user.username;
+                });
+        }
+
+        function unFollow() {
+            var newUser = currentUser;
+            var userInd = newUser.following.indexOf(vm.user.username);
+            newUser.following.splice(userInd, 1);
+            userService
+                .updateUser(currentUser._id, newUser)
+                .then(function (response) {
+                    vm.following = false;
+                    vm.notFollowing = true;
+                    vm.message = "You've unfollowed " + vm.user.username;
                 });
         }
     }

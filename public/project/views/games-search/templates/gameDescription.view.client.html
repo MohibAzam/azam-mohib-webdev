@@ -17,12 +17,20 @@
     </div>
 
     <a class="btn btn-block btn-primary"
-       ng-show="model.user"
+       ng-show="model.notOnGamesList"
        ng-click="model.addToGameList()">Add to GamesList</a>
 
+    <a class="btn btn-block btn-warning"
+       ng-show="model.onGamesList"
+       ng-click="model.removeFromGamesList()">Remove from GamesList</a>
+
     <a class="btn btn-block btn-success"
-       ng-show="model.user"
+       ng-show="model.notOnWishlist"
        ng-click="model.addToWishList()">Add to Wishlist</a>
+
+    <a class="btn btn-block btn-warning"
+       ng-show="model.onWishlist"
+       ng-click="model.removeFromWishlist()">Remove from Wishlist</a>
 
     <a class="btn btn-block btn-warning"
        href="#!/profile/{{model.user._id}}">Back to Profile</a>

@@ -24,11 +24,40 @@
 <div class="container-fluid">
     <a class="btn btn-block btn-primary"
        href="#!/profile/{{model.userId}}/gamelist">See games list</a>
+</div>
+
+<div class="container-fluid">
     <a class="btn btn-block btn-success"
        href="#!/profile/{{model.userId}}/wishlist">See wishlist</a>
+</div>
+
+<div class="container-fluid">
     <a class="btn btn-block btn-warning"
        ng-show="model.showPersonal"
        ng-click="model.logout()">Logout
+    </a>
+</div>
+
+<div class="container-fluid">
+    <a class="btn btn-block btn-success"
+       ng-show="model.notFollowing"
+       ng-click="model.follow()">
+        Follow User
+    </a>
+</div>
+
+<div class="container-fluid">
+    <a class="btn btn-block btn-warning"
+       ng-show="model.following"
+       ng-click="model.unFollow()">
+        Unfollow User
+    </a>
+</div>
+
+<div class="container-fluid">
+    <a class="btn btn-block btn-success"
+       href="#!/following/{{model.user._id}}">
+        See Following List
     </a>
 </div>
 

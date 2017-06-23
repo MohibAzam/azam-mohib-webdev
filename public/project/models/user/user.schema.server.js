@@ -8,7 +8,7 @@ var userSchema = mongoose.Schema({
     dateCreated: {type: Date, default: Date.now},
     email: String,
     description: String,
-    followingList: [
+    following: [
         {type: String}
     ],
     comments: [
@@ -22,8 +22,10 @@ var userSchema = mongoose.Schema({
     ],
     team: {
         openID: String
-    }
-
+    },
+    following: [
+        String
+    ]
 }, {collection: "miodb-user"});
 
 module.exports = userSchema;
