@@ -8,6 +8,7 @@
         console.log(currentUser._id);
 
         var userId = $routeParams['userId'];
+        vm.userId = userId;
         console.log(userId);
         vm.loggedInUser = currentUser;
 
@@ -21,6 +22,7 @@
         }
 
         function renderUser(user) {
+            console.log(user);
             vm.user = user;
         }
 
@@ -45,7 +47,7 @@
                 });
 
             function moveOn() {
-                $location.url = '/login';
+                $location.url('/login');
             }
         }
 
@@ -68,7 +70,7 @@
             userService
                 .findUserByUsername(username)
                 .then(function (user) {
-                    $location.url = '/profile/' + user._id;
+                    $location.url('/profile/' + user._id);
                 });
         }
     }

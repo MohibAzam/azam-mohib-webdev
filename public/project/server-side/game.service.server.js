@@ -11,7 +11,7 @@ module.exports = function (app) {
 
     app.post('/api/mioDB/game', createGame);
     app.get('/api/mioDB/game/:gameId', findGameById);
-    app.get('/api/mioDB/game', findGameByApiId);
+    //app.get('/api/mioDB/game', findGameByApiId);
     app.put('/api/mioDB/game/:gameId', updateGame);
     app.delete('/api/mioDB/game/:gameId', deleteGame);
     //app.put('/api/mioDB/game/:gameId/comment/:userId', addComment);
@@ -21,6 +21,7 @@ module.exports = function (app) {
         gameModel
             .createGame(game)
             .then(function (game) {
+                console.log('returning game');
                 res.json(game);
             });
     }
@@ -34,6 +35,7 @@ module.exports = function (app) {
             });
     }
 
+    /*
     function findGameByApiId(req, res) {
         var apiId = req.query['apiId'];
         gameModel
@@ -42,6 +44,7 @@ module.exports = function (app) {
                 res.json(game);
             });
     }
+    */
 
     function updateGame(req, res) {
         var apiId = req.params['apiId'];

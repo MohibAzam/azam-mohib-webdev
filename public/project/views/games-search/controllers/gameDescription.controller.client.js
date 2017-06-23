@@ -1,7 +1,7 @@
 (function () {
     angular
         .module('MioDB')
-        .controller('gameDescriptionController', gameDescriptionController);
+        .controller('GameDescriptionController', gameDescriptionController);
 
     function gameDescriptionController(currentUser, gameService, userService, $location, $routeParams) {
         var gameId = $routeParams['gameId'];
@@ -9,37 +9,74 @@
 
         function init() {
             if (currentUser) {
-                vm.user = user;
+                vm.user = currentUser;
+                console.log(vm.user);
             }
             gameService
                 .findGameById(gameId)
                 .then(function (game) {
+                    console.log(game);
                     vm.game = game;
                 });
         }
+
+        init();
 
         vm.addToGameList = addToGameList;
         vm.addToWishList = addToWishList;
         vm.addComment = addComment;
 
         function addToGameList() {
-
+            /*
+            var newUser = vm.user;
+            for (var game in newUser.gameList) {
+                var checkedGame = newUser.gameList[game];
+                if (checkedGame.game._id === vm.game._id) {
+                    vm.message = "This game is already on your gamelist!";
+                    return;
+                }
+            }
+            newUser.wishlist.reverse();
+            newUser.wishlist.push(gameObject);
+            newUser.wishlist.reverse();
+            console.log(newUser);
+            userService
+                .updateUser(currentUser._id, newUser)
+                .then(function (response) {
+                    vm.message = "Game has been added to your gamelist!"
+                });
+            */
         }
 
         function addToWishList() {
             var newUser = vm.user;
-            var ind = newUser.wishlist.indexOf(game);
-            if (ind !== -1) {
-                vm.message = "This game is already on your wishlist!";
-                return;
+            for (var game in newUser.wishList) {
+                var checkedGame = newUser.wishList[game];
+                if (checkedGame._id === vm.game._id) {
+                    vm.message = "This game is already on your wishlist!";
+                    return;
+                }
             }
+            var gameObject = {
+                gameName: vm.game.gameName,
+                gameCover: vm.game.gameCover,
+                gameId: vm.game._id
+            };
             newUser.wishlist.reverse();
-            newUser.wishlist.push(vm.game);
+            newUser.wishlist.push(gameObject);
             newUser.wishlist.reverse();
             userService
                 .updateUser(currentUser._id, newUser)
                 .then(function (response) {
-                    vm.message = "Game has been added to your wishlist!"
+                    console.log(currentUser);
+                    vm.message = "Game has been added to your wishlist!";
+                    vm.user = currentUser;
+                    userService
+                        .findUserById(currentUser._id)
+                        .then(function (user) {
+                            console.log(user);
+                            $location.url('/game/' + gameId);
+                        });
                 });
         }
 

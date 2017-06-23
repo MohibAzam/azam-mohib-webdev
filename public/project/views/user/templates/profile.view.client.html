@@ -1,13 +1,19 @@
 <div class="container-fluid">
     <h1>{{model.user.username}}'s Profile</h1>
     <h2 ng-show="model.user.name">Name</h2>
+    {{model.user.name}}
     <p ng-show="model.user.name"></p>
     <h2>Join date</h2>
     <p>{{model.user.dateCreated}}</p>
-    <h2>Games owned</h2>
+    <h2>Email</h2>
+    <p>{{model.user.email}}</p>
+    <h2>Bio</h2>
+    <p>{{model.user.description}}</p>
+
+    <!--<h2>Games owned</h2>
     <h2>Games played</h2>
     <h2>Games beaten</h2>
-    <h2>Games completed</h2>
+    <h2>Games completed</h2>-->
     <a href="#!/profile-edit"
        ng-show="model.showPersonal"
        class="btn btn-block btn-primary">
@@ -16,12 +22,19 @@
 </div>
 
 <div class="container-fluid">
-    <a class="btn btn-block btn-primary">See games list</a>
-    <a class="btn btn-block btn-success">See wishlist</a>
+    <a class="btn btn-block btn-primary"
+       href="#!/profile/{{model.userId}}/gamelist">See games list</a>
+    <a class="btn btn-block btn-success"
+       href="#!/profile/{{model.userId}}/wishlist">See wishlist</a>
     <a class="btn btn-block btn-warning"
        ng-show="model.showPersonal"
        ng-click="model.logout()">Logout
     </a>
+</div>
+
+<div class="container-fluid">
+    <a class="btn btn-block btn-primary"
+       href="#!/search">Search for games</a>
 </div>
 
 <div class="container-fluid">

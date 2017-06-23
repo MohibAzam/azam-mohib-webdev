@@ -1,17 +1,20 @@
 <div>
     <h1>{{model.user.username}}'s Wishlist</h1>
 
-    <a class="btn btn-block btn-danger">Delete List</a>
+    <a ng-show="model.showPersonal"
+       ng-click="model.deleteWishList()"
+       class="btn btn-block btn-danger">Delete List</a>
 
     <div class="container fluid">
         <ul class="list-group">
             <li ng-repeat="game in model.user.wishlist"
                 class="list-group-item"
-                ng-click="model.redirectTo(game._game)">
-                <img ng-src="{{game.cover}}"/>
-                {{game.name}}
-                <button class="btn btn-primary">Edit</button>
-                <button class="btn btn-warning">Remove</button>
+                ng-click="model.redirectTo(game.gameId)">
+                <img ng-src="{{game.gameCover}}"/>
+                {{game.gameName}}
+                <a ng-show="model.showPersonal"
+                   ng-click="model.deleteGame(game)"
+                   class="btn btn-warning">Remove</a>
             </li>
         </ul>
     </div>

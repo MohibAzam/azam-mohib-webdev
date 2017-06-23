@@ -4,7 +4,7 @@
 (function () {
     angular
         .module('MioDB')
-        .factory('userService', userService);
+        .factory('gameService', gameService);
 
 
     function gameService($http) {
@@ -12,38 +12,44 @@
         var api = {
             createGame: createGame,
             findGameById: findGameById,
-            findGameByApiId: findGameByApiId,
+            //findGameByApiId: findGameByApiId,
             updateGame: updateGame,
             deleteGame: deleteGame
-        }
+        };
+
+        return api;
 
         function createGame(game) {
             var url = '/api/mioDB/game';
-            $http.post(url, game)
+            return $http.post(url, game)
                 .then(function (response) {
+                    console.log('returning response data');
+                    console.log(response.data);
                     return response.data;
                 });
         }
 
         function findGameById(gameId) {
             var url = '/api/mioDB/game/' + gameId;
-            $http.get(url)
+            return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });
         }
 
+        /*
         function findGameByApiId(apiId) {
             var url = '/api/mioDB/game?apiId=' + apiId;
-            $http.get(url)
-                .then(function (reponse) {
+            return $http.get(url)
+                .then(function (response) {
                     return response.data;
                 });
         }
+        */
 
         function updateGame(gameId, game) {
             var url = '/api/mioDB/game/' + gameId;
-            $http.put(url, game)
+            return $http.put(url, game)
                 .then(function (response) {
                     return response.data;
                 });
@@ -51,7 +57,7 @@
 
         function deleteGame(gameId) {
             var url = '/api/mioDB/game/' + gameId;
-            $http.delete(url)
+            return $http.delete(url)
                 .then(function (response) {
                     return response.data;
                 });

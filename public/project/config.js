@@ -36,7 +36,44 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .otherwise({redirectTo: '/test'});
+            .when('/search', {
+                templateUrl: 'views/games-search/templates/search.view.client.html',
+                controller: 'searchController',
+                controllerAs: 'model'
+            })
+            .when('/game/:gameId', {
+                templateUrl: 'views/games-search/templates/gameDescription.view.client.html',
+                controller: 'GameDescriptionController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
+            .when('/profile/:userId/wishlist/', {
+                templateUrl: 'views/games-lists/templates/wishlist.view.client.html',
+                controller: 'WishListController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
+            .when('/profile/:userId/gamelist/', {
+                templateUrl: 'views/games-lists/templates/games-list.view.client.html',
+                controller: 'GameListController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
+            .when('/profile/:userId/gamelist/:userGameId', {
+                templateUrl: 'views/games-lists/templates/games-list-edit.view.client.html',
+                controller: 'GameListEditController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkLoggedIn
+                }
+            })
+            .otherwise({redirectTo: '/login'});
     }
 
     function checkLoggedIn($q, $location, userService) {

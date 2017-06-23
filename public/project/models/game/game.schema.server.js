@@ -3,9 +3,9 @@
  */
 var mongoose = require('mongoose');
 
-var gameSchema = mongoose.schema({
-    gameId: {type: String, require: true},
-    gameName: {type: String, require: true},
+var gameSchema = mongoose.Schema({
+    _id: Number,
+    gameName: String,
     gameCover: String,
     gameGenres: String,
     gameDescription: String,

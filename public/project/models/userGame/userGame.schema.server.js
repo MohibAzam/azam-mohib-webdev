@@ -3,7 +3,7 @@
  */
 var mongoose = require('mongoose');
 
-var userGameSchema = mongoose.schema({
+var userGameSchema = mongoose.Schema({
     game: {type: mongoose.Schema.Types.ObjectId, ref: 'GameModel'},
     _user: String,
     addedDate: String,
@@ -11,7 +11,7 @@ var userGameSchema = mongoose.schema({
     playingStatus: {type: String,
         enum: [
             'notPlaying',
-            'firstPlay',
+            'playing',
             'replaying',
             'extras',
             'competitive',
@@ -25,6 +25,7 @@ var userGameSchema = mongoose.schema({
             'previouslyOwned',
             'borrowed',
             'lost',
+            'neverOwned',
             'other'
         ]},
     completionStatus: {type: String,

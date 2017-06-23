@@ -30,13 +30,15 @@ function findUserByOpenId(openId) {
 }
 
 function updateUser(userId, user) {
-    delete user.username;
     return userModel.update({_id: userId}, {
         $set: {
             name: user.name,
             email: user.email,
             description: user.description,
-            comments: user.comments
+            comments: user.comments,
+            wishlist: user.wishlist,
+            followingList: user.followingList,
+            gamelist: user.gamelist
         }
     });
 }

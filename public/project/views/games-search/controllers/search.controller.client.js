@@ -12,6 +12,7 @@
         model.initGame = initGame;
 
         function initGame(game) {
+            console.log(game);
             model.game = game;
             var genreString = "";
             searchService.searchGenres(model.game.genres)
@@ -30,17 +31,28 @@
                 console.log(genreString);
                 //model.game.gameGenres = genreString;
                 var game = {
-                    gameId: model.game._id,
+                    _id: model.game.id,
                     gameName: model.game.name,
                     gameCover: model.game.cover,
                     gameGenres: genreString,
                     gameDescription: model.game.summary
                 };
+                console.log('sending this game');
+                console.log(game);
                 gameService
-                    .createGame(game)
-                    .then(function () {
-                        //TODO: Fill in URL
-                        $location.url('...');
+                    .findGameById(game._id)
+                    .then(function (response) {
+                        if (response === undefined || response === null) {
+                            gameService
+                                .createGame(game)
+                                .then(function (newGame) {
+                                    console.log('moving');
+                                    $location.url('/game/' + newGame._id);
+                                });
+                        }
+                        else {
+                            $location.url('/game/' + response._id);
+                        }
                     });
             }
         }

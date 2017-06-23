@@ -29,7 +29,7 @@
                 "X-Mashape-Key": key,
                 "X-Mashape-Host": "igdbcom-internet-game-database-v1.p.mashape.com"
             }
-        }
+        };
 
         function searchGames(gameName) {
             req.url = urlBase;

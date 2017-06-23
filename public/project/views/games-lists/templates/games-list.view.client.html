@@ -1,0 +1,26 @@
+<div>
+    <h1>{{model.user.username}}'s Game List</h1>
+
+    <a ng-show="model.showPersonal"
+       ng-click="model.clearGameList()"
+       class="btn btn-block btn-danger">Delete List</a>
+
+    <div class="container fluid">
+        <ul class="list-group">
+            <li ng-repeat="game in model.user.gamelist"
+                class="list-group-item"
+                ng-click="model.redirectTo(game._game)">
+                <img ng-src="{{game.cover}}"/>
+                {{game.name}}
+                {{game.score}}
+                {{game.rating}}
+                <a ng-show="model.showPersonal"
+                   ng-click="model.editUserGame(game)"
+                   class="btn btn-primary">Edit</a>
+                <a ng-show="model.showPersonal"
+                   ng-click="model.deleteUserGame(game)"
+                   class="btn btn-warning">Remove</a>
+            </li>
+        </ul>
+    </div>
+</div>

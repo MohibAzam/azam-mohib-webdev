@@ -1,12 +1,18 @@
 <div>
+
+    <div ng-show="model.message"
+         class="alert alert-success">
+        {{model.message}}
+    </div>
+
     <div ng-show="model.game">
-        <h1>{{model.game.name}}</h1>
-        <img ng-src="{{model.game.cover}}" width="50%"/>
+        <h1>{{model.game.gameName}}</h1>
+        <img ng-src="{{model.game.gameCover}}" width="50%"/>
         <h2>Details</h2>
-        <h3 ng-show="model.game.description">Summary</h3>
-        <p>{{model.game.summary}}</p>
-        <h3 ng-show="model.game.genres">Genres</h3>
-        <p>{{model.allGenres}}</p>
+        <h3 ng-show="model.game.gameDescription">Summary</h3>
+        <p>{{model.game.gameDescription}}</p>
+        <h3 ng-show="model.game.gameGenres">Genres</h3>
+        <p>{{model.game.gameGenres}}</p>
         <h4 ng-show="model.game.website" ng-href="{{model.game.website}}">More info</h4>
     </div>
 
@@ -17,6 +23,9 @@
     <a class="btn btn-block btn-success"
        ng-show="model.user"
        ng-click="model.addToWishList()">Add to Wishlist</a>
+
+    <a class="btn btn-block btn-warning"
+       href="#!/profile/{{model.user._id}}">Back to Profile</a>
 
     <h2>Game Comments</h2>
     <textarea rows="3"

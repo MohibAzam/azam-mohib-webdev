@@ -6,6 +6,7 @@ var userGameModel = mongoose.model('UserGameModel', userGameSchema);
 userGameModel.createUserGame = createUserGame;
 userGameModel.findUserGameById = findUserGameById;
 userGameModel.findUserGamesForUser = findUserGamesForUser;
+userGameModel.findUserGameByGameId = findUserGameByGameId;
 userGameModel.updateUserGame = updateUserGame;
 userGameModel.deleteUserGame = deleteUserGame;
 userGameModel.deleteUserGamesForUser = deleteUserGamesForUser;
@@ -23,6 +24,10 @@ function findUserGameById(userGameId) {
 
 function findUserGamesForUser(userId) {
     return userGameModel.find({_user: userId});
+}
+
+function findUserGameByGameId (gameId) {
+    //return userGameModel.find({game._id: userId});
 }
 
 function updateUserGame(userGameId, userGame) {
