@@ -4,9 +4,9 @@
 (function () {
     angular
         .module('MioDB')
-        .controller('GamesListController', gamesListController);
+        .controller('GameListController', gameListController);
 
-    function gamesListController(currentUser, $location, userService, userGameService, $routeParams) {
+    function gameListController(currentUser, $location, userService, userGameService, $routeParams) {
         var vm = this;
         console.log(currentUser._id);
 
@@ -39,7 +39,7 @@
 
         function setupUserGames() {
             userGameService
-                .findUserGamesForUser(currentUser._id)
+                .findUserGamesForUser(userId)
                 .then(function (games) {
                     vm.games = games;
                 });
@@ -54,18 +54,32 @@
             userGameService
                 .deleteUserGamesForUser(userId)
                 .then(function (response) {
-                    $location.url('/profile/' + userId + '/gamelist/' + userGameId);
-                    vm.message = "Game list has been emptied";
+                    var newUser = vm.user;
+                    newUser.gamelist = new Array();
+                    userService
+                        .updateUser(vm.user._id, newUser)
+                        .then(function (response) {
+                            $location.url('/profile/' + userId + '/gamelist');
+                            vm.message = "Game list has been emptied";
+                        });
                 });
         }
 
         function deleteUserGame(userGame) {
             var userGameId = userGame._id;
+            var gameId = userGame.gameId;
             userGameService
                 .deleteUserGame(userGameId)
                 .then(function (response) {
-                    $location.url('/profile/' + userId + '/gamelist/' + userGameId);
-                    vm.message = userGame.gameName + " has been removed";
+                    var newUser = vm.user;
+                    var ind = newUser.gamelist.indexOf(gameId);
+                    newUser.gamelist.splice(ind, 1);
+                    userService
+                        .updateUser(vm.user._id, newUser)
+                        .then(function (response) {
+                            $location.url('/profile/' + userId + '/gamelist');
+                            vm.message = userGame.gameName + " has been removed";
+                        });
                 });
         }
 

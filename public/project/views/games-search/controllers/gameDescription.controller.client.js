@@ -18,6 +18,7 @@
                     console.log(game);
                     vm.game = game;
                     checkIfOnWishlist();
+                    checkIfOnGameList();
                 });
         }
 
@@ -46,6 +47,18 @@
             }
         }
 
+        function checkIfOnGameList() {
+            var gamelist = currentUser.gamelist;
+            console.log(gamelist);
+            var resultInd = gamelist.indexOf(vm.game._id);
+            if (resultInd === -1) {
+                vm.notOnGamesList = true;
+            }
+            else {
+                vm.onGamesList = true;
+            }
+        }
+
         init();
 
         vm.addToGameList = addToGameList;
@@ -59,19 +72,20 @@
             var gameObject = {
                 gameName: vm.game.gameName,
                 gameCover: vm.game.gameCover,
-                _id: vm.game._id,
-                user: vm.user._id
+                gameId: vm.game._id,
+                user: currentUser._id
             };
+            console.log(gameObject);
             userGameService
-                .createUserGame(gameObject)
+                .createUserGame(currentUser._id, gameObject)
                 .then(function (userGame) {
-                    var userGameId = userGame._id;
+                    console.log(userGame);
                     var newUser = vm.user;
-                    newUser.gamelist.push(userGameId);
+                    newUser.gamelist.push(vm.game._id);
                     userService
                         .updateUser(currentUser._id, newUser)
                         .then(function (response) {
-                            console.log(currentUser);
+                            console.log(response);
                             vm.message = "Game has been added to your wishlist!";
                             vm.user = currentUser;
                             vm.notOnGamesList = false;
@@ -96,7 +110,7 @@
                                 .deleteUserGame(userGameId)
                                 .then(function (res) {
                                     console.log(currentUser);
-                                    vm.message = "Game has been added to your wishlist!";
+                                    vm.message = "Game has been removed from your gamelist!";
                                     vm.notOnGamesList = true;
                                     vm.onGamesList = false;
                                 });
@@ -147,7 +161,7 @@
                     .updateUser(currentUser._id, newUser)
                     .then(function (response) {
                         console.log(currentUser);
-                        vm.message = "Game has been added to your wishlist!";
+                        vm.message = "Game has been removed from your wishlist!";
                         vm.user = currentUser;
                         vm.notOnWishlist = true;
                         vm.onWishlist = false;

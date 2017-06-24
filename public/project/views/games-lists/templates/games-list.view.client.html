@@ -9,10 +9,9 @@
         <ul class="list-group">
             <li ng-repeat="game in model.games"
                 class="list-group-item"
-                ng-click="model.redirectTo(game._game)">
-                <img ng-src="{{game.cover}}"/>
-                {{game.name}}
-                {{game.score}}
+                ng-click="model.redirectTo(game.gameId)">
+                <a href="#!/game/{{game.gameId}}"><img ng-src="{{game.gameCover}}"/></a>
+                <a href="#!/game/{{game.gameId}}">{{game.gameName}}</a>
                 {{game.rating}}
                 <a ng-show="model.showPersonal"
                    href="#!/profile/{{model.userId}}/gamelist/{{game._id}}"
@@ -20,6 +19,7 @@
                 <a ng-show="model.showPersonal"
                    ng-click="model.deleteUserGame(game)"
                    class="btn btn-warning">Remove</a>
+                <p>{{game.notes}}</p>
             </li>
         </ul>
     </div>

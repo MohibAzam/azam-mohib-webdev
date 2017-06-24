@@ -27,7 +27,6 @@ var userGameSchema = mongoose.Schema({
             'previouslyOwned',
             'borrowed',
             'lost',
-            'neverOwned',
             'other'
         ]},
     completionStatus: {type: String,

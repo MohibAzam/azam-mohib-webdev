@@ -16,7 +16,7 @@ userGameModel.deleteUserGamesForUser = deleteUserGamesForUser;
 module.exports = userGameModel;
 
 function createUserGame(userId, userGame) {
-    userGame._user = userId;
+    userGame.user = userId;
     return userGameModel.create(userGame);
 }
 
@@ -42,6 +42,7 @@ function updateUserGame(userGameId, userGame) {
             playingStatus: userGame.playingStatus,
             ownershipStatus: userGame.ownershipStatus,
             completionStatus: userGame.completionStatus,
+            rating: userGame.rating,
             notes: userGame.notes
         }
     });

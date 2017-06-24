@@ -4,9 +4,9 @@
 (function () {
     angular
         .module('MioDB')
-        .controller('GamesListController', gamesListController);
+        .controller('GameListEditController', gameListEditController);
 
-    function gamesListController(currentUser, $location, userService, userGameService, $routeParams) {
+    function gameListEditController(currentUser, $location, userService, userGameService, $routeParams) {
         var vm = this;
         console.log(currentUser._id);
 
@@ -32,9 +32,10 @@
 
         function setupGame() {
             userGameService
-                .findUserGameById(currentUser._id)
+                .findUserGameById(userGameId)
                 .then(function (game) {
                     vm.game = game;
+                    console.log(game);
                 });
         }
 
@@ -43,8 +44,10 @@
         vm.updateGame = updateGame;
 
         function updateGame(newUserGame) {
+            newUserGame.rating.castToNumber;
+            console.log(newUserGame);
             userGameService
-                .updateGame(userGameId, newUserGame)
+                .updateUserGame(userGameId, newUserGame)
                 .then(function (response) {
                     vm.message = "Your changes have been saved!";
                 });

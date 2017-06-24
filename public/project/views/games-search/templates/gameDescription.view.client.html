@@ -35,20 +35,22 @@
     <a class="btn btn-block btn-warning"
        href="#!/profile/{{model.user._id}}">Back to Profile</a>
 
-    <h2>Game Comments</h2>
-    <textarea rows="3"
-              placeholder="Write a Comment..."
-              ng-model="model.comment"></textarea>
-    <a class="btn btn-primary"
-       ng-click="model.addComment(model.comment)">Submit comment</a>
-    <div class="container fluid">
-        <ul class="list-group">
-            <li ng-repeat="comment in model.game.comments"
-                class="list-group-item">
-                <p><a ng-click="model.redirectTo(comment.username)">{{comment.username}}</a> ({{comment.time}}) :</p>
-                <p>{{comment.message}}</p>
-            </li>
-        </ul>
+    <div class="container-fluid">
+        <h2>Game Comments</h2>
+        <textarea rows="3"
+                  placeholder="Write a Comment..."
+                  ng-model="model.comment"></textarea>
+        <a class="btn btn-primary"
+           ng-click="model.addComment(model.comment)">Submit comment</a>
+        <div class="container fluid">
+            <ul class="list-group">
+                <li ng-repeat="comment in model.game.comments"
+                    class="list-group-item">
+                    <p><a ng-click="model.redirectTo(comment.username)">{{comment.username}}</a> ({{comment.time}}) :</p>
+                    <p>{{comment.message}}</p>
+                </li>
+            </ul>
+        </div>
     </div>
 
 </div>

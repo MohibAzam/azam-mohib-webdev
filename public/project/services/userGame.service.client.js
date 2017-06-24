@@ -52,7 +52,7 @@
         }
 
         function updateUserGame(userGameId, userGame) {
-            var url =  "/api/mioDB/userGame" + userGameId;
+            var url =  "/api/mioDB/userGame/" + userGameId;
             return $http.put(url, userGame)
                 .then(function (response) {
                     return response.data;
@@ -60,7 +60,7 @@
         }
 
         function deleteUserGame(userGameId) {
-            var url = "/api/mioDB/userGame" + userGameId;
+            var url = "/api/mioDB/userGame/" + userGameId;
             return $http.delete(url)
                 .then(function (response) {
                     return response.data;

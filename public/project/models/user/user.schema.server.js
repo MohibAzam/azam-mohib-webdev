@@ -18,7 +18,7 @@ var userSchema = mongoose.Schema({
         {gameName: String, gameCover: String, _id: Number}
     ],
     gamelist: [
-        {type: mongoose.Schema.Types.ObjectId, ref: 'UserGameModel'}
+        Number
     ],
     team: {
         openID: String
