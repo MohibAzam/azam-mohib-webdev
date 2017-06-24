@@ -3,7 +3,7 @@
         .module('MioDB')
         .controller('GameDescriptionController', gameDescriptionController);
 
-    function gameDescriptionController(currentUser, gameService, userService, $location, $routeParams) {
+    function gameDescriptionController(currentUser, gameService, userService, userGameService, $location, $routeParams) {
         var gameId = $routeParams['gameId'];
         var vm = this;
 
@@ -49,31 +49,59 @@
         init();
 
         vm.addToGameList = addToGameList;
+        vm.removeFromGamesList = removeFromGamesList;
         vm.addToWishList = addToWishList;
         vm.removeFromWishList = removeFromWishList;
         vm.addComment = addComment;
         vm.redirectTo = redirectTo;
 
         function addToGameList() {
-            /*
-            var newUser = vm.user;
-            for (var game in newUser.gameList) {
-                var checkedGame = newUser.gameList[game];
-                if (checkedGame.game._id === vm.game._id) {
-                    vm.message = "This game is already on your gamelist!";
-                    return;
-                }
-            }
-            newUser.wishlist.reverse();
-            newUser.wishlist.push(gameObject);
-            newUser.wishlist.reverse();
-            console.log(newUser);
-            userService
-                .updateUser(currentUser._id, newUser)
-                .then(function (response) {
-                    vm.message = "Game has been added to your gamelist!"
+            var gameObject = {
+                gameName: vm.game.gameName,
+                gameCover: vm.game.gameCover,
+                _id: vm.game._id,
+                user: vm.user._id
+            };
+            userGameService
+                .createUserGame(gameObject)
+                .then(function (userGame) {
+                    var userGameId = userGame._id;
+                    var newUser = vm.user;
+                    newUser.gamelist.push(userGameId);
+                    userService
+                        .updateUser(currentUser._id, newUser)
+                        .then(function (response) {
+                            console.log(currentUser);
+                            vm.message = "Game has been added to your wishlist!";
+                            vm.user = currentUser;
+                            vm.notOnGamesList = false;
+                            vm.onGamesList = true;
+                        });
                 });
-            */
+        }
+
+        function removeFromGamesList() {
+            var userId = vm.user._id;
+            userGameService
+                .findSpecUserGameForUser(userId, gameId)
+                .then(function (userGame) {
+                    var userGameId = userGame._id;
+                    var newUser = vm.user;
+                    var ind = newUser.gamelist.indexOf(userGameId);
+                    newUser.gamelist.splice(userGameId, 1);
+                    userService
+                        .updateUser(currentUser._id, newUser)
+                        .then(function (response) {
+                            userGameService
+                                .deleteUserGame(userGameId)
+                                .then(function (res) {
+                                    console.log(currentUser);
+                                    vm.message = "Game has been added to your wishlist!";
+                                    vm.notOnGamesList = true;
+                                    vm.onGamesList = false;
+                                });
+                        });
+                })
         }
 
         function addToWishList() {

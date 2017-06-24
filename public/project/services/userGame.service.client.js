@@ -10,9 +10,11 @@
         var api = {
             createUserGame: createUserGame,
             findUserGameById: findUserGameById,
+            findSpecUserGameForUser: findSpecUserGameForUser,
             findUserGamesForUser: findUserGamesForUser,
             updateUserGame: updateUserGame,
-            deleteUserGame: deleteUserGame
+            deleteUserGame: deleteUserGame,
+            deleteUserGamesForUser: deleteUserGamesForUser
         };
 
         return api;
@@ -27,6 +29,14 @@
 
         function findUserGameById(userGameId) {
             var url = "/api/mioDB/userGame/" + userGameId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findSpecUserGameForUser(userId, gameId) {
+            var url = "/api/mioDB/user/" + userId + "/userGame/" + gameId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -51,6 +61,14 @@
 
         function deleteUserGame(userGameId) {
             var url = "/api/mioDB/userGame" + userGameId;
+            return $http.delete(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function deleteUserGamesForUser(userId) {
+            var url = "/api/mioDB/user/" + userId + "/userGame";
             return $http.delete(url)
                 .then(function (response) {
                     return response.data;

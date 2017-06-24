@@ -5,11 +5,13 @@ var userGameSchema = require('./userGame.schema.server');
 var userGameModel = mongoose.model('UserGameModel', userGameSchema);
 userGameModel.createUserGame = createUserGame;
 userGameModel.findUserGameById = findUserGameById;
+userGameModel.findSpecUserGameForUser = findSpecUserGameForUser;
 userGameModel.findUserGamesForUser = findUserGamesForUser;
 userGameModel.findUserGameByGameId = findUserGameByGameId;
 userGameModel.updateUserGame = updateUserGame;
 userGameModel.deleteUserGame = deleteUserGame;
 userGameModel.deleteUserGamesForUser = deleteUserGamesForUser;
+
 
 module.exports = userGameModel;
 
@@ -22,8 +24,12 @@ function findUserGameById(userGameId) {
     return userGameModel.findById(userGameId);
 }
 
+function findSpecUserGameForUser(userId, gameId) {
+    return userGameModel.findOne({user: userId, gameId: gameId});
+}
+
 function findUserGamesForUser(userId) {
-    return userGameModel.find({_user: userId});
+    return userGameModel.find({user: userId});
 }
 
 function findUserGameByGameId (gameId) {
@@ -46,5 +52,5 @@ function deleteUserGame(userGameId) {
 }
 
 function deleteUserGamesForUser(userId) {
-    return userGameModel.remove({_user: userId});
+    return userGameModel.remove({user: userId});
 }

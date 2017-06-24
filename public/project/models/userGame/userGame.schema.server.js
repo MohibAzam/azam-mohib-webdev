@@ -4,8 +4,10 @@
 var mongoose = require('mongoose');
 
 var userGameSchema = mongoose.Schema({
-    game: {type: mongoose.Schema.Types.ObjectId, ref: 'GameModel'},
-    _user: String,
+    gameName: String,
+    gameCover: String,
+    gameId: Number,
+    user: String,
     addedDate: String,
     lastUpdatedDate: String,
     playingStatus: {type: String,
