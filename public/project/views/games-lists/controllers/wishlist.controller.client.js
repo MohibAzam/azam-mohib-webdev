@@ -37,7 +37,6 @@
 
         vm.deleteWishList = deleteWishList;
         vm.deleteGame = deleteGame;
-        vm.redirectTo = redirectTo;
 
         function deleteWishList() {
             var newUser = vm.user;
@@ -61,10 +60,5 @@
                     });
             }
         }
-
-        function redirectTo(gameId) {
-            $location.url('/game/' + gameId);
-        }
-
     }
 })();

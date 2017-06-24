@@ -55,6 +55,7 @@ function createGame(game) {
 }
 
 function findGameById(gameId) {
+    console.log(gameModel);
     return gameModel.findById(gameId);
 }
 

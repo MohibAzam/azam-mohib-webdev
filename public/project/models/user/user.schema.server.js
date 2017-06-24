@@ -15,7 +15,7 @@ var userSchema = mongoose.Schema({
         {username: String, time: String, message: String}
     ],
     wishlist: [
-        {gameName: String, gameCover: String, gameId: Number}
+        {gameName: String, gameCover: String, _id: Number}
     ],
     gamelist: [
         {type: mongoose.Schema.Types.ObjectId, ref: 'UserGameModel'}
