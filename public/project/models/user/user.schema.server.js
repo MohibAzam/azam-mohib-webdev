@@ -8,6 +8,10 @@ var userSchema = mongoose.Schema({
     dateCreated: {type: Date, default: Date.now},
     email: String,
     description: String,
+    facebook: {
+        id:    String,
+        token: String
+    },
     following: [
         {type: String}
     ],

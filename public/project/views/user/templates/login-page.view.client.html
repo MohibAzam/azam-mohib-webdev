@@ -18,11 +18,18 @@
            class="form-control"
            type="password"/>
 
-    <a ng-click="model.login(model.user.username, model.user.password)" class="btn btn-block btn-primary">
+    <a ng-click="model.login(model.user.username, model.user.password)" class="btn btn-block btn-success">
         Login
     </a>
 
-    <!--<a class="btn btn-block black">Login through Steam</a>-->
+    <!--<a class="btn btn-block black"
+       href="/auth/steam">Login through Steam</a>-->
+
+    <a class="btn btn-block btn-primary"
+       href="/auth/facebook">
+        <span class="fa fa-facebook-official"></span>Login through Facebook</a>
+
+
 
 </div>
 

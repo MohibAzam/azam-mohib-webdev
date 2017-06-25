@@ -7,7 +7,7 @@ var userModel = mongoose.model('UserModel', userSchema);
 userModel.createUser = createUser;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findUserById = findUserById;
-userModel.findUserByOpenId = findUserByOpenId;
+userModel.findUserByFacebookId = findUserByFacebookId;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 userModel.addComment = addComment;
@@ -25,8 +25,14 @@ function findUserById(userId) {
     return userModel.findById(userId);
 }
 
+/*
 function findUserByOpenId(openId) {
     return userModel.findOne({'steam.openID': openId});
+}
+*/
+
+function findUserByFacebookId(facebookId) {
+    return userModel.findOne({'facebook.id': facebookId});
 }
 
 function updateUser(userId, user) {

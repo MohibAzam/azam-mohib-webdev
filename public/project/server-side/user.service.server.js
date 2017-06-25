@@ -8,12 +8,15 @@ module.exports = function (app) {
     var passport = require('passport');
     var LocalStrategy = require('passport-local');
     var SteamStrategy = require('passport-steam');
+    var TwitterStrategy = require('passport-twitter');
+    var FacebookStrategy = require('passport-facebook');
 
+    /*
     var steamConfig = {
         //TODO: Configure these settings
         returnURL: 'http://localhost:3000/auth/steam/return',
         realm: 'http://localhost:3000/',
-        apiKey: 'your steam API key'
+        apiKey: '7DFDA0AA6FDC41084DE0A9CDCE221FAC'
     };
     passport.use(new SteamStrategy(steamConfig, steamStrategy));
 
@@ -23,6 +26,89 @@ module.exports = function (app) {
             return done(err, user);
         });
     }
+    */
+
+    /*
+
+    var twitterConfig = {
+        consumerKey: TWITTER_CONSUMER_KEY,
+        consumerSecret: TWITTER_CONSUMER_SECRET,
+        callbackURL: "http://localhost:3000/auth/twitter/callback"
+    };
+
+    passport.use(new TwitterStrategy(twitterConfig, twitterStrategy));
+
+    function twitterStrategy (token, tokenSecret, profile, cb) {
+        User.findOrCreate({ username: profile.username }, function (err, user) {
+            return cb(err, user);
+        })
+    }
+
+    */
+
+    var facebookConfig = {
+        clientID     : 239462213223929,
+        clientSecret : '7eea74e0a859b77c4b1f0752db17a15e',
+        callbackURL  : 'http://localhost:3000/auth/facebook/callback'
+    };
+
+    passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+    function facebookStrategy(token, refreshToken, profile, done) {
+        userModel
+            .findUserByFacebookId(profile.id)
+            .then(
+                function (user) {
+                    if (user) {
+                        return done(null, user);
+                    } else {
+                        var email = profile.email;
+                        //console.log(email);
+                        var description = profile.about;
+                        //console.log(description);
+                        var name = profile.displayName;
+                        console.log(name);
+                        if (profile.username !== undefined) {
+                            var username = profile.username;
+                        }
+                        else if (profile.email !== undefined) {
+                            var username = email.split("@");
+
+                        }
+                        else {
+                            var username = profile.displayName;
+                        }
+                        var newFacebookUser = {
+                            username: username,
+                            email: email,
+                            description: description,
+                            name: name,
+                            facebook: {
+                                id: profile.id,
+                                token: token
+                            }
+                        };
+                        return userModel.createUser(newFacebookUser);
+                    }
+                },
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                }
+            )
+            .then(
+                function (user) {
+                    return done(null, user);
+                },
+                function (err) {
+                    if (err) {
+                        return done(err);
+                    }
+                }
+            );
+    }
+
 
     var bcrypt = require("bcrypt-nodejs");
 
@@ -70,6 +156,25 @@ module.exports = function (app) {
     app.post('/api/mioDB/register', register);
     app.get('/api/mioDB/checkLoggedIn', checkLoggedIn);
 
+    app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/project/home.html#!/search',
+            failureRedirect: 'project/home.html#!/login'
+        }));
+
+    /*
+    app.get('/auth/twitter',
+        passport.authenticate('twitter'));
+
+    app.get('/auth/twitter/callback',
+        passport.authenticate('twitter', { failureRedirect: '/login' }),
+        function(req, res) {
+            // Successful authentication, redirect home.
+            res.redirect('/');
+        });
+
     app.get('/auth/steam',
         passport.authenticate('steam'),
         function(req, res) {
@@ -85,8 +190,10 @@ module.exports = function (app) {
         }),
         function(req, res) {
             // Successful authentication, redirect home.
-            res.redirect('/');
+            res.redirect('/profile');
         });
+
+    */
 
     function createUser(req, res) {
         var user = req.body;
