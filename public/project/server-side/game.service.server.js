@@ -11,6 +11,7 @@ module.exports = function (app) {
 
     app.post('/api/mioDB/game', createGame);
     app.get('/api/mioDB/game/:gameId', findGameById);
+    app.get('/api/mioDB/admin/game', isAdmin, findAllGames);
     //app.get('/api/mioDB/game', findGameByApiId);
     app.put('/api/mioDB/game/:gameId', updateGame);
     app.delete('/api/mioDB/game/:gameId', deleteGame);
@@ -33,6 +34,23 @@ module.exports = function (app) {
             .then(function (game) {
                 res.json(game);
             });
+    }
+
+    function findAllGames(req, res) {
+        gameModel
+            .findAllGames()
+            .then(function (games) {
+                res.json(games);
+            });
+    }
+
+    function isAdmin(req, res, next) {
+        if (req.isAuthenticated() && req.user.role === 'ADMIN') {
+            next();
+        }
+        else {
+            res.sendStatus(401);
+        }
     }
 
     /*

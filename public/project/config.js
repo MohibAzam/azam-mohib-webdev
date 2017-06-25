@@ -18,7 +18,10 @@
             .when('/login', {
                 templateUrl: 'views/user/templates/login-page.view.client.html',
                 controller: 'loginController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkNotLoggedIn
+                }
             })
             .when('/home', {
                 templateUrl: 'views/home/templates/home.view.client.html'
@@ -84,7 +87,94 @@
                     currentUser: checkLoggedIn
                 }
             })
+            .when('/admin', {
+                templateUrl: 'views/admin/templates/admin.view.client.html',
+                controller: 'AdminController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/admin/user', {
+                templateUrl: 'views/admin/templates/admin-user/admin-user.view.client.html',
+                controller: 'AdminUserController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/admin/user/:userId', {
+                templateUrl: 'views/admin/templates/admin-user/admin-user-edit.view.client.html',
+                controller: 'AdminUserEditController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/admin/game', {
+                templateUrl: 'views/admin/templates/admin-game/admin-game.view.client.html',
+                controller: 'AdminGameController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/admin/game/:gameId', {
+                templateUrl: 'views/admin/templates/admin-game/admin-game-edit.view.client.html',
+                controller: 'AdminGameEditController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/admin/usergame', {
+                templateUrl: 'views/admin/templates/admin-usergame/admin-usergame.view.client.html',
+                controller: 'AdminUsergameController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/admin/usergame/:userGameId', {
+                templateUrl: 'views/admin/templates/admin-usergame/admin-usergame-edit.view.client.html',
+                controller: 'AdminUsergameEditController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
             .otherwise({redirectTo: '/home'});
+    }
+
+    function checkNotLoggedIn($q, $location, userService) {
+        var deferred = $q.defer();
+        userService
+            .checkLoggedIn()
+            .then(function (currentUser) {
+                if(currentUser !== '0') {
+                    deferred.reject();
+                    $location.url('/home');
+                }
+                else {
+                    deferred.resolve(currentUser);
+                }
+            });
+        return deferred.promise;
+    }
+
+    function checkAdmin($q, $location, userService) {
+        var deferred = $q.defer();
+        userService
+            .checkAdmin()
+            .then(function (currentUser) {
+                if(currentUser === '0') {
+                    deferred.resolve({});
+                }
+                else {
+                    deferred.resolve(currentUser);
+                }
+            });
+        return deferred.promise;
     }
 
     function checkLoggedIn($q, $location, userService) {

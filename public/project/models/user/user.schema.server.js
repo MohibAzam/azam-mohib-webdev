@@ -8,6 +8,7 @@ var userSchema = mongoose.Schema({
     dateCreated: {type: Date, default: Date.now},
     email: String,
     description: String,
+    role: {type: String, default: 'USER', enum: ['USER', 'ADMIN']},
     facebook: {
         id:    String,
         token: String

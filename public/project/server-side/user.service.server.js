@@ -147,6 +147,7 @@ module.exports = function (app) {
     app.post('/api/mioDB/user', createUser);
     app.get('/api/mioDB/user', findUserByUsername);
     app.get('/api/mioDB/user/:userId', findUserById);
+    app.get('/api/mioDB/admin/user', isAdmin, findAllUsers);
     app.put('/api/mioDB/user/:userId', updateUser);
     app.delete('/api/mioDB/user/:userId', deleteUser);
     app.put('/api/mioDB/comment/:profileUserId', addComment);
@@ -154,6 +155,7 @@ module.exports = function (app) {
     app.post('/api/mioDB/login', passport.authenticate('local'), login);
     app.post('/api/mioDB/logout', logout);
     app.post('/api/mioDB/register', register);
+    app.get('/api/mioDB/checkAdmin', checkAdmin);
     app.get('/api/mioDB/checkLoggedIn', checkLoggedIn);
 
     app.get ('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
@@ -225,6 +227,23 @@ module.exports = function (app) {
             });
     }
 
+    function findAllUsers(req, res) {
+        userModel
+            .findAllUsers()
+            .then(function (users) {
+                res.json(users);
+            });
+    }
+
+    function isAdmin(req, res, next) {
+        if (req.isAuthenticated() && req.user.role === 'ADMIN') {
+            next();
+        }
+        else {
+            res.sendStatus(401);
+        }
+    }
+
     function updateUser(req, res) {
         var user = req.body;
         var id = req.params['userId'];
@@ -276,6 +295,15 @@ module.exports = function (app) {
                     res.json(user);
                 });
             });
+    }
+
+    function checkAdmin(req, res) {
+        if (req.isAuthenticated() && req.user.role === 'ADMIN') {
+            res.json(req.user);
+        }
+        else {
+            res.send('0');
+        }
     }
 
     function checkLoggedIn(req, res) {

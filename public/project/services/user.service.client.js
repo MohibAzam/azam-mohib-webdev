@@ -12,11 +12,13 @@
             createUser: createUser,
             findUserById: findUserById,
             findUserByUsername: findUserByUsername,
+            findAllUsers: findAllUsers,
             updateUser: updateUser,
             deleteUser: deleteUser,
             login: login,
             logout: logout,
             register: register,
+            checkAdmin: checkAdmin,
             checkLoggedIn: checkLoggedIn,
             addComment: addComment
         };
@@ -41,6 +43,14 @@
 
         function findUserByUsername(username) {
             var url = "/api/mioDB/user?username=" + username;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findAllUsers() {
+            var url = '/api/mioDB/admin/user';
             return $http.get(url)
                 .then(function (response) {
                     return response.data;
@@ -76,7 +86,6 @@
                 });
         }
 
-
         function logout() {
             var url = "/api/mioDB/logout";
             return $http.post(url)
@@ -88,6 +97,14 @@
         function register(user) {
             var url = "/api/mioDB/register";
             return $http.post(url, user)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function checkAdmin() {
+            var url = "/api/mioDB/checkAdmin";
+            return $http.get(url)
                 .then(function (response) {
                     return response.data;
                 });
