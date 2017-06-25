@@ -160,8 +160,8 @@ module.exports = function (app) {
 
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: '/project/home.html#!/search',
-            failureRedirect: 'project/home.html#!/login'
+            successRedirect: '/project/#!/search',
+            failureRedirect: 'project/#!/login'
         }));
 
     /*

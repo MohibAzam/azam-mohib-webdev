@@ -20,6 +20,9 @@
                 controller: 'loginController',
                 controllerAs: 'model'
             })
+            .when('/home', {
+                templateUrl: 'views/home/templates/home.view.client.html'
+            })
             .when('/profile/:userId', {
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
@@ -54,7 +57,7 @@
                 controller: 'GameDescriptionController',
                 controllerAs: 'model',
                 resolve: {
-                    currentUser: checkLoggedIn
+                    currentUser: checkCurrentUser
                 }
             })
             .when('/profile/:userId/wishlist/', {
@@ -81,21 +84,17 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .otherwise({redirectTo: '/login'});
+            .otherwise({redirectTo: '/home'});
     }
 
     function checkLoggedIn($q, $location, userService) {
         var deferred = $q.defer();
-        //this, and all other resolve functions, will return a promise
-        //The navigation will proceed once all promises are resolved
         userService
             .checkLoggedIn()
             .then(function (currentUser) {
-                //reject promise if user is '0',
-                //indicating it's invalid
                 if(currentUser === '0') {
                     deferred.reject();
-                    $location.url('/login');
+                    $location.url('/login?errMsg=1');
                 }
                 else {
                     deferred.resolve(currentUser);
@@ -103,5 +102,22 @@
             });
         return deferred.promise;
     }
+
+    function checkCurrentUser($q, $location, userService) {
+        var deferred = $q.defer();
+        userService
+            .checkLoggedIn()
+            .then(function (currentUser) {
+                if(currentUser === '0') {
+                    deferred.resolve({});
+                }
+                else {
+                    deferred.resolve(currentUser);
+                }
+            });
+        return deferred.promise;
+    }
+
+
 
 })();

@@ -16,6 +16,7 @@
         <h4 ng-show="model.game.website" ng-href="{{model.game.website}}">More info</h4>
     </div>
 
+    <div ng-show="model.user._id">
     <a class="btn btn-block btn-primary"
        ng-show="model.notOnGamesList"
        ng-click="model.addToGameList()">Add to GamesList</a>
@@ -34,14 +35,20 @@
 
     <a class="btn btn-block btn-warning"
        href="#!/profile/{{model.user._id}}">Back to Profile</a>
+    </div>
 
     <div class="container-fluid">
         <h2>Game Comments</h2>
+
+        <div ng-show="model.user._id">
         <textarea rows="3"
                   placeholder="Write a Comment..."
                   ng-model="model.comment"></textarea>
         <a class="btn btn-primary"
            ng-click="model.addComment(model.comment)">Submit comment</a>
+        </div>
+
+
         <div class="container fluid">
             <ul class="list-group">
                 <li ng-repeat="comment in model.game.comments"

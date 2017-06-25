@@ -7,8 +7,14 @@
         .module('MioDB')
         .controller('loginController', loginController);
 
-    function loginController($location, userService) {
+    function loginController($location, $routeParams, userService) {
         var vm = this;
+
+        var error = $routeParams['errMsg'];
+
+        if (error === '1') {
+            vm.error = "You must be logged in to do that";
+        }
 
         vm.login = function(username, password) {
             if (!(username && password)) {

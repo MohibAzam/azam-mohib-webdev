@@ -8,17 +8,17 @@
         var vm = this;
 
         function init() {
-            if (currentUser) {
-                vm.user = currentUser;
-                console.log(vm.user);
-            }
             gameService
                 .findGameById(gameId)
                 .then(function (game) {
                     console.log(game);
                     vm.game = game;
-                    checkIfOnWishlist();
-                    checkIfOnGameList();
+                    if (currentUser._id) {
+                        vm.user = currentUser;
+                        console.log(vm.user);
+                        checkIfOnWishlist();
+                        checkIfOnGameList();
+                    }
                 });
         }
 
