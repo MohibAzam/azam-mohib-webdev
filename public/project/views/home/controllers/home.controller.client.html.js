@@ -4,7 +4,7 @@
 (function () {
     angular
         .module('WAM')
-        .controller('homeController', homeController)
+        .controller('HomeController', homeController)
 
     function homeController(currentUser) {
         var model = this;

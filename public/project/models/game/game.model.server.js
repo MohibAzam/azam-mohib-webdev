@@ -11,6 +11,7 @@ var userModel = require('../user/user.model.server.js');
 
 gameModel.createGame = createGame;
 gameModel.findGameById = findGameById;
+gameModel.findAllGames = findAllGames;
 gameModel.updateGame = updateGame;
 gameModel.deleteGame = deleteGame;
 //gameModel.addComment = addComment;
@@ -57,6 +58,10 @@ function createGame(game) {
 function findGameById(gameId) {
     console.log(gameModel);
     return gameModel.findById(gameId);
+}
+
+function findAllGames() {
+    return gameModel.find();
 }
 
 /*

@@ -8,6 +8,7 @@ userGameModel.findUserGameById = findUserGameById;
 userGameModel.findSpecUserGameForUser = findSpecUserGameForUser;
 userGameModel.findUserGamesForUser = findUserGamesForUser;
 userGameModel.findUserGameByGameId = findUserGameByGameId;
+userGameModel.findAllUserGames = findAllUserGames;
 userGameModel.updateUserGame = updateUserGame;
 userGameModel.deleteUserGame = deleteUserGame;
 userGameModel.deleteUserGamesForUser = deleteUserGamesForUser;
@@ -34,6 +35,10 @@ function findUserGamesForUser(userId) {
 
 function findUserGameByGameId (gameId) {
     //return userGameModel.find({game._id: userId});
+}
+
+function findAllUserGames() {
+    return userGameModel.find();
 }
 
 function updateUserGame(userGameId, userGame) {

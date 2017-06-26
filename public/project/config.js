@@ -10,11 +10,13 @@
 
         $routeProvider
 
+            /*
             .when('/test', {
                 templateUrl: 'testingGround/apiTest.view.client.html',
                 controller: 'testController',
                 controllerAs: 'model'
             })
+            */
             .when('/login', {
                 templateUrl: 'views/user/templates/login-page.view.client.html',
                 controller: 'loginController',
@@ -24,7 +26,12 @@
                 }
             })
             .when('/home', {
-                templateUrl: 'views/home/templates/home.view.client.html'
+                templateUrl: 'views/home/templates/home.view.client.html',
+                controller: 'HomeController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkCurrentUser
+                }
             })
             .when('/profile/:userId', {
                 templateUrl: 'views/user/templates/profile.view.client.html',

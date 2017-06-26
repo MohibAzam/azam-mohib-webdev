@@ -12,6 +12,7 @@
             findUserGameById: findUserGameById,
             findSpecUserGameForUser: findSpecUserGameForUser,
             findUserGamesForUser: findUserGamesForUser,
+            findAllUserGames: findAllUserGames,
             updateUserGame: updateUserGame,
             deleteUserGame: deleteUserGame,
             deleteUserGamesForUser: deleteUserGamesForUser
@@ -45,6 +46,14 @@
 
         function findUserGamesForUser(userId) {
             var url = "/api/mioDB/user/" + userId + "/userGame";
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findAllUserGames() {
+            var url = '/api/mioDB/admin/usergame';
             return $http.get(url)
                 .then(function (response) {
                     return response.data;

@@ -1,3 +1,14 @@
 <div>
+    <h1>Games</h1>
 
+    <ul class="list-group">
+        <li ng-repeat="game in model.games"
+            class="list-group-item">
+            <a href="#!/game/{{game._id}}">{{game.name}}</a>
+            <a class="btn btn-warning"
+               href="#!/admin/game/{{game._id}}">Edit</a>
+            <a class="btn btn-danger"
+               ng-click="model.deleteGame(game._id)">Delete</a>
+        </li>
+    </ul>
 </div>

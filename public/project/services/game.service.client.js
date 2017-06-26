@@ -12,6 +12,7 @@
         var api = {
             createGame: createGame,
             findGameById: findGameById,
+            findAllGames: findAllGames,
             //findGameByApiId: findGameByApiId,
             updateGame: updateGame,
             deleteGame: deleteGame
@@ -31,6 +32,14 @@
 
         function findGameById(gameId) {
             var url = '/api/mioDB/game/' + gameId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findAllGames() {
+            var url = '/api/mioDB/admin/game';
             return $http.get(url)
                 .then(function (response) {
                     return response.data;

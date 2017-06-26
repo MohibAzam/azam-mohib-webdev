@@ -8,6 +8,7 @@ userModel.createUser = createUser;
 userModel.findUserByUsername = findUserByUsername;
 userModel.findUserById = findUserById;
 userModel.findUserByFacebookId = findUserByFacebookId;
+userModel.findAllUsers = findAllUsers;
 userModel.updateUser = updateUser;
 userModel.deleteUser = deleteUser;
 userModel.addComment = addComment;
@@ -33,6 +34,10 @@ function findUserByOpenId(openId) {
 
 function findUserByFacebookId(facebookId) {
     return userModel.findOne({'facebook.id': facebookId});
+}
+
+function findAllUsers() {
+    return userModel.find();
 }
 
 function updateUser(userId, user) {
