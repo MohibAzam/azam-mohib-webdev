@@ -22,6 +22,7 @@
             gameService
                 .deleteGame(gameId)
                 .then(function (response) {
+                    vm.message = "The game has been removed";
                     $location.url('/admin/game');
                 });
         }

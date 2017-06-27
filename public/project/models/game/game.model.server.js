@@ -73,7 +73,6 @@ function findGameByApiId(gameId) {
 function updateGame(gameId, game) {
     return gameModel.update({_id: gameId}, {
         $set: {
-            gameId: game.gameId,
             gameName: game.gameName,
             gameCover: game.gameCover,
             gameGenres: game.gameGenres,

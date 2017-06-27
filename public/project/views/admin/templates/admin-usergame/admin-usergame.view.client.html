@@ -4,9 +4,9 @@
     <ul class="list-group">
         <li ng-repeat="userGame in model.userGames"
             class="list-group-item">
-            <p>{{userGame.name}}</p>
+            <p>{{userGame.gameName}} ({{userGame.user}})</p>
             <a class="btn btn-warning"
-               href="#!/admin/game/{{userGame._id}}">Edit</a>
+               href="#!/admin/usergame/{{userGame._id}}">Edit</a>
             <a class="btn btn-danger"
                ng-click="model.deleteUserGame(userGame._id)">Delete</a>
         </li>

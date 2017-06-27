@@ -1,7 +1,7 @@
 (function () {
     angular
         .module('MioDB')
-        .controller('AdminUserGameController', adminUserGameController);
+        .controller('AdminUsergameController', adminUserGameController);
 
     function adminUserGameController($location, userGameService) {
         var vm = this;
@@ -22,6 +22,7 @@
             userGameService
                 .deleteUserGame(userGameId)
                 .then(function (response) {
+                    vm.message = "The usergame has been deleted";
                     $location.url('/admin/usergame');
                 });
         }

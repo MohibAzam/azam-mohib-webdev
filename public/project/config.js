@@ -175,7 +175,8 @@
             .checkAdmin()
             .then(function (currentUser) {
                 if(currentUser === '0') {
-                    deferred.resolve({});
+                    deferred.reject();
+                    $location.url('/home');
                 }
                 else {
                     deferred.resolve(currentUser);

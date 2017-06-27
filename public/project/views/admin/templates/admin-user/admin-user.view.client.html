@@ -4,13 +4,13 @@
     <ul class="list-group">
         <li ng-repeat="user in model.users"
             class="list-group-item">
-            <a href="#!/profile/{{user._id}}">{{user.username}}</a>
+            <a href="/project#!/profile/{{user._id}}">{{user.username}}</a>
             <a class="btn btn-warning"
-               href="#!/admin/user/{{user._id}}">Edit</a>
+               href="/project#!/admin/user/{{user._id}}">Edit</a>
             <a class="btn btn-danger"
                ng-click="model.deleteUser(user._id)">Delete</a>
         </li>
     </ul>
 
-    <a href="#!/admin">Return to Admin Page</a>
+    <a href="/project#!/admin">Return to Admin Page</a>
 </div>

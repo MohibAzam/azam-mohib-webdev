@@ -22,6 +22,7 @@
             userService
                 .deleteUser(userId)
                 .then(function (response) {
+                    vm.message = "The user has been deleted";
                     $location.url('/admin/user');
                 });
         }

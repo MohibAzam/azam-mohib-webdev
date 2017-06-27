@@ -14,7 +14,7 @@ module.exports = function (app) {
     app.get('/api/mioDB/admin/game', isAdmin, findAllGames);
     //app.get('/api/mioDB/game', findGameByApiId);
     app.put('/api/mioDB/game/:gameId', updateGame);
-    app.delete('/api/mioDB/game/:gameId', deleteGame);
+    app.delete('/api/mioDB/game/:gameId', isAdmin, deleteGame);
     //app.put('/api/mioDB/game/:gameId/comment/:userId', addComment);
 
     function createGame(req, res) {
@@ -65,7 +65,7 @@ module.exports = function (app) {
     */
 
     function updateGame(req, res) {
-        var apiId = req.params['apiId'];
+        var apiId = req.params['gameId'];
         var game = req.body;
         gameModel
             .updateGame(apiId, game)

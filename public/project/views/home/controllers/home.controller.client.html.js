@@ -3,11 +3,11 @@
  */
 (function () {
     angular
-        .module('WAM')
-        .controller('HomeController', homeController)
+        .module('MioDB')
+        .controller('HomeController', homeController);
 
     function homeController(currentUser) {
         var model = this;
-
+        model.user = currentUser;
     }
-})
+})();

@@ -39,7 +39,7 @@ var userGameSchema = mongoose.Schema({
             'other'
         ]},
     notes: String,
-    rating: Number
+    rating: String
 }, {collection: "miodb-userGame"});
 
 module.exports = userGameSchema;

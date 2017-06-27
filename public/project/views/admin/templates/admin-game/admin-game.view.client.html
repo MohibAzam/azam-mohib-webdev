@@ -6,13 +6,13 @@
     <ul class="list-group">
         <li ng-repeat="game in model.games"
             class="list-group-item">
-            <a href="#!/game/{{game._id}}">{{game.name}}</a>
+            <a href="/project#!/game/{{game._id}}">{{game.gameName}}</a>
             <a class="btn btn-warning"
-               href="#!/admin/game/{{game._id}}">Edit</a>
+               href="/project#!/admin/game/{{game._id}}">Edit</a>
             <a class="btn btn-danger"
                ng-click="model.deleteGame(game._id)">Delete</a>
         </li>
     </ul>
 
-    <a href="#!/admin">Return to Admin Page</a>
+    <a href="/project#!/admin">Return to Admin Page</a>
 </div>

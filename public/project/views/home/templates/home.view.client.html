@@ -1,13 +1,21 @@
 <div>
     <div>
-        <a>Admin Login Page</a>
-    </div>
-
-    <div>
-        <a href="/project#!/login">Normal Login Page</a>
+        <a ng-hide="model.user._id"
+           href="/project#!/login">Login Page</a>
     </div>
 
     <div>
         <a href="/project#!/search">Search</a>
     </div>
+
+    <div>
+        <a ng-show="model.user._id"
+           href="/project#!/profile/{{model.user._id}}">My Profile</a>
+    </div>
+
+    <div>
+        <a ng-if="model.user.role === 'ADMIN'"
+           href="/project#!/admin">Admin Page</a>
+    </div>
+
 </div>

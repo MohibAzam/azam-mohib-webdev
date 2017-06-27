@@ -19,7 +19,7 @@ var gameSchema = mongoose.Schema({
     ],
     */
     comments: [
-        {username: String, message: String}
+        {username: String, time: String, message: String}
     ]
 }, {collection: "miodb-game"});
 

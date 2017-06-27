@@ -1,7 +1,7 @@
 (function () {
     angular
         .module('MioDB')
-        .controller('AdminUserGameEditController', adminUserGameEditController);
+        .controller('AdminUsergameEditController', adminUserGameEditController);
 
     function adminUserGameEditController($location, $routeParams, userGameService) {
         var vm = this;
@@ -9,7 +9,7 @@
 
         function init() {
             userGameService
-                .findUserById(userGameId)
+                .findUserGameById(userGameId)
                 .then(function (userGame) {
                     vm.userGame = userGame;
                 });
