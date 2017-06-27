@@ -7,6 +7,8 @@ var userSchema = mongoose.Schema({
     name: String,
     dateCreated: {type: Date, default: Date.now},
     email: String,
+    age: Number,
+    gender: {type: String, enum: ['MALE', 'FEMALE']},
     description: String,
     role: {type: String, default: 'USER', enum: ['USER', 'ADMIN']},
     facebook: {
@@ -24,12 +26,6 @@ var userSchema = mongoose.Schema({
     ],
     gamelist: [
         Number
-    ],
-    team: {
-        openID: String
-    },
-    following: [
-        String
     ]
 }, {collection: "miodb-user"});
 

@@ -81,7 +81,8 @@ function updateGame(gameId, game) {
             gameDevelopers: game.gameDevelopers,
             gamePublishers: game.gamePublishers,
             gameReleases: game.gameReleases,
-            gameEsrb: game.gameEsrb
+            gameEsrb: game.gameEsrb,
+            comments: game.comments
         }
     });
 }

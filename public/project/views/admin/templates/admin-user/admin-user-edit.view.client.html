@@ -1,3 +1,51 @@
 <div>
+    <h1>Edit User</h1>
 
+    <div ng-show="model.message"
+         class="alert alert-success">
+        {{model.message}}
+    </div>
+
+    <div class="container-fluid">
+
+        <label>Name</label>
+        <input ng-model="model.user.name"
+               class="form-control"/>
+
+        <label>Email</label>
+        <input ng-model="model.user.email"
+               class="form-control"/>
+
+        <label>Description</label>
+        <input ng-model="model.user.description"
+               class="form-control"/>
+
+        <label>Age</label>
+        <input ng-model="model.user.age"
+               class="form-control"/>
+
+        <label>Gender</label>
+        <select class="form-control"
+                ng-model="model.user.gender">
+            <option value="MALE">MALE</option>
+            <option value="FEMALE">FEMALE</option>
+        </select>
+
+        <label>Role</label>
+        <select class="form-control"
+                ng-model="model.user.role">
+            <option value="USER">USER</option>
+            <option value="ADMIN">ADMIN</option>
+        </select>
+
+    </div>
+    <a ng-click="model.updateUser(model.user)" class="btn btn-block btn-warning">Update User</a>\
+    <a ng-click="model.deleteUser()" class="btn btn-block btn-danger">Delete User</a>
+
+    <a href="#!/profile/{{model.user._id}}"
+       class="btn btn-block btn-primary">
+        Go to User's Profile
+    </a>
+
+    <a href="#!/admin/user">Return to User Directory</a>
 </div>

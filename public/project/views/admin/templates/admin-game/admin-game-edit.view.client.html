@@ -1,10 +1,62 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div>
+    <h1>Edit User</h1>
 
-</body>
-</html>
+    <div ng-show="model.message"
+         class="alert alert-success">
+        {{model.message}}
+    </div>
+
+    <div class="container-fluid">
+
+        <label>Name</label>
+        <input ng-model="model.game.gameName"
+               class="form-control"/>
+
+        <label>Cover</label>
+        <input ng-model="model.game.gameCover"
+               class="form-control"/>
+
+        <label>Genres</label>
+        <input ng-model="model.game.gameGenres"
+               class="form-control"/>
+
+        <label>Description</label>
+        <input ng-model="model.game.gameDescription"
+               class="form-control"/>
+
+        <label>Developers</label>
+        <input ng-model="model.game.gameDevelopers"
+               class="form-control"/>
+
+        <label>Publishers</label>
+        <input ng-model="model.game.gamePublishers"
+               class="form-control"/>
+
+        <label>Releases</label>
+        <input ng-model="model.game.gameReleases"
+               class="form-control"/>
+
+
+        <label>ESRB rating</label>
+        <select class="form-control"
+                ng-model="model.game.gameEsrb">
+            <option value="EC">EC</option>
+            <option value="E">E</option>
+            <option value="E10+">E10+</option>
+            <option value="T">T</option>
+            <option value="M">M</option>
+            <option value="AO">AO</option>
+        </select>
+
+    </div>
+    <a ng-click="model.updateGame(model.game)" class="btn btn-block btn-warning">Update Game</a>
+    <a ng-click="model.deleteGame()" class="btn btn-block btn-danger">Delete Game</a>
+
+    <a href="#!/game/{{model.game._id}}"
+       class="btn btn-block btn-primary">
+        Check Game
+    </a>
+
+    <a href="#!/admin/game">Return to Game Directory</a>
+
+</div>

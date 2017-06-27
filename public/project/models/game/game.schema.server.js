@@ -4,15 +4,15 @@
 var mongoose = require('mongoose');
 
 var gameSchema = mongoose.Schema({
-    _id: Number,
-    gameName: String,
+    _id: {type: Number, require: true},
+    gameName: {type: String, require: true},
     gameCover: String,
     gameGenres: String,
     gameDescription: String,
     gameDevelopers: String,
     gamePublishers: String,
     gameReleases: String,
-    gameEsrb: String,
+    gameEsrb: {type: String, enum: ['EC', 'E', 'E10+', 'T', 'M', 'AO']},
     /*
     gameRating: [
         {username: String, rating: Number}

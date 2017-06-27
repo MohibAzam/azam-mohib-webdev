@@ -1,3 +1,88 @@
 <div>
+    <h1>Edit User</h1>
+
+    <div ng-show="model.message"
+         class="alert alert-success">
+        {{model.message}}
+    </div>
+
+    <div class="container-fluid">
+
+        <label>Name</label>
+        <input ng-model="model.userGame.gameName"
+               class="form-control"/>
+
+        <label>Cover</label>
+        <input ng-model="model.userGame.gameCover"
+               class="form-control"/>
+
+        <label>Game ID</label>
+        <input ng-model="model.userGame.gameId"
+               class="form-control"/>
+
+        <label>Associated User</label>
+        <input ng-model="model.userGame.user"
+               class="form-control"/>
+
+        <label>Playing Status</label>
+        <select class="form-control"
+                ng-model="model.userGame.playingStatus">
+            <option value='notPlaying'>Not Playing</option>
+            <option value='playing'>Now Playing</option>
+            <option value='replaying'>Replaying</option>
+            <option value='extras'>Doing Extras</option>
+            <option value='competitive'>Competitive/Multiplayer</option>
+            <option value='other'>Other</option>
+        </select>
+
+        <label>Ownership Status</label>
+        <select class="form-control"
+                ng-model="model.userGame.ownershipStatus">
+            <option value='ownPhysical'>Own Physical Copy</option>
+            <option value='ownDigital'>Own Digital Copy</option>
+            <option value='rental'>Rented</option>
+            <option value='previouslyOwned'>Previously Owned</option>
+            <option value='borrowed'>Borrowed</option>
+            <option value='lost'>Lost</option>
+            <option value='other'>Other</option>
+        </select>
+
+        <label>Completion Status</label>
+        <select class="form-control"
+                ng-model="model.userGame.completionStatus">
+            <option value='unplayed'>Unplayed</option>
+            <option value='unfinished'>Unfinished</option>
+            <option value='beaten'>Beaten</option>
+            <option value='completed'>Completed</option>
+            <option value='mastered'>Mastered</option>
+            <option value='other'>Other</option>
+        </select>
+
+        <label>Rating</label>
+        <select id="rating"
+                class="form-control"
+                ng-model="model.userGame.rating">
+            <option value=10>10</option>
+            <option value=9>9</option>
+            <option value=8>8</option>
+            <option value=7>7</option>
+            <option value=6>6</option>
+            <option value=5>5</option>
+            <option value=4>4</option>
+            <option value=3>3</option>
+            <option value=2>2</option>
+            <option value=1>1</option>
+            <option value=0>0</option>
+        </select>
+
+        <label>Notes</label>
+        <input ng-model="model.userGame.notes"
+               class="form-control"/>
+
+    </div>
+    <a ng-click="model.updateUserGame(model.userGame)" class="btn btn-block btn-warning">Update UserGame</a>\
+    <a ng-click="model.deleteUserGame()" class="btn btn-block btn-danger">Delete UserGame</a>
+
+    <a href="#!/admin/usergame">Return to UserGame Directory</a>
 
 </div>

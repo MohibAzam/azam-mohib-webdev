@@ -1,6 +1,8 @@
 <div>
     <h1>Games</h1>
 
+    <a>Delete All Games</a>
+
     <ul class="list-group">
         <li ng-repeat="game in model.games"
             class="list-group-item">
@@ -11,4 +13,6 @@
                ng-click="model.deleteGame(game._id)">Delete</a>
         </li>
     </ul>
+
+    <a href="#!/admin">Return to Admin Page</a>
 </div>

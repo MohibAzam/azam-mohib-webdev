@@ -46,6 +46,8 @@ function updateUser(userId, user) {
             name: user.name,
             email: user.email,
             description: user.description,
+            age: user.age,
+            gender: user.gender,
             comments: user.comments,
             wishlist: user.wishlist,
             following: user.following,
