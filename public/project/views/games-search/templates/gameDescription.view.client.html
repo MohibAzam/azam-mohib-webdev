@@ -31,61 +31,61 @@
                 <a class="btn btn-block btn-warning"
                    ng-show="model.onWishlist"
                    ng-click="model.removeFromWishList()">Remove from Wishlist</a>
-
-                <a class="btn btn-block btn-warning"
-                   href="#!/profile/{{model.user._id}}">Back to Profile</a>
             </div>
         </div>
     </div>
 
     <div class="col-sm-8 col-md-8 col-lg-8">
-        <div class="panel panel-primary container-fluid">
-            <h2>Details</h2>
-            <p>{{model.game.gameDescription}}</p>
-            <h3 ng-show="model.game.gameGenres">Genres</h3>
-            <p>{{model.game.gameGenres}}</p>
-            <h4 ng-show="model.game.website" ng-href="{{model.game.website}}">More info</h4>
+        <div class="panel panel-primary">
+            <div class="panel-heading">Details</div>
+            <div class="panel-body">
 
-            <hr/>
+                <p>{{model.game.gameDescription}}</p>
+                <h3 ng-show="model.game.gameGenres">Genres</h3>
+                <p ng-show="model.game.gameGenres">{{model.game.gameGenres}}</p>
+                <h4 ng-show="model.game.website" ng-href="{{model.game.website}}">More info</h4>
 
-            <div>
-                <h2>Game Comments</h2>
+                <hr/>
 
-                <div ng-show="model.user._id">
-                    <!--<textarea rows="3"
-                              placeholder="Write a Comment..."
-                              ng-model="model.comment"></textarea>
-                        <a class="btn btn-primary"
-                           ng-click="model.addComment(model.comment)">Submit comment</a>-->
+                <div>
+                    <h2>Game Comments</h2>
 
-                    <div class="input-group">
-                        <input type="text"
-                               placeholder="Write a Comment..."
-                               ng-model="model.comment"
-                               class="form-control text-input">
-                        <span class="input-group-btn comment-btn">
+                    <div ng-show="model.user._id">
+                        <!--<textarea rows="3"
+                                  placeholder="Write a Comment..."
+                                  ng-model="model.comment"></textarea>
+                            <a class="btn btn-primary"
+                               ng-click="model.addComment(model.comment)">Submit comment</a>-->
+
+                        <div class="input-group">
+                            <input type="text"
+                                   placeholder="Write a Comment..."
+                                   ng-model="model.comment"
+                                   class="form-control text-input">
+                            <span class="input-group-btn comment-btn">
                             <a class="btn btn-primary"
                                ng-click="model.addComment(model.comment)">
                                 Submit!
                             </a>
                         </span>
+                        </div>
+
+                        <ul class="list-group">
+                            <li ng-repeat="comment in model.game.comments"
+                                class="list-group-item comment">
+                                <p>
+                                    <a ng-click="model.redirectTo(comment.username)">
+                                        {{comment.username}}
+                                    </a>
+                                    ({{comment.time}}) :
+                                </p>
+                                <p>{{comment.message}}</p>
+                            </li>
+                        </ul>
+
                     </div>
-
-                    <ul class="list-group">
-                        <li ng-repeat="comment in model.game.comments"
-                            class="list-group-item comment">
-                            <p>
-                                <a ng-click="model.redirectTo(comment.username)">
-                                    {{comment.username}}
-                                </a>
-                                ({{comment.time}}) :
-                            </p>
-                            <p>{{comment.message}}</p>
-                        </li>
-                    </ul>
-
-
                 </div>
+
             </div>
 
         </div>

@@ -3,8 +3,10 @@
         .module('MioDB')
         .controller('AdminUserController', adminUserController);
 
-    function adminUserController($location, userService) {
+    function adminUserController(currentUser, $location, userService) {
         var vm = this;
+        vm.user = currentUser;
+        vm.linkBack = true;
 
         function init() {
             userService
@@ -16,7 +18,12 @@
 
         init();
 
+        vm.handleBack = handleBack;
         vm.deleteUser = deleteUser;
+
+        function handleBack() {
+            $location.url('/admin');
+        }
 
         function deleteUser(userId) {
             userService

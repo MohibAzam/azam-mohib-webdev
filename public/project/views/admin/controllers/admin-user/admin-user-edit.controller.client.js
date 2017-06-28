@@ -3,9 +3,11 @@
         .module('MioDB')
         .controller('AdminUserEditController', adminUserEditController);
 
-    function adminUserEditController($location, $routeParams, userService) {
+    function adminUserEditController(currentUser, $location, $routeParams, userService) {
         var vm = this;
         var userId = $routeParams['userId'];
+        vm.user = currentUser;
+        vm.linkBack = true;
 
         function init() {
             userService
@@ -17,8 +19,13 @@
 
         init();
 
+        vm.handleBack = handleBack;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
+
+        function handleBack() {
+            $location.url('/admin/user');
+        }
 
         function updateUser(newUser) {
             userService

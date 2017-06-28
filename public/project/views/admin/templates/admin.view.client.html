@@ -1,9 +1,44 @@
 <div>
-    <h1>Admin Page</h1>
+    <div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
+    <div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
 
-    <a href="/project#!/admin/user">User Management</a>
+    <!--
+    <div>
+        <a ng-hide="model.user._id"
+           href="/project#!/login">Login Page</a>
+    </div>
 
-    <a href="/project#!/admin/game">Game Management</a>
+    <div>
+        <a href="/project#!/search">Search</a>
+    </div>
 
-    <a href="/project#!/admin/usergame">UserGame Management</a>
+    <div>
+        <a ng-show="model.user._id"
+           href="/project#!/profile/{{model.user._id}}">My Profile</a>
+    </div>
+
+    <div>
+        <a ng-if="model.user.role === 'ADMIN'"
+           href="/project#!/admin">Admin Page</a>
+    </div>
+    -->
+
+    <div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid">
+            <h1 class="display-1 jumbotron-shift">Admin Page!</h1>
+            <p class="lead jumbotron-shift">It's a secret to everybody...</p>
+            <h2 class="display-2 jumbotron-shift">Get Started!</h2>
+
+            <a href="/project#!/admin/user"
+               class="btn btn-info">User Management</a>
+
+            <a href="/project#!/admin/game"
+               class="btn btn-primary jumbotron-btn">Game Management</a>
+
+            <a href="/project#!/admin/usergame"
+               class="btn btn-warning jumbotron-btn">UserGame Management</a>
+        </div>
+    </div>
+
+    <div ng-include="'views/common/mobile-footer.view.client.html'"></div>
 </div>

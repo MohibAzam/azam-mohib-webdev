@@ -3,8 +3,10 @@
         .module('MioDB')
         .controller('AdminUsergameController', adminUserGameController);
 
-    function adminUserGameController($location, userGameService) {
+    function adminUserGameController(currentUser, $location, userGameService) {
         var vm = this;
+        vm.user = currentUser;
+        vm.linkBack = true;
 
         function init() {
             userGameService
@@ -16,7 +18,12 @@
 
         init();
 
+        vm.handleBack = handleBack;
         vm.deleteUserGame = deleteUserGame;
+
+        function handleBack() {
+            $location.url('/admin');
+        }
 
         function deleteUserGame(userGameId) {
             userGameService

@@ -1,51 +1,56 @@
 <div>
-    <h1>Edit User</h1>
 
-    <div ng-show="model.message"
-         class="alert alert-success">
-        {{model.message}}
-    </div>
+    <div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
+    <div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
 
     <div class="container-fluid">
+        <div ng-show="model.message"
+             class="alert alert-success">
+            {{model.message}}
+        </div>
 
-        <label>Name</label>
-        <input ng-model="model.user.name"
-               class="form-control"/>
+        <div class="container-fluid">
+            <div class="panel panel-primary container-fluid">
+                <h1>Edit User</h1>
+                <label>Name</label>
+                <input ng-model="model.user.name"
+                       class="form-control"/>
 
-        <label>Email</label>
-        <input ng-model="model.user.email"
-               class="form-control"/>
+                <label>Email</label>
+                <input ng-model="model.user.email"
+                       class="form-control"/>
 
-        <label>Description</label>
-        <input ng-model="model.user.description"
-               class="form-control"/>
+                <label>Description</label>
+                <input ng-model="model.user.description"
+                       class="form-control"/>
 
-        <label>Age</label>
-        <input ng-model="model.user.age"
-               class="form-control"/>
+                <label>Age</label>
+                <input ng-model="model.user.age"
+                       class="form-control"/>
 
-        <label>Gender</label>
-        <select class="form-control"
-                ng-model="model.user.gender">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-        </select>
+                <label>Gender</label>
+                <select class="form-control"
+                        ng-model="model.user.gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
 
-        <label>Role (Be careful with this setting!)</label>
-        <select class="form-control"
-                ng-model="model.user.role">
-            <option value="USER">User</option>
-            <option value="ADMIN">Admin</option>
-        </select>
+                <label>Role (Be careful with this setting!)</label>
+                <select class="form-control"
+                        ng-model="model.user.role">
+                    <option value="USER">User</option>
+                    <option value="ADMIN">Admin</option>
+                </select>
 
+                <div class="edit-btns">
+                    <a ng-click="model.updateUser(model.user)" class="btn btn-block btn-warning">Update User</a>
+                    <a ng-click="model.deleteUser()" class="btn btn-block btn-danger">Delete User</a>
+                </div>
+
+            </div>
+        </div>
     </div>
-    <a ng-click="model.updateUser(model.user)" class="btn btn-block btn-warning">Update User</a>\
-    <a ng-click="model.deleteUser()" class="btn btn-block btn-danger">Delete User</a>
 
-    <a href="#!/profile/{{model.user._id}}"
-       class="btn btn-block btn-primary">
-        Go to User's Profile
-    </a>
+    <div ng-include="'views/common/mobile-footer.view.client.html'"></div>
 
-    <a href="#!/admin/user">Return to User Directory</a>
 </div>

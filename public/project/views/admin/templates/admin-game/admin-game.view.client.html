@@ -1,18 +1,27 @@
 <div>
-    <h1>Games</h1>
+    <div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
+    <div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
 
-    <a>Delete All Games</a>
 
-    <ul class="list-group">
-        <li ng-repeat="game in model.games"
-            class="list-group-item">
-            <a href="/project#!/game/{{game._id}}">{{game.gameName}}</a>
-            <a class="btn btn-warning"
-               href="/project#!/admin/game/{{game._id}}">Edit</a>
-            <a class="btn btn-danger"
-               ng-click="model.deleteGame(game._id)">Delete</a>
-        </li>
-    </ul>
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <h1 class="list-header">Games</h1>
+            <div class="container-fluid">
+                <ul class="list-group">
+                    <li ng-repeat="game in model.games"
+                        class="list-group-item result">
+                        <a href="/project#!/game/{{game._id}}">{{game.gameName}}</a>
+                        <a class="btn btn-warning"
+                           href="/project#!/admin/game/{{game._id}}">Edit</a>
+                        <a class="btn btn-danger"
+                           ng-click="model.deleteGame(game._id)">Delete</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-    <a href="/project#!/admin">Return to Admin Page</a>
+
+
+    <div ng-include="'views/common/mobile-footer.view.client.html'"></div>
 </div>
