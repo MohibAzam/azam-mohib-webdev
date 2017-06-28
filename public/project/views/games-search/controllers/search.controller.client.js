@@ -7,7 +7,6 @@
         var model = this;
 
         model.searchGames = searchGames;
-        model.games = new Array();
 
         function start() {
             var keyword = $routeParams['search'];
@@ -99,6 +98,7 @@
             searchService.searchGames(gameName)
                 .then(function (response) {
                     //console.log(response.url, JSON.stringify(response.body));
+                    model.games = new Array();
                     for (var g in response) {
                         model.games[g] = response[g];
                         if (model.games[g].cover) {

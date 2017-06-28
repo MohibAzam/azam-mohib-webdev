@@ -8,6 +8,11 @@
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
 
+            <a class="navbar-left header-text"
+               href="/project#!/home">
+                MioDB
+            </a>
+
             <input ng-model="model.searchTerm"
                    placeholder="Search for a game!"
                    class="form-inline navbar-left header-textbox"/>
@@ -23,11 +28,6 @@
             <a ng-hide="model.user._id"
                href="#!/login"
                class="navbar-right header-text">Login</a>
-
-            <a class="navbar-brand navbar-right"
-               href="/project#!/home">
-                <span class="glyphicon glyphicon-home"></span>
-            </a>
 
             <a ng-if="model.user.role === 'ADMIN'"
                href="/project#!/admin"

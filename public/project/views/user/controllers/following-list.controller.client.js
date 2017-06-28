@@ -48,8 +48,10 @@
             userService
                 .updateUser(currentUser._id, newUser)
                 .then(function (response) {
-                    vm.following = false;
-                    vm.notFollowing = true;
+                    if (!(vm.showPersonal)) {
+                        vm.following = false;
+                        vm.notFollowing = true;
+                    }
                     $location.url('/following/' + userId);
                     vm.message = "You've unfollowed " + vm.user.username;
                 });

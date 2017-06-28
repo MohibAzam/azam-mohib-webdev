@@ -1,20 +1,35 @@
 <div>
 
-    <div>
-        <h1>Search</h1>
-        <input ng-model="model.gameName"
-               id="game"
-               class="form-control"/>
-        <button ng-click="model.searchGames(model.gameName)">Get the Games</button>
-        <ul class="list-group">
-            <li ng-repeat="game in model.games"
-                class="list-group-item"
-                ng-click="model.initGame(game)">
-                <img ng-src="{{game.cover}}"/>
-                {{game.name}}
-                {{game.genre}}
-            </li>
-        </ul>
+    <div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
+    <div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
+
+
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <h1 id="search-header">Search</h1>
+            <input ng-model="model.gameName"
+                   id="game"
+                   class="form-control"
+                   placeholder="Enter the game you want..."/>
+            <a ng-click="model.searchGames(model.gameName)"
+               class="btn btn-info"
+               id="get-games">Get the Games</a>
+            <div ng-show="model.games">
+                <hr/>
+                <div class="container-fluid"><h2>Results</h2></div>
+                <ul class="list-group">
+                    <li ng-repeat="game in model.games"
+                        class="list-group-item result"
+                        ng-click="model.initGame(game)">
+                        <img ng-src="{{game.cover}}"/>
+                        {{game.name}}
+                        {{game.genre}}
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
+
+    <div ng-include="'views/common/mobile-footer.view.client.html'"></div>
 
 </div>

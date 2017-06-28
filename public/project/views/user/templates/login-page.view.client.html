@@ -1,12 +1,12 @@
 <div class="container-fluid">
 
+    <div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
+    <div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
+
     <!--<img src="../../../../project/style/login-page.jpeg"
         class="login-page-img"/>-->
 
-    <img src="../../../../project/style/login-page.jpeg"
-         class="login-page-img"/>
-
-    <h1 class="login-header">Log In or Register!</h1>
+    <h1 id="login-header">Log In or Register!</h1>
 
     <div ng-show="model.error"
          class="alert alert-danger">
@@ -78,5 +78,7 @@
         </div>
 
     </div>
+
+    <div ng-include="'views/common/mobile-footer.view.client.html'"></div>
 
 </div>

@@ -1,85 +1,103 @@
-<div class="container-fluid">
-    <h1>{{model.user.username}}'s Profile</h1>
-    <h2 ng-show="model.user.name">Name</h2>
-    {{model.user.name}}
-    <p ng-show="model.user.name"></p>
-    <h2>Join date</h2>
-    <p>{{model.user.dateCreated}}</p>
-    <h2>Email</h2>
-    <p>{{model.user.email}}</p>
-    <h2>Bio</h2>
-    <p>{{model.user.description}}</p>
-
-    <!--<h2>Games owned</h2>
-    <h2>Games played</h2>
-    <h2>Games beaten</h2>
-    <h2>Games completed</h2>-->
-    <a href="#!/profile-edit"
-       ng-show="model.showPersonal"
-       class="btn btn-block btn-primary">
-        Edit profile info
-    </a>
-</div>
+<div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
+<div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
 
 <div class="container-fluid">
-    <a class="btn btn-block btn-primary"
-       href="#!/profile/{{model.userId}}/gamelist">See games list</a>
-</div>
 
-<div class="container-fluid">
-    <a class="btn btn-block btn-success"
-       href="#!/profile/{{model.userId}}/wishlist">See wishlist</a>
-</div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="panel panel-default container-fluid">
+            <h1>{{model.user.username}}</h1>
 
-<div class="container-fluid">
-    <a class="btn btn-block btn-warning"
-       ng-show="model.showPersonal"
-       ng-click="model.logout()">Logout
-    </a>
-</div>
+            <p ng-show="model.user.dateCreated">Joined: {{model.user.dateCreated}}</p>
 
-<div class="container-fluid">
-    <a class="btn btn-block btn-success"
-       ng-show="model.notFollowing"
-       ng-click="model.follow()">
-        Follow User
-    </a>
-</div>
+            <a href="#!/profile-edit"
+               ng-show="model.showPersonal"
+               class="btn btn-block btn-info">
+                Edit profile info
+            </a>
 
-<div class="container-fluid">
-    <a class="btn btn-block btn-warning"
-       ng-show="model.following"
-       ng-click="model.unFollow()">
-        Unfollow User
-    </a>
-</div>
+            <a class="btn btn-block btn-primary"
+               href="#!/profile/{{model.userId}}/gamelist">See games list</a>
 
-<div class="container-fluid">
-    <a class="btn btn-block btn-success"
-       href="#!/following/{{model.user._id}}">
-        See Following List
-    </a>
-</div>
+            <a class="btn btn-block btn-success"
+               href="#!/profile/{{model.userId}}/wishlist">See wishlist</a>
 
-<div class="container-fluid">
-    <a class="btn btn-block btn-primary"
-       href="#!/search">Search for games</a>
-</div>
+            <a class="btn btn-block btn-warning"
+               ng-show="model.showPersonal"
+               ng-click="model.logout()">Logout
+            </a>
 
-<div class="container-fluid">
-    <h1>Profile Comments</h1>
-    <textarea rows="3"
-              placeholder="Write a Comment..."
-              ng-model="model.comment"></textarea>
-    <a class="btn btn-primary"
-        ng-click="model.addComment(model.comment)">Submit comment</a>
-    <div class="container fluid">
-        <ul class="list-group">
-            <li ng-repeat="comment in model.user.comments"
-                class="list-group-item">
-                <p><a ng-click="model.redirectTo(comment.username)">{{comment.username}}</a> ({{comment.time}}) :</p>
-                <p>{{comment.message}}</p>
-            </li>
-        </ul>
+            <a class="btn btn-block btn-success"
+               ng-show="model.notFollowing"
+               ng-click="model.follow()">
+                Follow User
+            </a>
+
+            <a class="btn btn-block btn-warning"
+               ng-show="model.following"
+               ng-click="model.unFollow()">
+                Unfollow User
+            </a>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Following</div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li ng-repeat="username in model.user.following"
+                        class="list-group-item">
+                        <a ng-click="model.redirectTo(username)">{{username}}</a>
+                        <a ng-show="model.showPersonal"
+                           ng-click="model.unFollow(username)"
+                           class="btn btn-warning">Unfollow</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
     </div>
+
+    <div class="col-sm-8 col-md-8 col-lg-8">
+        <div class="panel panel-default">
+            <div class="panel-heading panel-title">Details</div>
+            <div class="panel-body">
+                <p>{{model.user.description}}</p>
+                <hr/>
+                <p ng-show="model.user.name">Name: {{model.user.name}}</p>
+                <p ng-show="model.user.gender">Gender: {{model.user.gender}}</p>
+                <p ng-show="model.user.age">Age: {{model.user.age}}</p>
+                <p ng-show="model.user.email">Email: {{model.user.email}}</p>
+                <hr/>
+                <!--<div class="container-fluid">
+                    <a class="btn btn-block btn-success"
+                       href="#!/following/{{model.user._id}}">
+                        See Following List
+                    </a>
+                </div>-->
+
+                <div>
+                    <h2>Profile Comments</h2>
+                    <div class="input-group">
+                        <input type="text"
+                               placeholder="Write a Comment..."
+                               ng-model="model.comment"
+                               class="form-control">
+                        <span class="input-group-btn glyphicon glyphicon-check">
+                            <button class="btn btn-primary"
+                                    type="button"
+                                    ng-click="model.addComment(model.comment)">Submit!</button>
+                        </span>
+                    </div>
+                    <ul class="list-group">
+                        <li ng-repeat="comment in model.user.comments"
+                            class="list-group-item comment">
+                            <p><a ng-click="model.redirectTo(comment.username)">{{comment.username}}</a> ({{comment.time}}) :</p>
+                            <p>{{comment.message}}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-include="'views/common/mobile-footer.view.client.html'"></div>
 </div>
