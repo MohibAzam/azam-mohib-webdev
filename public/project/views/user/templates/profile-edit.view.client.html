@@ -23,6 +23,18 @@
         <label>About Me</label>
         <input ng-model="model.user.description"
                class="form-control"/>
+
+        <label>Age</label>
+        <input ng-model="model.user.age"
+               class="form-control"/>
+
+        <label>Gender</label>
+        <select class="form-control"
+                ng-model="model.user.gender">
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
     </div>
     <a ng-click="model.updateUser(model.user)" class="btn btn-block btn-danger">Save Changes</a>
     <a ng-click="model.logout()" class="btn btn-block btn-warning">Logout</a>

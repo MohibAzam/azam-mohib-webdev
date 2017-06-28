@@ -7,8 +7,8 @@ module.exports = function (app) {
 
     var passport = require('passport');
     var LocalStrategy = require('passport-local');
-    var SteamStrategy = require('passport-steam');
-    var TwitterStrategy = require('passport-twitter');
+    //var SteamStrategy = require('passport-steam');
+    //var TwitterStrategy = require('passport-twitter');
     var FacebookStrategy = require('passport-facebook');
 
     /*

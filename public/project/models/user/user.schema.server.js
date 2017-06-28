@@ -8,7 +8,7 @@ var userSchema = mongoose.Schema({
     dateCreated: {type: Date, default: Date.now},
     email: String,
     age: String,
-    gender: {type: String, enum: ['MALE', 'FEMALE']},
+    gender: {type: String, enum: ['Male', 'Female']},
     description: String,
     role: {type: String, default: 'USER', enum: ['USER', 'ADMIN']},
     facebook: {

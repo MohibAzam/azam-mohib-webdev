@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());
-app.use(session({ secret: 'Session from MioDB' }));
+app.use(session({ secret: "Session from MioDB" }));
 
 app.use(passport.initialize());
 
@@ -43,14 +43,12 @@ app.use(express.static(__dirname + '/public'));
 
 var myApp = require('./server_side/app');
 
-var myApp = require ("./public/project/server-side/app.js");
+myApp = require ("./public/project/server-side/app.js");
 console.log(myApp);
 
 myApp(app);
 
 console.log('test');
-
-require("./public/lectures/ejs/hello");
 
 var port = process.env.PORT || 3000;
 

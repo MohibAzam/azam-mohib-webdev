@@ -11,7 +11,6 @@ else {
     mongoose.connect('mongodb://localhost/test/webdev_summer1_2017');
 }
 
-
 module.exports = function(app) {
 
     var testApp = require ('./apiTest.service.server');
