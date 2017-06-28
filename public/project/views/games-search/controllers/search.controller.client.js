@@ -29,12 +29,40 @@
                 }
                 genreString = genreString.slice(0, genreString.length - 2);
                 console.log(genreString);
+                model.genreString = genreString;
                 //model.game.gameGenres = genreString;
                 var game = {
                     _id: model.game.id,
                     gameName: model.game.name,
                     gameCover: model.game.cover,
                     gameGenres: genreString,
+                    gameDescription: model.game.summary
+                };
+                console.log('sending this game');
+                console.log(game);
+                gameService
+                    .findGameById(game._id)
+                    .then(function (response) {
+                        if (response === undefined || response === null) {
+                            gameService
+                                .createGame(game)
+                                .then(function (newGame) {
+                                    console.log('moving');
+                                    $location.url('/game/' + newGame._id);
+                                });
+                        }
+                        else {
+                            $location.url('/game/' + response._id);
+                        }
+                    });
+            }
+
+            function finalizeGame() {
+                var game = {
+                    _id: model.game.id,
+                    gameName: model.game.name,
+                    gameCover: model.game.cover,
+                    gameGenres: model.genreString,
                     gameDescription: model.game.summary
                 };
                 console.log('sending this game');
