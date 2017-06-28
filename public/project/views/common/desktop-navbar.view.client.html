@@ -29,6 +29,12 @@
                 <span class="glyphicon glyphicon-home"></span>
             </a>
 
+            <a ng-if="model.user.role === 'ADMIN'"
+               href="/project#!/admin"
+               class="navbar-brand navbar-right">
+                <span class="glyphicon glyphicon-eye-open"></span>
+            </a>
+
         </div>
     </nav>
 </div>

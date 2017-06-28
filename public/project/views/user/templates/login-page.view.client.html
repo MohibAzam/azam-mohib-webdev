@@ -1,62 +1,82 @@
 <div class="container-fluid">
-    <h1>Login</h1>
+
+    <!--<img src="../../../../project/style/login-page.jpeg"
+        class="login-page-img"/>-->
+
+    <img src="../../../../project/style/login-page.jpeg"
+         class="login-page-img"/>
+
+    <h1 class="login-header">Log In or Register!</h1>
 
     <div ng-show="model.error"
          class="alert alert-danger">
         {{model.error}}
     </div>
 
-    <label for="username">
-        Username
-    </label>
-    <input ng-model="model.user.username"
-           id="username"
-           class="form-control"/>
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="panel panel-default panel-primary">
+            <div class="panel-heading">
+                Login
+            </div>
+            <div class="panel-body">
 
-    <label>Password</label>
-    <input ng-model="model.user.password"
-           class="form-control"
-           type="password"/>
+                <label for="username">
+                    Username
+                </label>
+                <input ng-model="model.user.username"
+                       id="username"
+                       class="form-control"
+                       placeholder="Username"/>
 
-    <a ng-click="model.login(model.user.username, model.user.password)" class="btn btn-block btn-success">
-        Login
-    </a>
+                <label>Password</label>
+                <input ng-model="model.user.password"
+                       class="form-control"
+                       type="password"
+                       placeholder="Password"/>
 
-    <!--<a class="btn btn-block black"
-       href="/auth/steam">Login through Steam</a>-->
+                <a ng-click="model.login(model.user.username, model.user.password)" class="btn btn-block btn-success">
+                    Login
+                </a>
 
-    <a class="btn btn-block btn-primary"
-       href="/auth/facebook">
-        <span class="fa fa-facebook-official"></span>Login through Facebook</a>
+                <a class="btn btn-block btn-primary"
+                   href="/auth/facebook">
+                    <span class="fa fa-facebook-official"></span> Login/Register through Facebook</a>
+            </div>
+        </div>
+    </div>
 
+    <div class="col-lg-6 col-md-6 col-sm-6">
+        <div class="panel panel-default panel-primary">
+            <div class="panel-heading">
+                Don't have an account? Register here!
+            </div>
+            <div class="panel-body">
 
+                <label>Username</label>
+                <input ng-model="model.newUser.username"
+                       id="reg-username"
+                       class="form-control"
+                       placeholder="Username"/>
 
-</div>
+                <label>Password</label>
+                <input ng-model="model.newUser.password"
+                       class="form-control"
+                       type="password"
+                       placeholder="Password"/>
 
-<div class="container-fluid">
+                <label>Confirm Password</label>
+                <input ng-model="model.newUser.password2"
+                       class="form-control"
+                       type="password"
+                       placeholder="Confirm Password"/>
 
-    <h1>Don't have an account? Register here!</h1>
+                <a ng-click="model.register(model.newUser.username, model.newUser.password, model.newUser.password2)"
+                   class="btn btn-block btn-success">
+                    Register
+                </a>
+            </div>
+        </div>
 
-    <label>Username</label>
-    <input ng-model="model.newUser.username"
-           id="reg-username"
-           class="form-control"/>
-
-    <label>Password</label>
-    <input ng-model="model.newUser.password"
-           class="form-control"
-           type="password"/>
-
-    <label>Confirm Password</label>
-    <input ng-model="model.newUser.password2"
-           class="form-control"
-           type="password"/>
-
-    <a ng-click="model.register(model.newUser.username, model.newUser.password, model.newUser.password2)"
-       class="btn btn-block btn-success">
-        Register
-    </a>
-
-    <!--<a class="btn btn-block black">Register through Steam</a>-->
+    </div>
 
 </div>

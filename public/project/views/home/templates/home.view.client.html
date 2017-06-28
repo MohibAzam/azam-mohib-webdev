@@ -2,6 +2,7 @@
     <div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
     <div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
 
+    <!--
     <div>
         <a ng-hide="model.user._id"
            href="/project#!/login">Login Page</a>
@@ -19,6 +20,28 @@
     <div>
         <a ng-if="model.user.role === 'ADMIN'"
            href="/project#!/admin">Admin Page</a>
+    </div>
+    -->
+
+    <div class="jumbotron jumbotron-fluid">
+        <h1 class="display-1 jumbotron-shift">Welcome to MioDB!</h1>
+        <p class="lead jumbotron-shift">Explore new games, manage the progress on your own, and socialize with others!</p>
+        <h2 class="display-2 jumbotron-shift">Get Started!</h2>
+
+        <a href="#!/search"
+           class="btn btn-info">Search for a Game!</a>
+
+        <a href="#!/login"
+           ng-hide="model.user._id"
+           class="btn btn-success jumbotron-btn">Log In to Manage your Lists!</a>
+
+        <a href="#!/profile/{{model.user._id}}"
+           ng-show="model.user._id"
+           class="btn btn-primary jumbotron-btn">Head to your Profile!</a>
+
+        <a href="#!/admin"
+           ng-if="model.user.role === 'ADMIN'"
+           class="btn btn-warning jumbotron-btn">Go to the Admin Page!</a>
     </div>
 
     <div ng-include="'views/common/mobile-footer.view.client.html'"></div>
