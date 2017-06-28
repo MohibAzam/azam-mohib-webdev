@@ -68,7 +68,10 @@
             .when('/search', {
                 templateUrl: 'views/games-search/templates/search.view.client.html',
                 controller: 'searchController',
-                controllerAs: 'model'
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkCurrentUser
+                }
             })
             .when('/game/:gameId', {
                 templateUrl: 'views/games-search/templates/gameDescription.view.client.html',

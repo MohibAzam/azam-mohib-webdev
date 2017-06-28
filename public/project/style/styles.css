@@ -56,6 +56,11 @@ body {
     margin-right: 15px;
 }
 
+.jumbotron {
+    background-color: white;
+    border: 2px solid steelblue;
+}
+
 .jumbotron-shift {
     margin-left: 5px;
 }
@@ -132,4 +137,32 @@ body {
 
 .comment {
     background-color: transparent;
+}
+
+#prof-info {
+    font-size: 14px;
+}
+
+.edit-btns {
+    width: 93%;
+    margin-left: 15px;
+}
+
+#gameImage {
+    margin: auto;
+    width: 50%;
+}
+
+.comment-btn {
+    position: relative;
+    bottom: 4px;
+}
+
+.delete-list {
+    width: 97%;
+    margin-left: 18px;
+}
+
+.list-header {
+    margin-left: 18px;
 }

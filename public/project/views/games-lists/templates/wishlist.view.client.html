@@ -1,21 +1,37 @@
 <div>
-    <h1>{{model.user.username}}'s Wishlist</h1>
 
-    <a ng-show="model.showPersonal"
-       ng-click="model.deleteWishList()"
-       class="btn btn-block btn-danger">Delete List</a>
+    <div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
+    <div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
 
-    <div class="container fluid">
-        <ul class="list-group">
-            <li ng-repeat="game in model.user.wishlist"
-                class="list-group-item">
-                <img ng-src="{{game.gameCover}}"
-                     href="#!/game/{{game._id}}"/>
-                <a href="#!/game/{{game._id}}">{{game.gameName}}</a>
-                <a ng-show="model.showPersonal"
-                   ng-click="model.deleteGame(game)"
-                   class="btn btn-warning">Remove</a>
-            </li>
-        </ul>
+
+
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <h1 class="list-header">{{model.user.username}}'s Wishlist</h1>
+
+            <a ng-show="model.showPersonal"
+               ng-click="model.deleteWishList()"
+               class="btn btn-block btn-danger delete-list">Delete List</a>
+
+            <hr/>
+
+            <div class="container-fluid">
+                <ul class="list-group">
+                    <li ng-repeat="game in model.user.wishlist"
+                        class="list-group-item result">
+                        <img ng-src="{{game.gameCover}}"
+                             href="#!/game/{{game._id}}"/>
+                        <a href="#!/game/{{game._id}}">{{game.gameName}}</a>
+                        <a ng-show="model.showPersonal"
+                           ng-click="model.deleteGame(game)"
+                           class="btn btn-warning">Remove</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
     </div>
+
+    <div ng-include="'views/common/mobile-footer.view.client.html'"></div>
+
 </div>

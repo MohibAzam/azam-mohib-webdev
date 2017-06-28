@@ -3,8 +3,11 @@
         .module('MioDB')
         .controller('searchController', searchController);
 
-    function searchController(searchService, gameService, $routeParams, $location) {
+    function searchController(currentUser, searchService, gameService, $routeParams, $location) {
+
         var model = this;
+
+        model.user = currentUser;
 
         model.searchGames = searchGames;
 
@@ -23,10 +26,12 @@
             console.log(game);
             model.game = game;
             var genreString = "";
-            searchService.searchGenres(model.game.genres)
-                .then(function (response) {
-                    handleResponse(response);
-                });
+            if (model.game.genres) {
+                searchService.searchGenres(model.game.genres)
+                    .then(function (response) {
+                        handleResponse(response);
+                    });
+            }
 
             function handleResponse(response) {
                 console.log('response from server');

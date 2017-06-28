@@ -1,99 +1,99 @@
-<div>
-    <h1>Edit <a href="#!/game/{{model.game.gameId}}">{{model.game.gameName}}</a></h1>
-    <!--Needs:
-    - A dropdown for rating
-    - Three radio forms: playingStatus, ownershipStatus, completionStatus
-    - Textbox where user can write whatever they want to say about the game.
-    -->
+<div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
+<div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
 
-    <div>
-        <label for="completion">
-            Progress
-        </label>
-        <select id="completion"
-                class="form-control"
-                ng-model="model.game.completionStatus">
-            <option value='unplayed'>Unplayed</option>
-            <option value='unfinished'>Unfinished</option>
-            <option value='beaten'>Beaten</option>
-            <option value='completed'>Completed</option>
-            <option value='mastered'>Mastered</option>
-            <option value='other'>Other</option>
-        </select>
+<div class="container-fluid">
+
+    <div ng-show="model.message"
+         class="alert alert-success">
+        {{model.message}}
     </div>
 
-    <div>
-        <label for="playing">
-            Playing Status
-        </label>
-        <select id="playing"
-                class="form-control"
-                ng-model="model.game.playingStatus">
-            <option value='notPlaying'>Not Playing</option>
-            <option value='playing'>Now Playing</option>
-            <option value='replaying'>Replaying</option>
-            <option value='extras'>Doing Extras</option>
-            <option value='competitive'>Competitive/Multiplayer</option>
-            <option value='other'>Other</option>
-        </select>
+    <div class="container-fluid">
+        <div class="panel panel-primary container-fluid">
+            <h1>Edit <a href="#!/game/{{model.game.gameId}}">{{model.game.gameName}}</a></h1>
+
+            <label for="completion">
+                Progress
+            </label>
+            <select id="completion"
+                    class="form-control"
+                    ng-model="model.game.completionStatus">
+                <option value='Unplayed'>Unplayed</option>
+                <option value='Unfinished'>Unfinished</option>
+                <option value='Beaten'>Beaten</option>
+                <option value='Completed'>Completed</option>
+                <option value='Mastered'>Mastered</option>
+                <option value='Other'>Other</option>
+            </select>
+
+            <label for="playing">
+                Playing Status
+            </label>
+            <select id="playing"
+                    class="form-control"
+                    ng-model="model.game.playingStatus">
+                <option value='Not Playing'>Not Playing</option>
+                <option value='Playing'>Now Playing</option>
+                <option value='Replaying'>Replaying</option>
+                <option value='Extras'>Doing Extras</option>
+                <option value='Competitive'>Competitive/Multiplayer</option>
+                <option value='Other'>Other</option>
+            </select>
+
+            <label for="ownership">
+                Ownership
+            </label>
+            <select id="ownership"
+                    class="form-control"
+                    ng-model="model.game.ownershipStatus">
+                <option value='Own Physical'>Own Physical Copy</option>
+                <option value='Own Digital'>Own Digital Copy</option>
+                <option value='Rented'>Rented</option>
+                <option value='Previously Owned'>Previously Owned</option>
+                <option value='Borrowed'>Borrowed</option>
+                <option value='Lost'>Lost</option>
+                <option value='Other'>Other</option>
+            </select>
+
+            <label for="rating">
+                Rating (out of 10)
+            </label>
+            <select id="rating"
+                    class="form-control"
+                    ng-model="model.game.rating">
+                <option value=10>10</option>
+                <option value=9>9</option>
+                <option value=8>8</option>
+                <option value=7>7</option>
+                <option value=6>6</option>
+                <option value=5>5</option>
+                <option value=4>4</option>
+                <option value=3>3</option>
+                <option value=2>2</option>
+                <option value=1>1</option>
+                <option value=0>0</option>
+            </select>
+
+            <label>
+                Notes
+            </label>
+            <input placeholder="Be it progress you've made, thoughts on the game, write whatever you want to say about it!"
+                   ng-model="model.game.notes"
+                   class="form-control"></input>
+
+            <div class="edit-btns">
+                <a class="btn btn-block btn-primary"
+                   ng-click="model.updateGame(model.game)">Submit Changes</a>
+
+                <a href="#!/profile/{{model.user._id}}/gamelist"
+                   class="btn btn-block btn-warning">
+                    Return to GamesList
+                </a>
+            </div>
+
+        </div>
     </div>
-
-    <div>
-    <label for="ownership">
-        Ownership
-    </label>
-        <select id="ownership"
-                class="form-control"
-                ng-model="model.game.ownershipStatus">
-            <option value='ownPhysical'>Own Physical Copy</option>
-            <option value='ownDigital'>Own Digital Copy</option>
-            <option value='rental'>Rented</option>
-            <option value='previouslyOwned'>Previously Owned</option>
-            <option value='borrowed'>Borrowed</option>
-            <option value='lost'>Lost</option>
-            <option value='other'>Other</option>
-        </select>
-    </div>
-
-    <div>
-    <label for="rating">
-        Rating (out of 10)
-    </label>
-    <select id="rating"
-            class="form-control"
-            ng-model="model.game.rating">
-        <option value=10>10</option>
-        <option value=9>9</option>
-        <option value=8>8</option>
-        <option value=7>7</option>
-        <option value=6>6</option>
-        <option value=5>5</option>
-        <option value=4>4</option>
-        <option value=3>3</option>
-        <option value=2>2</option>
-        <option value=1>1</option>
-        <option value=0>0</option>
-    </select>
-    </div>
-
-    <div>
-    <label for="notes">
-        Notes
-    </label>
-    <textarea rows="3"
-              cols="50"
-              id="notes"
-              placeholder="Be it progress you've made, thoughts on the game, write whatever you want to say about it!"
-              ng-model="model.game.notes"></textarea>
-    </div>
-
-    <a class="btn btn-block btn-primary"
-       ng-click="model.updateGame(model.game)">Submit Changes</a>
-
-    <a href="#!/profile/{{model.user._id}}/gamelist"
-       class="btn btn-block btn-warning">
-        Return to GamesList
-    </a>
-
 
 </div>
+
+<div ng-include="'views/common/mobile-footer.view.client.html'"></div>

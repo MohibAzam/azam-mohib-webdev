@@ -4,10 +4,12 @@
 <div class="container-fluid">
 
     <div class="col-sm-4 col-md-4 col-lg-4">
-        <div class="panel panel-default container-fluid">
+        <div class="panel panel-primary container-fluid">
             <h1>{{model.user.username}}</h1>
 
             <p ng-show="model.user.dateCreated">Joined: {{model.user.dateCreated}}</p>
+
+            <hr/>
 
             <a href="#!/profile-edit"
                ng-show="model.showPersonal"
@@ -39,7 +41,7 @@
             </a>
         </div>
 
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading">Following</div>
             <div class="panel-body">
                 <ul class="list-group">
@@ -57,15 +59,17 @@
     </div>
 
     <div class="col-sm-8 col-md-8 col-lg-8">
-        <div class="panel panel-default">
+        <div class="panel panel-primary">
             <div class="panel-heading panel-title">Details</div>
             <div class="panel-body">
                 <p>{{model.user.description}}</p>
-                <hr/>
-                <p ng-show="model.user.name">Name: {{model.user.name}}</p>
-                <p ng-show="model.user.gender">Gender: {{model.user.gender}}</p>
-                <p ng-show="model.user.age">Age: {{model.user.age}}</p>
-                <p ng-show="model.user.email">Email: {{model.user.email}}</p>
+                <div id="prof-info">
+                    <p ng-show="model.user.name"><strong>Name:</strong> {{model.user.name}}</p>
+                    <p ng-show="model.user.gender"><strong>Gender:</strong> {{model.user.gender}}</p>
+                    <p ng-show="model.user.age"><strong class="strong">Age:</strong> {{model.user.age}}</p>
+                    <p ng-show="model.user.email"><strong class="strong">Email:</strong> {{model.user.email}}</p>
+                </div>
+
                 <hr/>
                 <!--<div class="container-fluid">
                     <a class="btn btn-block btn-success"
@@ -80,17 +84,23 @@
                         <input type="text"
                                placeholder="Write a Comment..."
                                ng-model="model.comment"
-                               class="form-control">
-                        <span class="input-group-btn glyphicon glyphicon-check">
-                            <button class="btn btn-primary"
-                                    type="button"
-                                    ng-click="model.addComment(model.comment)">Submit!</button>
+                               class="form-control text-input">
+                        <span class="input-group-btn comment-btn">
+                            <a class="btn btn-primary"
+                               ng-click="model.addComment(model.comment)">
+                                Submit!
+                            </a>
                         </span>
                     </div>
                     <ul class="list-group">
                         <li ng-repeat="comment in model.user.comments"
                             class="list-group-item comment">
-                            <p><a ng-click="model.redirectTo(comment.username)">{{comment.username}}</a> ({{comment.time}}) :</p>
+                            <p>
+                                <a ng-click="model.redirectTo(comment.username)">
+                                    {{comment.username}}
+                                </a>
+                                ({{comment.time}}) :
+                            </p>
                             <p>{{comment.message}}</p>
                         </li>
                     </ul>

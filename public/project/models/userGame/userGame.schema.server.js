@@ -12,31 +12,31 @@ var userGameSchema = mongoose.Schema({
     lastUpdatedDate: String,
     playingStatus: {type: String,
         enum: [
-            'notPlaying',
-            'playing',
-            'replaying',
-            'extras',
-            'competitive',
-            'other'
+            'Not Playing',
+            'Playing',
+            'Replaying',
+            'Extras',
+            'Competitive',
+            'Other'
         ]},
     ownershipStatus: {type: String,
         enum: [
-            'ownPhysical',
-            'ownDigital',
-            'rental',
-            'previouslyOwned',
-            'borrowed',
-            'lost',
-            'other'
+            'Own Physical',
+            'Own Digital',
+            'Rented',
+            'Previously Owned',
+            'Borrowed',
+            'Lost',
+            'Other'
         ]},
     completionStatus: {type: String,
         enum: [
-            'unplayed',
-            'unfinished',
-            'beaten',
-            'completed',
-            'mastered',
-            'other'
+            'Unplayed',
+            'Unfinished',
+            'Beaten',
+            'Completed',
+            'Mastered',
+            'Other'
         ]},
     notes: String,
     rating: String

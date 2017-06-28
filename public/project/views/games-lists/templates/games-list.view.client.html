@@ -1,26 +1,38 @@
 <div>
-    <h1>{{model.user.username}}'s Game List</h1>
+    <div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
+    <div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
 
-    <a ng-show="model.showPersonal"
-       ng-click="model.clearGameList()"
-       class="btn btn-block btn-danger">Delete List</a>
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <h1 class="list-header">{{model.user.username}}'s Game List</h1>
 
-    <div class="container fluid">
-        <ul class="list-group">
-            <li ng-repeat="game in model.games"
-                class="list-group-item"
-                ng-click="model.redirectTo(game.gameId)">
-                <a href="#!/game/{{game.gameId}}"><img ng-src="{{game.gameCover}}"/></a>
-                <a href="#!/game/{{game.gameId}}">{{game.gameName}}</a>
-                {{game.rating}}
-                <a ng-show="model.showPersonal"
-                   href="#!/profile/{{model.userId}}/gamelist/{{game._id}}"
-                   class="btn btn-primary">Edit</a>
-                <a ng-show="model.showPersonal"
-                   ng-click="model.deleteUserGame(game)"
-                   class="btn btn-warning">Remove</a>
-                <p>{{game.notes}}</p>
-            </li>
-        </ul>
+            <a ng-show="model.showPersonal"
+               ng-click="model.clearGameList()"
+               class="btn btn-block btn-danger delete-list">Delete List</a>
+
+            <hr/>
+
+            <div class="container fluid">
+                <ul class="list-group">
+                    <li ng-repeat="game in model.games"
+                        class="list-group-item result"
+                        ng-click="model.redirectTo(game.gameId)">
+                        <img ng-src="{{game.gameCover}}"
+                             href="#!/game/{{game.gameId}}"/>
+                        <a href="#!/game/{{game.gameId}}">{{game.gameName}}</a>
+                        <a ng-show="model.showPersonal"
+                           href="#!/profile/{{model.userId}}/gamelist/{{game._id}}"
+                           class="btn btn-primary">Edit</a>
+                        <a ng-show="model.showPersonal"
+                           ng-click="model.deleteUserGame(game)"
+                           class="btn btn-warning">Remove</a>
+                        <p ng-show="game.notes">{{game.notes}}</p>
+                        <p ng-show="game.rating"><strong>Rating: </strong>{{game.rating}}/10</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
+
+    <div ng-include="'views/common/mobile-footer.view.client.html'"></div>
 </div>
