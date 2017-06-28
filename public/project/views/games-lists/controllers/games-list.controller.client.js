@@ -8,11 +8,11 @@
 
     function gameListController(currentUser, $location, userService, userGameService, $routeParams) {
         var vm = this;
-        console.log(currentUser._id);
+
+        vm.linkBack = true;
 
         var userId = $routeParams['userId'];
         vm.userId = userId;
-        console.log(userId);
         vm.loggedInUser = currentUser;
 
         function init() {
@@ -47,8 +47,13 @@
 
         init();
 
+        vm.handleBack = handleBack;
         vm.deleteUserGame = deleteUserGame;
         vm.clearGameList = clearGameList;
+
+        function handleBack() {
+            $location.url('/profile/' + userId);
+        }
 
         function clearGameList() {
             userGameService

@@ -7,6 +7,7 @@
         var vm = this;
 
         var userId = currentUser._id;
+        vm.linkBack = true;
 
         function init() {
             renderUser(currentUser);
@@ -16,9 +17,15 @@
             vm.user = user;
         }
 
+        vm.handleBack = handleBack;
         vm.logout = logout;
         vm.updateUser = updateUser;
         vm.deleteUser = deleteUser;
+
+        function handleBack() {
+            $location.url('/profile/' + userId);
+        }
+
 
         function logout() {
             userService

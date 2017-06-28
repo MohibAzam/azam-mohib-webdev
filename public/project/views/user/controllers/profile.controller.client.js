@@ -7,10 +7,16 @@
         var vm = this;
         console.log(currentUser._id);
 
+        vm.linkBack = true;
+
         var userId = $routeParams['userId'];
         vm.userId = userId;
         console.log(userId);
         vm.loggedInUser = currentUser;
+
+        vm.handleBack = function () {
+            $location.url('/home');
+        };
 
         function init() {
             userService
@@ -54,6 +60,7 @@
         vm.redirectTo = redirectTo;
         vm.follow = follow;
         vm.unFollow = unFollow;
+        vm.findUser = findUser;
 
         function logout() {
             userService
@@ -112,6 +119,19 @@
                     vm.following = false;
                     vm.notFollowing = true;
                     vm.message = "You've unfollowed " + vm.user.username;
+                });
+        }
+
+        function findUser(username) {
+            userService
+                .findUserByUsername(username)
+                .then(function (user) {
+                    if (user) {
+                        $location.url('/profile/' + user._id);
+                    }
+                    else {
+                        vm.error = "User " + username + " was not found";
+                    }
                 });
         }
     }

@@ -7,6 +7,8 @@
         var gameId = $routeParams['gameId'];
         var vm = this;
 
+        vm.linkBack = true;
+
         function init() {
             gameService
                 .findGameById(gameId)
@@ -61,12 +63,17 @@
 
         init();
 
+        vm.handleBack = handleBack;
         vm.addToGameList = addToGameList;
         vm.removeFromGamesList = removeFromGamesList;
         vm.addToWishList = addToWishList;
         vm.removeFromWishList = removeFromWishList;
         vm.addComment = addComment;
         vm.redirectTo = redirectTo;
+
+        function handleBack() {
+            $location.url('/search');
+        }
 
         function addToGameList() {
             var gameObject = {

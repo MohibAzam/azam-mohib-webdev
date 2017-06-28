@@ -9,6 +9,8 @@
         var userId = $routeParams['userId'];
         vm.userId = userId;
 
+        vm.linkBack = true;
+
         vm.loggedInUser = currentUser;
 
         function init() {
@@ -35,8 +37,13 @@
 
         init();
 
+        vm.handleBack = handleBack;
         vm.deleteWishList = deleteWishList;
         vm.deleteGame = deleteGame;
+
+        function handleBack() {
+            $location.url('/profile/' + userId);
+        }
 
         function deleteWishList() {
             var newUser = vm.user;

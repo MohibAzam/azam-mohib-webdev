@@ -10,15 +10,20 @@ body {
     margin-top: 70px;
     margin-bottom: 60px;
     font-size: 18px;
-    background-image: url("background.jpg");
+    font-family: Calibri;
+    background-image: url("circuit_board_pattern-213.jpg");
 }
 
 .header-textbox {
-    width: 70%;
+    width: 45%;
     margin-top: 8px;
     margin-left: 15px;
     margin-right: 15px;
     font-family: Georgia;
+}
+
+#mobile-header-txt {
+    width: 40%;
 }
 
 .header-text {

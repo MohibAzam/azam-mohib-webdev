@@ -3,8 +3,9 @@
         <div class="container-fluid">
 
             <a class="navbar-brand navbar-left"
-               href="/project#!/home">
-                <span class="glyphicon glyphicon-home"></span>
+               ng-show="model.linkBack"
+               ng-click="model.handleBack()">
+                <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
 
             <a class="navbar-brand navbar-right"

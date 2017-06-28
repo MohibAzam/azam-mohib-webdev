@@ -3,11 +3,16 @@
 
 <div class="container-fluid">
 
+    <div ng-show="model.error"
+         class="alert alert-danger">
+        {{model.error}}
+    </div>
+
     <div class="col-sm-4 col-md-4 col-lg-4">
         <div class="panel panel-primary container-fluid">
-            <h1>{{model.user.username}}</h1>
+            <h2>{{model.user.username}}</h2>
 
-            <p ng-show="model.user.dateCreated">Joined: {{model.user.dateCreated}}</p>
+            <p ng-show="model.user.dateCreated">Joined: {{model.user.dateCreated.toLocaleString().substr(0, 10)}}</p>
 
             <hr/>
 
@@ -39,6 +44,25 @@
                ng-click="model.unFollow()">
                 Unfollow User
             </a>
+        </div>
+
+        <div class="panel panel-primary"
+             ng-show="model.showPersonal">
+            <div class="panel-heading">Search for a User</div>
+            <div class="panel-body">
+                <div class="input-group">
+                    <input type="text"
+                           placeholder="Enter a Username"
+                           ng-model="model.username"
+                           class="form-control text-input">
+                    <span class="input-group-btn comment-btn">
+                    <a class="btn btn-primary"
+                       ng-click="model.findUser(model.username)">
+                        Find
+                    </a>
+                </span>
+                </div>
+            </div>
         </div>
 
         <div class="panel panel-primary">

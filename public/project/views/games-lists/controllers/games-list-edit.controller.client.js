@@ -9,6 +9,7 @@
     function gameListEditController(currentUser, $location, userService, userGameService, $routeParams) {
         var vm = this;
         console.log(currentUser._id);
+        vm.linkBack = true;
 
         var userId = $routeParams['userId'];
         var userGameId = $routeParams['userGameId'];
@@ -41,7 +42,12 @@
 
         init();
 
+        vm.handleBack = handleBack;
         vm.updateGame = updateGame;
+
+        function handleBack() {
+            $location.url('/profile/' + userId + '/gamelist');
+        }
 
         function updateGame(newUserGame) {
             newUserGame.rating.castToNumber;

@@ -9,7 +9,8 @@
 
         model.user = currentUser;
 
-        model.searchGames = searchGames;
+        model.linkBack = true;
+
 
         function start() {
             var keyword = $routeParams['search'];
@@ -20,7 +21,14 @@
 
         start();
 
+
+        model.handleBack = handleBack;
+        model.searchGames = searchGames;
         model.initGame = initGame;
+
+        function handleBack() {
+            $location.url('/home');
+        };
 
         function initGame(game) {
             console.log(game);

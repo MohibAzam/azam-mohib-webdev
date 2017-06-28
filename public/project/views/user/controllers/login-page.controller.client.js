@@ -9,12 +9,17 @@
 
     function loginController($location, $routeParams, userService) {
         var vm = this;
+        vm.linkBack = true;
 
         var error = $routeParams['errMsg'];
 
         if (error === '1') {
             vm.error = "You must be logged in to do that";
         }
+
+        vm.handleBack = function() {
+            $location.url('/home');
+        };
 
         vm.login = function(username, password) {
             if (!(username && password)) {
