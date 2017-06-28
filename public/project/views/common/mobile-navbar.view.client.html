@@ -1,0 +1,22 @@
+<div class="hidden-sm hidden-md hidden-lg">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+
+            <a class="navbar-brand"
+               ng-show="model.linkBack"
+               ng-click="model.handleBack()">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+
+            <input ng-model="model.searchTerm"
+                   placeholder="Search for a game!"
+                   class="form-inline navbar-left header-textbox"/>
+
+            <a class="navbar-brand navbar-left"
+               href="#!/search?search={{model.searchTerm}}">
+                <span class="glyphicon glyphicon-search"></span>
+            </a>
+
+        </div>
+    </nav>
+</div>

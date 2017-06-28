@@ -1,0 +1,23 @@
+<div class="hidden-sm hidden-md hidden-lg">
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container-fluid">
+
+            <a class="navbar-brand navbar-left"
+               href="/project#!/home">
+                <span class="glyphicon glyphicon-home"></span>
+            </a>
+
+            <a class="navbar-brand navbar-right"
+               ng-show="model.user._id"
+               href="/project#!/profile/{{model.user._id}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+
+            <a class="navbar-brand navbar-right"
+               ng-hide="model.user._id"
+               href="#!/login">
+                Login
+            </a>
+        </div>
+    </nav>
+</div>

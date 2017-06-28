@@ -39,6 +39,7 @@ body {
 }
 
 .blue-navbar {
+    opacity: 0.6;
     background-color: royalblue;
     font-weight: bold;
 }

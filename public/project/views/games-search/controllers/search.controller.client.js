@@ -3,11 +3,20 @@
         .module('MioDB')
         .controller('searchController', searchController);
 
-    function searchController(searchService, gameService, $location) {
+    function searchController(searchService, gameService, $routeParams, $location) {
         var model = this;
 
         model.searchGames = searchGames;
         model.games = new Array();
+
+        function start() {
+            var keyword = $routeParams['search'];
+            if (keyword) {
+                searchGames(keyword);
+            }
+        }
+
+        start();
 
         model.initGame = initGame;
 

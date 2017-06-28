@@ -1,4 +1,7 @@
 <div>
+    <div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
+    <div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
+
     <div>
         <a ng-hide="model.user._id"
            href="/project#!/login">Login Page</a>
@@ -18,4 +21,5 @@
            href="/project#!/admin">Admin Page</a>
     </div>
 
+    <div ng-include="'views/common/mobile-footer.view.client.html'"></div>
 </div>

@@ -29,6 +29,7 @@ body {
 
 .navbar-default {
     background-color: darkblue;
+    opacity: 0.6;
 }
 
 .navbar-default .navbar-brand {
