@@ -9,11 +9,20 @@ module.exports = function (app) {
     var LocalStrategy = require('passport-local');
     var FacebookStrategy = require('passport-facebook');
 
-    var facebookConfig = {
-        clientID     : 239462213223929,
-        clientSecret : '7eea74e0a859b77c4b1f0752db17a15e',
-        callbackURL  : 'http://localhost:3000/auth/facebook/callback'
-    };
+    if(process.env.MLAB_USERNAME) {
+        var facebookConfig = {
+            clientID     : process.env.FACEBOOK_ID,
+            clientSecret : process.env.FACEBOOK_SECRET,
+            callbackURL  : 'http://localhost:3000/auth/facebook/callback'
+        };
+    }
+    else {
+        var facebookConfig = {
+            clientID     : 239462213223929,
+            clientSecret : '7eea74e0a859b77c4b1f0752db17a15e',
+            callbackURL  : 'http://localhost:3000/auth/facebook/callback'
+        };
+    }
 
     passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
 
