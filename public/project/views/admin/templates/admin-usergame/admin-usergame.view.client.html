@@ -5,6 +5,10 @@
 
     <div class="container-fluid">
         <div class="panel panel-default">
+            <div ng-show="model.message"
+                 class="alert alert-success">
+                {{model.message}}
+            </div>
             <h1 class="list-header">UserGames</h1>
             <p class="list-header">
                 An object that comprises a user's gamelist. Contains references to a game and user, as well as various

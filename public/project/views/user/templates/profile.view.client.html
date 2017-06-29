@@ -8,6 +8,11 @@
         {{model.error}}
     </div>
 
+    <div ng-show="model.message"
+         class="alert alert-success">
+        {{model.message}}
+    </div>
+
     <div class="col-sm-4 col-md-4 col-lg-4">
         <div class="panel panel-primary container-fluid">
             <h2>{{model.user.username}}</h2>
@@ -41,7 +46,7 @@
 
             <a class="btn btn-block btn-warning"
                ng-show="model.following"
-               ng-click="model.unFollow()">
+               ng-click="model.unFollow(model.user.username)">
                 Unfollow User
             </a>
         </div>

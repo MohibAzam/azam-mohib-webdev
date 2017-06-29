@@ -109,15 +109,15 @@
                 });
         }
 
-        function unFollow() {
+        function unFollow(username) {
             var newUser = currentUser;
-            var userInd = newUser.following.indexOf(vm.user.username);
+            var userInd = newUser.following.indexOf(username);
             newUser.following.splice(userInd, 1);
             userService
                 .updateUser(currentUser._id, newUser)
                 .then(function (response) {
                     if (userId === currentUser._id) {
-                        vm.message = "You've unfollowed " + vm.user.username;
+                        vm.message = "You've unfollowed " + username;
                         $location.url('/profile/' + currentUser._id);
                     }
                     else {
