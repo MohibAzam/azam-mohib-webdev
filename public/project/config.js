@@ -145,14 +145,6 @@
                     currentUser: checkAdmin
                 }
             })
-            .when('/admin/usergame/new', {
-                templateUrl: 'views/admin/templates/admin-usergame/admin-usergame-new.view.client.html',
-                controller: 'AdminUsergameNewController',
-                controllerAs: 'model',
-                resolve: {
-                    currentUser: checkAdmin
-                }
-            })
             .when('/admin/usergame/:userGameId', {
                 templateUrl: 'views/admin/templates/admin-usergame/admin-usergame-edit.view.client.html',
                 controller: 'AdminUsergameEditController',
