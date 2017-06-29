@@ -34,7 +34,7 @@ function findUserGamesForUser(userId) {
 }
 
 function findUserGameByGameId (gameId) {
-    //return userGameModel.find({game._id: userId});
+    return userGameModel.find({gameId: gameId});
 }
 
 function findAllUserGames() {
@@ -44,6 +44,10 @@ function findAllUserGames() {
 function updateUserGame(userGameId, userGame) {
     return userGameModel.update({_id: userGameId}, {
         $set: {
+            gameName: userGame.gameName,
+            gameCover: userGame.gameCover,
+            gameId: userGame.gameId,
+            user: userGame.user,
             playingStatus: userGame.playingStatus,
             ownershipStatus: userGame.ownershipStatus,
             completionStatus: userGame.completionStatus,

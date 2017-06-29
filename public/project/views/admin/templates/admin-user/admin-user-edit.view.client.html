@@ -12,6 +12,12 @@
         <div class="container-fluid">
             <div class="panel panel-primary container-fluid">
                 <h1>Edit User</h1>
+
+                <label>Id</label>
+                <input ng-model="model.user._id"
+                       class="form-control"
+                       readonly>
+
                 <label>Name</label>
                 <input ng-model="model.user.name"
                        class="form-control"/>

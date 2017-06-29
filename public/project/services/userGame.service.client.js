@@ -10,6 +10,7 @@
         var api = {
             createUserGame: createUserGame,
             findUserGameById: findUserGameById,
+            findUserGameByGameId: findUserGameByGameId,
             findSpecUserGameForUser: findSpecUserGameForUser,
             findUserGamesForUser: findUserGamesForUser,
             findAllUserGames: findAllUserGames,
@@ -30,6 +31,14 @@
 
         function findUserGameById(userGameId) {
             var url = "/api/mioDB/userGame/" + userGameId;
+            return $http.get(url)
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
+        function findUserGameByGameId(gameId) {
+            var url = "/api/mioDB/userGame/game/" + gameId;
             return $http.get(url)
                 .then(function (response) {
                     return response.data;

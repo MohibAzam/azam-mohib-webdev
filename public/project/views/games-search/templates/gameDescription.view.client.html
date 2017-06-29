@@ -54,6 +54,17 @@
                 <hr/>
 
                 <div>
+                    <h2>User Data</h2>
+                    <p><strong>Gamelist Count: </strong>{{model.numListed}}</p>
+                    <p><strong>Players who've beaten it: </strong>{{model.numBeaten}}</p>
+                    <p ng-show="model.finalScore">
+                        <strong>Average Score: </strong>{{model.finalScore}} ({{model.ratings}} ratings)
+                    </p>
+                </div>
+
+                <hr/>
+
+                <div>
                     <h2>Game Comments</h2>
 
                     <div ng-show="model.user._id">

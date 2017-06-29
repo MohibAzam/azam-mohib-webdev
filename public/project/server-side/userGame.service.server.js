@@ -12,6 +12,7 @@ module.exports = function (app) {
 
     app.post('/api/mioDB/user/:userId/userGame', createUserGame);
     app.get('/api/mioDB/userGame/:userGameId', findUserGameById);
+    app.get('/api/mioDB/userGame/game/:gameId', findUserGameByGameId);
     app.get('/api/mioDB/user/:userId/userGame/:gameId', findSpecUserGameForUser);
     app.get('/api/mioDB/user/:userId/userGame', findUserGamesForUser);
     app.get('/api/mioDB/admin/userGame', isAdmin, findAllUserGames);
@@ -35,6 +36,15 @@ module.exports = function (app) {
             .findUserGameById(userGameId)
             .then(function (userGame) {
                 res.json(userGame);
+            });
+    }
+
+    function findUserGameByGameId(req, res) {
+        var gameId = req.params['gameId'];
+        userGameModel
+            .findUserGameByGameId(gameId)
+            .then(function (userGames) {
+                res.json(userGames);
             });
     }
 

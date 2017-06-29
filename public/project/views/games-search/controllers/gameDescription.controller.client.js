@@ -15,11 +15,43 @@
                 .then(function (game) {
                     console.log(game);
                     vm.game = game;
+                    setUpUserData();
                     if (currentUser._id) {
                         vm.user = currentUser;
                         console.log(vm.user);
                         checkIfOnWishlist();
                         checkIfOnGameList();
+                    }
+                });
+        }
+
+        function setUpUserData() {
+            userGameService
+                .findUserGameByGameId(gameId)
+                .then(function (games) {
+                    vm.numListed = games.length;
+                    vm.numBeaten = 0;
+                    vm.ratings = 0;
+                    vm.ratingSum = 0;
+                    for (var g in games) {
+                        var tempUg = games[g];
+                        if (tempUg.completionStatus &&
+                            (tempUg.completionStatus === 'Beaten' ||
+                            tempUg.completionStatus === 'Completed' ||
+                            tempUg.completionStatus === 'Mastered')) {
+                            vm.numBeaten++;
+                        }
+                        if (tempUg.rating) {
+                            vm.ratings++;
+                            vm.ratingSum += Number(tempUg.rating);
+                            console.log(vm.ratingSum);
+                        }
+                    }
+                    if (vm.ratings > 0) {
+                        var quotient = vm.ratingSum / vm.ratings;
+                        vm.finalScore = vm.ratingSum / vm.ratings;
+                        vm.finalScore = vm.finalScore.toString().substring(0, 4);
+                        console.log(vm.finalScore);
                     }
                 });
         }
