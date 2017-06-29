@@ -116,9 +116,15 @@
             userService
                 .updateUser(currentUser._id, newUser)
                 .then(function (response) {
-                    vm.following = false;
-                    vm.notFollowing = true;
-                    vm.message = "You've unfollowed " + vm.user.username;
+                    if (userId === currentUser._id) {
+                        vm.message = "You've unfollowed " + vm.user.username;
+                        $location.url('/profile/' + currentUser._id);
+                    }
+                    else {
+                        vm.following = false;
+                        vm.notFollowing = true;
+                        vm.message = "You've unfollowed " + vm.user.username;
+                    }
                 });
         }
 

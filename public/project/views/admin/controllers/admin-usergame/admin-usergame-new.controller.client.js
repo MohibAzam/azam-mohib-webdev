@@ -5,19 +5,8 @@
 
     function adminUserGameNewController(currentUser, $location, $routeParams, userGameService) {
         var vm = this;
-        var userGameId = $routeParams['userGameId'];
         vm.user = currentUser;
         vm.linkBack = true;
-
-        function init() {
-            userGameService
-                .findUserGameById(userGameId)
-                .then(function (userGame) {
-                    vm.userGame = userGame;
-                });
-        }
-
-        init();
 
         vm.handleBack = handleBack;
         vm.createUserGame = createUserGame;

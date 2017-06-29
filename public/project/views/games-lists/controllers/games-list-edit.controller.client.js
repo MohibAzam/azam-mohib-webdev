@@ -18,12 +18,17 @@
         vm.loggedInUser = currentUser;
 
         function init() {
-            userService
-                .findUserById(userId)
-                .then(function (user) {
-                    renderUser(user);
-                    setupGame();
-                });
+            if(currentUser._id !== userId) {
+                $location.url('home');
+            }
+            else {
+                userService
+                    .findUserById(userId)
+                    .then(function (user) {
+                        renderUser(user);
+                        setupGame();
+                    });
+            }
         }
 
         function renderUser(user) {

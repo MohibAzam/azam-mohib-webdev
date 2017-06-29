@@ -6,7 +6,7 @@
     function adminUserEditController(currentUser, $location, $routeParams, userService) {
         var vm = this;
         var userId = $routeParams['userId'];
-        vm.user = currentUser;
+        vm.loggedInUser = currentUser;
         vm.linkBack = true;
 
         function init() {
