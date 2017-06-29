@@ -57,7 +57,9 @@
                     gameName: model.game.name,
                     gameCover: model.game.cover,
                     gameGenres: genreString,
-                    gameDescription: model.game.summary
+                    gameDescription: model.game.summary,
+                    website: model.game.website,
+                    gameReleases: model.game.gameReleases
                 };
                 console.log('sending this game');
                 console.log(game);
@@ -120,9 +122,13 @@
                         else {
                             delete model.games[g].cover;
                         }
-                        if(model.games.websites !== undefined && !(model.games.websites.isEmpty())) {
+                        if(model.games[g].websites !== undefined && !(model.games[g].websites.length === 0)) {
                             model.games[g].website = model.games[g].websites[0].url;
                             console.log(model.games[g].website);
+                        }
+                        if(model.games[g].release_dates !== undefined && !(model.games[g].release_dates.length === 0)) {
+                            model.games[g].gameReleases = model.games[g].release_dates[0].human;
+                            console.log(model.games[g].gameReleases);
                         }
                     }
                 });

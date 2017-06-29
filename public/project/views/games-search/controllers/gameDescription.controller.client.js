@@ -53,6 +53,9 @@
                         vm.finalScore = vm.finalScore.toString().substring(0, 4);
                         console.log(vm.finalScore);
                     }
+                    else {
+                        vm.finalScore = "N/A";
+                    }
                 });
         }
 

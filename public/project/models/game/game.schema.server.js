@@ -20,7 +20,8 @@ var gameSchema = mongoose.Schema({
     */
     comments: [
         {username: String, time: String, message: String}
-    ]
+    ],
+    website: String
 }, {collection: "miodb-game"});
 
 module.exports = gameSchema;

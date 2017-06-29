@@ -50,7 +50,9 @@
         }
 
         function updateGame(newUserGame) {
-            newUserGame.rating.castToNumber;
+            if (newUserGame.rating) {
+                newUserGame.rating.castToNumber;
+            }
             console.log(newUserGame);
             userGameService
                 .updateUserGame(userGameId, newUserGame)
