@@ -184,3 +184,8 @@ body {
 #game-descript {
     font-size: 15px;
 }
+
+.alert {
+    margin-left: 15px;
+    margin-right: 15px;
+}
