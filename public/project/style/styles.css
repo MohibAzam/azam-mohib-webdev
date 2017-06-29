@@ -71,8 +71,8 @@ body {
 }
 
 .btn {
-    margin-top: 4px;
-    margin-bottom: 4px;
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 .jumbotron-btn {
@@ -174,4 +174,13 @@ body {
 
 .list-header {
     margin-left: 18px;
+}
+
+#game-name {
+    font-size: 26px;
+    font-weight: 500;
+}
+
+#game-descript {
+    font-size: 15px;
 }

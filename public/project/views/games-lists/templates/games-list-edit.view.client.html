@@ -11,6 +11,7 @@
     <div class="container-fluid">
         <div class="panel panel-primary container-fluid">
             <h1>Edit <a href="#!/game/{{model.game.gameId}}">{{model.game.gameName}}</a></h1>
+            <p>Select the blank choice if you don't want to set a specific category</p>
 
             <label for="completion">
                 Progress
@@ -24,6 +25,7 @@
                 <option value='Completed'>Completed</option>
                 <option value='Mastered'>Mastered</option>
                 <option value='Other'>Other</option>
+                <option></option>
             </select>
 
             <label for="playing">
@@ -38,6 +40,7 @@
                 <option value='Extras'>Doing Extras</option>
                 <option value='Competitive'>Competitive/Multiplayer</option>
                 <option value='Other'>Other</option>
+                <option></option>
             </select>
 
             <label for="ownership">
@@ -53,6 +56,7 @@
                 <option value='Borrowed'>Borrowed</option>
                 <option value='Lost'>Lost</option>
                 <option value='Other'>Other</option>
+                <option></option>
             </select>
 
             <label for="rating">
@@ -72,6 +76,7 @@
                 <option value=2>2</option>
                 <option value=1>1</option>
                 <option value=0>0</option>
+                <option></option>
             </select>
 
             <label>

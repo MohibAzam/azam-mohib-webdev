@@ -6,16 +6,20 @@
 
     <div class="container-fluid">
         <div class="panel panel-default">
-            <h1 id="search-header">Search</h1>
+            <h1 id="search-header">Search for a game!</h1>
             <p>(Database and API provided by the
                 <a href="https://igdb.github.io/api/about/welcome/">Internet Game Database</a>)</p>
-            <input ng-model="model.gameName"
-                   id="game"
-                   class="form-control"
-                   placeholder="Enter the game you want..."/>
-            <a ng-click="model.searchGames(model.gameName)"
-               class="btn btn-info"
-               id="get-games">Get the Games</a>
+            <div class="input-group">
+                <input ng-model="model.gameName"
+                       id="search-game"
+                       class="form-control text-input"
+                       placeholder="Enter the game you want..."/>
+                <span class="input-group-btn comment-btn">
+                    <a ng-click="model.searchGames(model.gameName)"
+                       class="btn btn-info comment-btn"
+                       id="get-games">Go!</a>
+                </span>
+            </div>
             <div ng-show="model.games">
                 <hr/>
                 <div class="container-fluid"><h2>Results</h2></div>

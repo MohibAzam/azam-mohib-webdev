@@ -10,7 +10,7 @@
 
     <div ng-show="model.game" class="col-sm-4 col-md-4 col-lg-4">
         <div class="panel panel-primary container-fluid">
-            <h1>{{model.game.gameName}}</h1>
+            <h1 id="game-name">{{model.game.gameName}}</h1>
             <img ng-src="{{model.game.gameCover}}" id="gameImage"/>
 
             <hr/>
@@ -40,10 +40,16 @@
             <div class="panel-heading">Details</div>
             <div class="panel-body">
 
-                <p>{{model.game.gameDescription}}</p>
-                <h3 ng-show="model.game.gameGenres">Genres</h3>
-                <p ng-show="model.game.gameGenres">{{model.game.gameGenres}}</p>
-                <h4 ng-show="model.game.website" ng-href="{{model.game.website}}">More info</h4>
+                <p id="game-descript">{{model.game.gameDescription}}</p>
+                <p ng-show="model.game.gameGenres"><strong>Genres: </strong>{{model.game.gameGenres}}</p>
+                <p ng-show="model.game.gameDevelopers"><strong>Developers: </strong>{{model.game.gameDevelopers}}</p>
+                <p ng-show="model.game.gamePublishers"><strong>Publishers: </strong>{{model.game.gamePublishers}}</p>
+                <p ng-show="model.game.gameReleases"><strong>Release Date: </strong>{{model.game.gameReleases}}</p>
+                <a ng-show="model.game.website"
+                   ng-href="{{model.game.website}}"
+                   class="bold">
+                    More info
+                </a>
 
                 <hr/>
 
@@ -63,7 +69,7 @@
                                    ng-model="model.comment"
                                    class="form-control text-input">
                             <span class="input-group-btn comment-btn">
-                            <a class="btn btn-primary"
+                            <a class="btn btn-primary comment-btn"
                                ng-click="model.addComment(model.comment)">
                                 Submit!
                             </a>

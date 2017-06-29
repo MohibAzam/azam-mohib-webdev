@@ -5,6 +5,10 @@
     <div class="container-fluid">
         <div class="panel panel-default">
             <h1 class="list-header">{{model.user.username}}'s Game List</h1>
+            <p ng-show="model.showPersonal"
+               class="list-header">Use this to list the games you own or have played!</p>
+            <p ng-hide="model.showPersonal"
+               class="list-header">{{model.user.username}}'s collection of games!</p>
 
             <a ng-show="model.showPersonal"
                ng-click="model.clearGameList()"
@@ -28,6 +32,15 @@
                            class="btn btn-warning">Remove</a>
                         <p ng-show="game.notes">{{game.notes}}</p>
                         <p ng-show="game.rating"><strong>Rating: </strong>{{game.rating}}/10</p>
+                        <p ng-if="game.playingStatus">
+                            <strong>Playing Status: </strong>{{game.playingStatus}}
+                        </p>
+                        <p ng-if="game.completionStatus">
+                            <strong>Completion Status: </strong>{{game.completionStatus}}
+                        </p>
+                        <p ng-if="game.ownershipStatus">
+                            <strong>Ownership Status: </strong>{{game.ownershipStatus}}
+                        </p>
                     </li>
                 </ul>
             </div>

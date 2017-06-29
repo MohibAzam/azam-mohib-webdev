@@ -8,6 +8,8 @@
     <div class="container-fluid">
         <div class="panel panel-default">
             <h1 class="list-header">{{model.user.username}}'s Wishlist</h1>
+            <p ng-show="model.showPersonal"
+               class="list-header">Use this to list the games you want to play or own!</p>
 
             <a ng-show="model.showPersonal"
                ng-click="model.deleteWishList()"
