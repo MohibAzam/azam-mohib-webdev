@@ -105,6 +105,14 @@
                     currentUser: checkAdmin
                 }
             })
+            .when('/admin/user/new', {
+                templateUrl: 'views/admin/templates/admin-user/admin-user-new.view.client.html',
+                controller: 'AdminUserNewController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
             .when('/admin/user/:userId', {
                 templateUrl: 'views/admin/templates/admin-user/admin-user-edit.view.client.html',
                 controller: 'AdminUserEditController',
@@ -121,6 +129,14 @@
                     currentUser: checkAdmin
                 }
             })
+            .when('/admin/game/new', {
+                templateUrl: 'views/admin/templates/admin-game/admin-game-new.view.client.html',
+                controller: 'AdminGameNewController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
             .when('/admin/game/:gameId', {
                 templateUrl: 'views/admin/templates/admin-game/admin-game-edit.view.client.html',
                 controller: 'AdminGameEditController',
@@ -132,6 +148,14 @@
             .when('/admin/usergame', {
                 templateUrl: 'views/admin/templates/admin-usergame/admin-usergame.view.client.html',
                 controller: 'AdminUsergameController',
+                controllerAs: 'model',
+                resolve: {
+                    currentUser: checkAdmin
+                }
+            })
+            .when('/admin/usergame/new', {
+                templateUrl: 'views/admin/templates/admin-usergame/admin-usergame-new.view.client.html',
+                controller: 'AdminUsergameNewController',
                 controllerAs: 'model',
                 resolve: {
                     currentUser: checkAdmin

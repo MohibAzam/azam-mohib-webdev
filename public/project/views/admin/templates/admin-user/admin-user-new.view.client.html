@@ -1,0 +1,64 @@
+<div>
+
+    <div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
+    <div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
+
+    <div class="container-fluid">
+        <div ng-show="model.message"
+             class="alert alert-success">
+            {{model.message}}
+        </div>
+
+        <div class="container-fluid">
+            <div class="panel panel-primary container-fluid">
+                <h1>Create User</h1>
+                <label>Username</label>
+                <input ng-model="model.newUser.username"
+                       class="form-control"/>
+
+                <label>Password</label>
+                <input ng-model="model.newUser.password"
+                       class="form-control"
+                       type="password"/>
+
+                <label>Name</label>
+                <input ng-model="model.newUser.name"
+                       class="form-control"/>
+
+                <label>Email</label>
+                <input ng-model="model.newUser.email"
+                       class="form-control"/>
+
+                <label>Description</label>
+                <input ng-model="model.newUser.description"
+                       class="form-control"/>
+
+                <label>Age</label>
+                <input ng-model="model.newUser.age"
+                       class="form-control"/>
+
+                <label>Gender</label>
+                <select class="form-control"
+                        ng-model="model.newUser.gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+
+                <label>Role (Be careful with this setting!)</label>
+                <select class="form-control"
+                        ng-model="model.newUser.role">
+                    <option value="USER">User</option>
+                    <option value="ADMIN">Admin</option>
+                </select>
+
+                <div class="edit-btns">
+                    <a ng-click="model.createUser(model.newUser)" class="btn btn-block btn-warning">Create User</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div ng-include="'views/common/mobile-footer.view.client.html'"></div>
+
+</div>

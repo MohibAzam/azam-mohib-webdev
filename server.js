@@ -9,7 +9,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cookieParser());
-app.use(session({ secret: "Session from MioDB" }));
+if (process.env.MLAB_USERNAME) {
+    app.use(session({ secret: process.env.EXPRESS_SESSION }));
+}
+
+else {
+    app.use(session({ secret: "Session from MioDB" }));
+}
 
 app.use(passport.initialize());
 

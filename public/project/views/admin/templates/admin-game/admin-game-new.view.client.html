@@ -1,0 +1,68 @@
+<div>
+
+    <div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
+    <div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
+
+    <div class="container-fluid">
+        <div ng-show="model.message"
+             class="alert alert-success">
+            {{model.message}}
+        </div>
+
+        <div class="container-fluid">
+            <div class="panel panel-primary container-fluid">
+                <h1>Create Game</h1>
+                <label>Name</label>
+                <input ng-model="model.game.gameName"
+                       class="form-control"/>
+
+                <label>Cover</label>
+                <input ng-model="model.game.gameCover"
+                       class="form-control"/>
+
+                <label>ID (to avoid clashing, use a 6 digit number)</label>
+                <input ng-model="model.game._id"
+                       class="form-control"/>
+
+                <label>Genres</label>
+                <input ng-model="model.game.gameGenres"
+                       class="form-control"/>
+
+                <label>Description</label>
+                <input ng-model="model.game.gameDescription"
+                       class="form-control"/>
+
+                <label>Developers</label>
+                <input ng-model="model.game.gameDevelopers"
+                       class="form-control"/>
+
+                <label>Publishers</label>
+                <input ng-model="model.game.gamePublishers"
+                       class="form-control"/>
+
+                <label>Releases</label>
+                <input ng-model="model.game.gameReleases"
+                       class="form-control"/>
+
+                <label>ESRB rating</label>
+                <select class="form-control"
+                        ng-model="model.game.gameEsrb">
+                    <option value="EC">EC</option>
+                    <option value="E">E</option>
+                    <option value="E10+">E10+</option>
+                    <option value="T">T</option>
+                    <option value="M">M</option>
+                    <option value="AO">AO</option>
+                </select>
+
+                <div class="edit-btns">
+                    <a ng-click="model.createGame(model.game)" class="btn btn-block btn-primary">Create Game</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div ng-include="'views/common/mobile-footer.view.client.html'"></div>
+
+</div>
