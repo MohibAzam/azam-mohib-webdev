@@ -13,7 +13,7 @@ module.exports = function (app) {
         var facebookConfig = {
             clientID     : process.env.FACEBOOK_ID,
             clientSecret : process.env.FACEBOOK_SECRET,
-            callbackURL  : 'http://localhost:3000/auth/facebook/callback'
+            callbackURL  : 'http://azam-mohib-webdev.herokuapp.com/auth/facebook/callback'
         };
     }
     else {
