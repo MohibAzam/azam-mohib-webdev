@@ -49,22 +49,6 @@
                     currentUser: checkLoggedIn
                 }
             })
-            .when('/following/:userId', {
-                templateUrl: 'views/user/templates/following-list.view.client.html',
-                controller: 'followingController',
-                controllerAs: 'model',
-                resolve: {
-                    currentUser: checkLoggedIn
-                }
-            })
-            .when('/search/user', {
-                templateUrl: 'views/user/templates/user-search.view.client.html',
-                controller: 'UserSearchController',
-                controllerAs: 'model',
-                resolve: {
-                    currentUser: checkLoggedIn
-                }
-            })
             .when('/search', {
                 templateUrl: 'views/games-search/templates/search.view.client.html',
                 controller: 'searchController',

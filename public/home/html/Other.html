@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Bootstrap -->
+    <link href="../../project/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../extra/styles.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container-fluid">
+        <h1>Mohib Azam's Home Page</h1>
+
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="../../index.html">Home</a></li>
+            <li role="presentation"><a href="./assignment.html">Assignment</a></li>
+            <li role="presentation"><a href="./Project.html">Project</a></li>
+            <li role="presentation" class="active"><a href="./Other.html">Other Work</a></li>
+        </ul>
+
+        <div class="container-fluid">
+            <h2>Previous works</h2>
+            <h3>Some other coding projects I've worked on in the past!</h3>
+
+            <hr/>
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="other-header">The Tower (text-based Role-Playing Game)</h3></div>
+                <div class="panel-body">
+                    <strong>Collaborators: </strong>None<br>
+                    <strong>Time Worked on: </strong>Summer 2015<br>
+                    <strong>Language: </strong>Java<br>
+                    <hr/>
+                    <p>
+                        My very first coding project made at a summer camp! At the time, I was only familiar with the bare
+                        basics of coding and wasn't really sure how I could apply it to making a tangible program. This
+                        all changed, where I realized how much easier it was to understand the basic aspects of prgramming
+                        when it was taught in the context of a game. So, I ultimately found myself developing
+                        a small role-playing game that could be played solely through console outputs, utilizing
+                        basic classes.
+                    </p>
+                    <p>
+                        The goal of the game is to collect swords and proceed up a tower. The game starts by allowing
+                        the player to pick from a few different swords to start with. After this, the player begins
+                        by battling the first monster. Much like standard RPGs, the player and the monster each have
+                        Attack, Defense, and HP stats. They take
+                        turns attacking one another until one of them reached 0 HP. Players have a basic attack they can
+                        use, as well as a special attack for each sword that they have collected, which each have
+                        their own unique effects, ranging from hitting multiple times, to modifying the player or
+                        monster's stats, to dealing increased damage at the cost of the player's HP. If the player ever
+                        dies, the game ends, but if the monster dies, the player levels up, increasing their stats.
+                    </p>
+                    <p>
+                        After battle, there is a random chance that the enemy will give the player a new sword to use,
+                        and then the next battle commences. The stats of the monsters scale with the player's own level.
+                        There are several different types of monsters with various stat differences that the player
+                        can randomly encounter. Once the player has finally obtained all the swords, they move on
+                        to fight the final monster of the game, who has much higher base stats compared to all of the
+                        other monsters (its final stats are also improved based on the player's level ups). Beating
+                        this monster then wins the player the game.
+                    </p>
+                    <p>
+                        A download isn't currently available due to losing track of the files. This will be rectified
+                        as soon as possible.
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="other-header">Centipede</h3></div>
+                <div class="panel-body">
+                    <strong>Collaborators: </strong>Abigail Emrath, Zachary Bauer<br>
+                    <strong>Time Worked On: </strong>February-March 2016<br>
+                    <strong>Language: </strong>ISL (dialect of Racket, which itself is a dialect of Lisp)<br>
+                    <hr/>
+                    <p>
+                        For my first true Computer Science class, we used a Lisp-related language to program a miniature version
+                        of the game <a href="https://en.wikipedia.org/wiki/Centipede_(video_game)">Centipede</a>. Our version
+                        largely removes most of objects from the game in an effort to keep things more simple and focused
+                        (mushrooms, the centipedes, and the player where all that were involved). While it certainly was a struggle
+                        trying to get it all to work, it eventually panned out and we were successful in roughly recreating the game,
+                        as well as adding features such as a basic scoring system and vertical movement.
+                    </p>
+                    <p>
+                        Due to concerns of cheating, I am unable to have a public link to this project. If you are interested in
+                        seeing it, please contact me at mohibazam1@gmail.com.
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="other-header">AutoGP (automatic proofreading/markup tool)</h3></div>
+                <div class="panel-body">
+                    <strong>Collaborators: </strong>None (though some special thanks are mentioned in the README<br>
+                    <strong>Time Worked On: </strong>January-now (on and off, still heavily in development)<br>
+                    <strong>Language: </strong>HTML and Javascript (no framework)<br>
+                    <a class="btn btn-success other-btn" href="../extra/AutoGP.zip" download>Download Latest Version</a>
+                    <a class="btn btn-primary other-btn" href="https://github.com/Veiyr/AutoGP">(outdated) Github Repository</a>
+                    <a class="btn btn-warning other-btn" href="https://veiyr.github.io/AutoGP/">(outdated) Hosted Version</a>
+                    <hr/>
+                    <p>
+                        As a bit of a side hobby, I do proofreading for articles on a gaming-related site. I eventually
+                        realized, however, that a lot of the changes that our editing team needed to do were very
+                        simple changes. As a result, I realized that I could potentially create an application that could
+                        automatically make the desired changes. And so, the idea of AutoGP was born.
+                    </p>
+                    <p>
+                        The premise is simple: place some text within the leftside textbox, then press the button.
+                        The application will automatically mark up some corrections that need to be made, doing so
+                        by outputting the original text with BBCode (a markup language used by forums that we use
+                        for our proofreading) in the areas where changes need to be made.
+                        Currently, the application is only tuned to detect a few terms that have been hardcoded
+                        into the Javascript file itself. Try inputting "my luke is fast." to see what a potential output.
+                    </p>
+                    <p>
+                        Keep in mind that, at the time of starting this project, I was unfamiliar with both Git and
+                        Web Development as a whole. As a result, my means of version control and overall programming
+                        methodology were questionable to say the least. I would be interested in revisiting this project,
+                        however, if I do, I'd like to start it over from scratch and utilize and web framework instead
+                        to allow for a tighter system. In particular, I would use a Mongo Database to store the
+                        list of changes that I would want to make to a body of text.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>

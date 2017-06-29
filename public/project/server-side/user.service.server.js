@@ -7,44 +7,7 @@ module.exports = function (app) {
 
     var passport = require('passport');
     var LocalStrategy = require('passport-local');
-    //var SteamStrategy = require('passport-steam');
-    //var TwitterStrategy = require('passport-twitter');
     var FacebookStrategy = require('passport-facebook');
-
-    /*
-    var steamConfig = {
-        //TODO: Configure these settings
-        returnURL: 'http://localhost:3000/auth/steam/return',
-        realm: 'http://localhost:3000/',
-        apiKey: '7DFDA0AA6FDC41084DE0A9CDCE221FAC'
-    };
-    passport.use(new SteamStrategy(steamConfig, steamStrategy));
-
-    //TODO: Finish this strategy
-    function steamStrategy(identifier, profile, done) {
-        userModel.findUserByOpenId({ openId: identifier }, function (err, user) {
-            return done(err, user);
-        });
-    }
-    */
-
-    /*
-
-    var twitterConfig = {
-        consumerKey: TWITTER_CONSUMER_KEY,
-        consumerSecret: TWITTER_CONSUMER_SECRET,
-        callbackURL: "http://localhost:3000/auth/twitter/callback"
-    };
-
-    passport.use(new TwitterStrategy(twitterConfig, twitterStrategy));
-
-    function twitterStrategy (token, tokenSecret, profile, cb) {
-        User.findOrCreate({ username: profile.username }, function (err, user) {
-            return cb(err, user);
-        })
-    }
-
-    */
 
     var facebookConfig = {
         clientID     : 239462213223929,
@@ -165,37 +128,6 @@ module.exports = function (app) {
             successRedirect: '/project/#!/search',
             failureRedirect: 'project/#!/login'
         }));
-
-    /*
-    app.get('/auth/twitter',
-        passport.authenticate('twitter'));
-
-    app.get('/auth/twitter/callback',
-        passport.authenticate('twitter', { failureRedirect: '/login' }),
-        function(req, res) {
-            // Successful authentication, redirect home.
-            res.redirect('/');
-        });
-
-    app.get('/auth/steam',
-        passport.authenticate('steam'),
-        function(req, res) {
-            // The request will be redirected to Steam for authentication, so
-            // this function will not be called.
-        });
-
-    app.get('/auth/steam/return',
-        //TODO: Configure these settings
-        passport.authenticate('steam', {
-            successRedirect: '/profile',
-            failureRedirect: '/login'
-        }),
-        function(req, res) {
-            // Successful authentication, redirect home.
-            res.redirect('/profile');
-        });
-
-    */
 
     function createUser(req, res) {
         var user = req.body;

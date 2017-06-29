@@ -11,7 +11,7 @@ body {
     margin-bottom: 60px;
     font-size: 18px;
     font-family: Calibri;
-    background-image: url("circuit_board_pattern-213.jpg");
+    background-image: url("background.jpg");
 }
 
 .header-textbox {
@@ -86,6 +86,10 @@ body {
 .panel-default {
     margin: auto;
     margin-bottom: 20px;
+}
+
+#bottom-text {
+    font-size: 18px;
 }
 
 #login-header {

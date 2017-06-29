@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Bootstrap -->
+    <link href="../../project/vendor/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../extra/styles.css" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="container-fluid">
+        <h1>Mohib Azam's Home Page</h1>
+
+        <ul class="nav nav-tabs">
+            <li role="presentation"><a href="../../index.html">Home</a></li>
+            <li role="presentation"><a href="./assignment.html">Assignment</a></li>
+            <li role="presentation" class="active"><a href="./Project.html">Project</a></li>
+            <li role="presentation"><a href="./Other.html">Other Work</a></li>
+        </ul>
+
+        <div class="container-fluid">
+            <h2>MioDB</h2>
+            <h3>An application for gamers to allow them to manage their own game collections</h3>
+
+            <a class="btn btn-success"
+               href="../../project/#!">Link to the Project</a>
+
+            <a class="btn btn-primary"
+               href="https://github.com/MohibAzam/azam-mohib-webdev">Link to the Github Repository</a>
+
+            <a class="btn btn-info"
+               href="https://github.com/MohibAzam/azam-mohib-webdev/wiki">Link to the Wiki Page</a>
+
+            <hr/>
+
+            <p>
+                The idea of this project really comes from a website called backloggery.com. Much like this application,
+                backloggery allowed users to manage their game libraries through storing them in their own list and
+                managing the progress they've made on them individually. Overall, it is a very solid and polished
+                website. However, in terms of basic design, the site has some areas that could use some improvement.
+                Perhaps the biggest of all is the fact that, despite revolving around managing game libraries, the website
+                lacks an actual database or API to get game data from: All games that are going into your collection
+                must be inputted manually. This also prevents you from being able to learn more about the game
+                or socialize about it from within the website itself (unlike websites like GameFAQs). In fact, the website
+                was overall rather lacking in terms of the ability to allow users to socialize with one another.
+            </p>
+            <p>
+                Thus, I decided that my project, MioDB (named after Mio Library, a location from one of my childhood
+                video games), would improve on this regard, by implementing an API to allow users to get game data
+                more automatically, make the website more mobile friendly, and allow for improved social interactions
+                among users. While I'm not fully satisfied enough with the project to say I'd be willing to launch it,
+                it certainly accomplishes the basic tasks I wanted it to do. It features a well-structed MEAN stack
+                with Passport for improved security and session handling. Users can login and register through the
+                website or by using their Facebook account, in which case the application will set up certain
+                aspects of the user automatically.
+            </p>
+            <p>
+                Once logged in, users can search for games and see more detailed info about them. On these detail
+                pages, they can write comments or add them to their wishlists or gamelists. These two lists can be
+                viewed from a user's profile. A wishlist is a simple list of just games that the user wants,
+                sort of like bookmarking pages in a browser. The gamelist, however, it meant to represent a user's
+                own collection of games. From the gamelist, the user can edit the games on it to mark the progress
+                that they have made on the games, whether or not they're playing the game write now, any notes
+                they have to say about the game, amongst other things. These changes are then viewable from the gamelist.
+                Each user's profile also has a comment section that they or other users can post. Other users can be
+                followed, giving an easy list of users to access, and their wishlist and gamelists can also be viewed.
+            </p>
+            <p>
+                In terms of room for improvement, I feel the styling could've used some work. I mentioned in my github
+                wiki that I was rather strapped for time when working on this project, and I feel like the overall
+                styling was the weak point. It certainly gives off a clean look, thanks to being inspired by the designs of
+                several web apps I frequently use (namely Speedrun.com, the mobile apps for Facebook and Twitter, and any
+                forum that uses Xenforo). However, I feel it doesn't give off enough of a unique or eye-catching vibe,
+                but that's just my personal opinion. I also feel like I could've tightened the relationships between
+                objects or even expanded upon the data shown in the game pages. Overall though, I'm still happy with
+                what I've produced. I wouldn't be opposed to launching it on my own at some point, seeing as I'm not
+                really aware of any other site that does something similar...
+            </p>
+        </div>
+    </div>
+
+
+</body>
+</html>

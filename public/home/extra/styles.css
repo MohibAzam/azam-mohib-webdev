@@ -1,0 +1,22 @@
+.bold {
+    font-weight: bold;
+}
+
+body {
+    font-size: 16px;
+    font-family: "Tahoma";
+}
+
+p {
+    margin-bottom: 15px;
+    font-family: Arial;
+}
+
+.other-header {
+    margin: 10px;
+    margin-left: 5px;
+}
+
+.other-btn {
+    margin-top: 10px;
+}
