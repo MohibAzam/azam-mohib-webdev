@@ -29,34 +29,38 @@
             userGameService
                 .findUserGameByGameId(gameId)
                 .then(function (games) {
-                    vm.numListed = games.length;
-                    vm.numBeaten = 0;
-                    vm.ratings = 0;
-                    vm.ratingSum = 0;
-                    for (var g in games) {
-                        var tempUg = games[g];
-                        if (tempUg.completionStatus &&
-                            (tempUg.completionStatus === 'Beaten' ||
-                            tempUg.completionStatus === 'Completed' ||
-                            tempUg.completionStatus === 'Mastered')) {
-                            vm.numBeaten++;
-                        }
-                        if (tempUg.rating) {
-                            vm.ratings++;
-                            vm.ratingSum += Number(tempUg.rating);
-                            console.log(vm.ratingSum);
-                        }
-                    }
-                    if (vm.ratings > 0) {
-                        var quotient = vm.ratingSum / vm.ratings;
-                        vm.finalScore = vm.ratingSum / vm.ratings;
-                        vm.finalScore = vm.finalScore.toString().substring(0, 4);
-                        console.log(vm.finalScore);
-                    }
-                    else {
-                        vm.finalScore = "N/A";
-                    }
+                    createUserStats(games);
                 });
+        }
+
+        function createUserStats(games) {
+            vm.numListed = games.length;
+            vm.numBeaten = 0;
+            vm.ratings = 0;
+            vm.ratingSum = 0;
+            for (var g in games) {
+                var tempUg = games[g];
+                if (tempUg.completionStatus &&
+                    (tempUg.completionStatus === 'Beaten' ||
+                    tempUg.completionStatus === 'Completed' ||
+                    tempUg.completionStatus === 'Mastered')) {
+                    vm.numBeaten++;
+                }
+                if (tempUg.rating) {
+                    vm.ratings++;
+                    vm.ratingSum += Number(tempUg.rating);
+                    console.log(vm.ratingSum);
+                }
+            }
+            if (vm.ratings > 0) {
+                var quotient = vm.ratingSum / vm.ratings;
+                vm.finalScore = vm.ratingSum / vm.ratings;
+                vm.finalScore = vm.finalScore.toString().substring(0, 4);
+                console.log(vm.finalScore);
+            }
+            else {
+                vm.finalScore = "N/A";
+            }
         }
 
         function checkIfOnWishlist() {
@@ -218,13 +222,14 @@
                 time: new Date().toUTCString(),
                 message: comment
             };
+
             newGame.comments.reverse();
             newGame.comments.push(newComment);
             newGame.comments.reverse();
+
             gameService
                 .updateGame(gameId, newGame)
                 .then(function (response) {
-                    //TODO: Set the url
                     $location.url('/game/' + gameId);
                     console.log(vm.game);
                 })

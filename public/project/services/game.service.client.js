@@ -13,7 +13,6 @@
             createGame: createGame,
             findGameById: findGameById,
             findAllGames: findAllGames,
-            //findGameByApiId: findGameByApiId,
             updateGame: updateGame,
             deleteGame: deleteGame
         };
@@ -45,16 +44,6 @@
                     return response.data;
                 });
         }
-
-        /*
-        function findGameByApiId(apiId) {
-            var url = '/api/mioDB/game?apiId=' + apiId;
-            return $http.get(url)
-                .then(function (response) {
-                    return response.data;
-                });
-        }
-        */
 
         function updateGame(gameId, game) {
             var url = '/api/mioDB/game/' + gameId;

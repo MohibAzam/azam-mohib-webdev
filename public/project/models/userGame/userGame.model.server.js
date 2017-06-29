@@ -13,7 +13,6 @@ userGameModel.updateUserGame = updateUserGame;
 userGameModel.deleteUserGame = deleteUserGame;
 userGameModel.deleteUserGamesForUser = deleteUserGamesForUser;
 
-
 module.exports = userGameModel;
 
 function createUserGame(userId, userGame) {

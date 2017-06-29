@@ -51,7 +51,6 @@
                 genreString = genreString.slice(0, genreString.length - 2);
                 console.log(genreString);
                 model.genreString = genreString;
-                //model.game.gameGenres = genreString;
                 var game = {
                     _id: model.game.id,
                     gameName: model.game.name,

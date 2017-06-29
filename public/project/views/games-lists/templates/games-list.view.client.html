@@ -22,30 +22,45 @@
             <hr/>
 
             <div class="container fluid">
+
                 <ul class="list-group">
                     <li ng-repeat="game in model.games"
                         class="list-group-item result"
                         ng-click="model.redirectTo(game.gameId)">
+
                         <img ng-src="{{game.gameCover}}"
                              href="#!/game/{{game.gameId}}"/>
+
                         <a href="#!/game/{{game.gameId}}">{{game.gameName}}</a>
+
                         <a ng-show="model.showPersonal"
                            href="#!/profile/{{model.userId}}/gamelist/{{game._id}}"
-                           class="btn btn-primary">Edit</a>
+                           class="btn btn-primary">
+                            Edit
+                        </a>
+
                         <a ng-show="model.showPersonal"
                            ng-click="model.deleteUserGame(game)"
-                           class="btn btn-warning">Remove</a>
+                           class="btn btn-warning">
+                            Remove
+                        </a>
+
                         <p ng-show="game.notes">{{game.notes}}</p>
+
                         <p ng-show="game.rating"><strong>Rating: </strong>{{game.rating}}/10</p>
+
                         <p ng-if="game.playingStatus">
                             <strong>Playing Status: </strong>{{game.playingStatus}}
                         </p>
+
                         <p ng-if="game.completionStatus">
                             <strong>Completion Status: </strong>{{game.completionStatus}}
                         </p>
+
                         <p ng-if="game.ownershipStatus">
                             <strong>Ownership Status: </strong>{{game.ownershipStatus}}
                         </p>
+
                     </li>
                 </ul>
             </div>

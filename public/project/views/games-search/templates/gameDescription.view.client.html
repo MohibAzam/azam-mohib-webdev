@@ -10,6 +10,7 @@
 
     <div ng-show="model.game" class="col-sm-4 col-md-4 col-lg-4">
         <div class="panel panel-primary container-fluid">
+
             <h1 id="game-name">{{model.game.gameName}}</h1>
             <img ng-src="{{model.game.gameCover}}" id="gameImage"/>
 
@@ -32,6 +33,7 @@
                    ng-show="model.onWishlist"
                    ng-click="model.removeFromWishList()">Remove from Wishlist</a>
             </div>
+
         </div>
     </div>
 
@@ -40,11 +42,22 @@
             <div class="panel-heading">Details</div>
             <div class="panel-body">
 
-                <p id="game-descript">{{model.game.gameDescription}}</p>
-                <p ng-show="model.game.gameGenres"><strong>Genres: </strong>{{model.game.gameGenres}}</p>
-                <p ng-show="model.game.gameDevelopers"><strong>Developers: </strong>{{model.game.gameDevelopers}}</p>
-                <p ng-show="model.game.gamePublishers"><strong>Publishers: </strong>{{model.game.gamePublishers}}</p>
-                <p ng-show="model.game.gameReleases"><strong>Release Date: </strong>{{model.game.gameReleases}}</p>
+                <p id="game-descript">
+                    {{model.game.gameDescription}}
+                </p>
+                <p ng-show="model.game.gameGenres">
+                    <strong>Genres: </strong>{{model.game.gameGenres}}
+                </p>
+                <p ng-show="model.game.gameDevelopers">
+                    <strong>Developers: </strong>{{model.game.gameDevelopers}}
+                </p>
+                <p ng-show="model.game.gamePublishers">
+                    <strong>Publishers: </strong>{{model.game.gamePublishers}}
+                </p>
+                <p ng-show="model.game.gameReleases">
+                    <strong>Release Date: </strong>{{model.game.gameReleases}}
+                </p>
+
                 <a ng-show="model.game.website"
                    ng-href="{{model.game.website}}"
                    class="bold">
@@ -68,11 +81,6 @@
                     <h2>Game Comments</h2>
 
                     <div ng-show="model.user._id">
-                        <!--<textarea rows="3"
-                                  placeholder="Write a Comment..."
-                                  ng-model="model.comment"></textarea>
-                            <a class="btn btn-primary"
-                               ng-click="model.addComment(model.comment)">Submit comment</a>-->
 
                         <div class="input-group">
                             <input type="text"

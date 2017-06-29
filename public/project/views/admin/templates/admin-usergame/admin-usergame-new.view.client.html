@@ -12,11 +12,12 @@
         <div class="container-fluid">
             <div class="panel panel-primary container-fluid">
                 <h1>Create UserGame</h1>
+                <p>Pick the blank option to avoid a selection</p>
                 <label>Name</label>
                 <input ng-model="model.userGame.gameName"
                        class="form-control"/>
 
-                <label>Cover</label>
+                <label>Image URL</label>
                 <input ng-model="model.userGame.gameCover"
                        class="form-control"/>
 
@@ -24,7 +25,7 @@
                 <input ng-model="model.userGame.gameId"
                        class="form-control"/>
 
-                <label>Associated User</label>
+                <label>UserID (You can get it from the edit page for each user)</label>
                 <input ng-model="model.userGame.user"
                        class="form-control"/>
 
@@ -37,6 +38,7 @@
                     <option value='Extras'>Doing Extras</option>
                     <option value='Competitive'>Competitive/Multiplayer</option>
                     <option value='Other'>Other</option>
+                    <option></option>
                 </select>
 
                 <label>Ownership Status</label>
@@ -49,6 +51,7 @@
                     <option value='Borrowed'>Borrowed</option>
                     <option value='Lost'>Lost</option>
                     <option value='Other'>Other</option>
+                    <option></option>
                 </select>
 
                 <label>Completion Status</label>
@@ -60,6 +63,7 @@
                     <option value='Completed'>Completed</option>
                     <option value='Mastered'>Mastered</option>
                     <option value='Other'>Other</option>
+                    <option></option>
                 </select>
 
                 <label>Rating</label>
@@ -77,6 +81,7 @@
                     <option value=2>2</option>
                     <option value=1>1</option>
                     <option value=0>0</option>
+                    <option></option>
                 </select>
 
                 <label>Notes</label>

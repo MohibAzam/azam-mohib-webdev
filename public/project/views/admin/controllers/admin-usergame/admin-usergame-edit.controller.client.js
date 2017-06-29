@@ -42,7 +42,5 @@
                     $location.url('/admin/usergame');
                 });
         }
-
-
     }
 })();

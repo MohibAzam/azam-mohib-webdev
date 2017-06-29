@@ -6,9 +6,13 @@
 
     <div class="container-fluid">
         <div class="panel panel-default">
+
             <h1 id="search-header">Search for a game!</h1>
+
             <p>(Database and API provided by the
-                <a href="https://igdb.github.io/api/about/welcome/">Internet Game Database</a>)</p>
+                <a href="https://igdb.github.io/api/about/welcome/">Internet Game Database</a>)
+            </p>
+
             <div class="input-group">
                 <input ng-model="model.gameName"
                        id="search-game"
@@ -20,6 +24,7 @@
                        id="get-games">Go!</a>
                 </span>
             </div>
+
             <div ng-show="model.games">
                 <hr/>
                 <div class="container-fluid"><h2>Results</h2></div>
@@ -33,6 +38,7 @@
                     </li>
                 </ul>
             </div>
+
         </div>
     </div>
 

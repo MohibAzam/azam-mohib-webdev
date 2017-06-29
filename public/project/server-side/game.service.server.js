@@ -12,10 +12,8 @@ module.exports = function (app) {
     app.post('/api/mioDB/game', createGame);
     app.get('/api/mioDB/game/:gameId', findGameById);
     app.get('/api/mioDB/admin/game', isAdmin, findAllGames);
-    //app.get('/api/mioDB/game', findGameByApiId);
     app.put('/api/mioDB/game/:gameId', updateGame);
     app.delete('/api/mioDB/game/:gameId', isAdmin, deleteGame);
-    //app.put('/api/mioDB/game/:gameId/comment/:userId', addComment);
 
     function createGame(req, res) {
         var game = req.body;
@@ -53,17 +51,6 @@ module.exports = function (app) {
         }
     }
 
-    /*
-    function findGameByApiId(req, res) {
-        var apiId = req.query['apiId'];
-        gameModel
-            .findGameByApiId(apiId)
-            .then(function (game) {
-                res.json(game);
-            });
-    }
-    */
-
     function updateGame(req, res) {
         var apiId = req.params['gameId'];
         var game = req.body;
@@ -82,18 +69,5 @@ module.exports = function (app) {
                 res.sendStatus(200);
             });
     }
-
-    /*
-    function addComment() {
-        var gameId = req.params['gameId'];
-        var userId = req.params['userId'];
-        var message = req.body;
-        gameModel
-            .addComment(gameId, userId, message)
-            .then(function (game) {
-                res.sendStatus(200);
-            });
-    }
-    */
 
 }

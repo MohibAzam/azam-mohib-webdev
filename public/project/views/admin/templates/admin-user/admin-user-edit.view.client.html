@@ -13,7 +13,7 @@
             <div class="panel panel-primary container-fluid">
                 <h1>Edit User</h1>
 
-                <label>Id</label>
+                <label>User Id</label>
                 <input ng-model="model.user._id"
                        class="form-control"
                        readonly>
@@ -34,11 +34,12 @@
                 <input ng-model="model.user.age"
                        class="form-control"/>
 
-                <label>Gender</label>
+                <label>Gender (pick the blank to avoid a response)</label>
                 <select class="form-control"
                         ng-model="model.user.gender">
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
+                    <option></option>
                 </select>
 
                 <label>Role (Be careful with this setting!)</label>
@@ -49,7 +50,7 @@
                 </select>
 
                 <div class="edit-btns">
-                    <a ng-click="model.updateUser(model.user)" class="btn btn-block btn-warning">Update User</a>
+                    <a ng-click="model.updateUser(model.user)" class="btn btn-block btn-success">Update User</a>
                     <a ng-click="model.deleteUser()" class="btn btn-block btn-danger">Delete User</a>
                 </div>
 

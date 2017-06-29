@@ -23,6 +23,5 @@
                     $location.url('/admin/game')
                 });
         }
-
     }
 })();

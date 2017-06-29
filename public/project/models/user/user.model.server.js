@@ -26,12 +26,6 @@ function findUserById(userId) {
     return userModel.findById(userId);
 }
 
-/*
-function findUserByOpenId(openId) {
-    return userModel.findOne({'steam.openID': openId});
-}
-*/
-
 function findUserByFacebookId(facebookId) {
     return userModel.findOne({'facebook.id': facebookId});
 }

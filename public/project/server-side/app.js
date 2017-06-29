@@ -22,9 +22,6 @@ module.exports = function(app) {
     var gameServApp = require('./game.service.server');
     gameServApp(app);
 
-    //app.get('/websites', sendWebsites);
-    //app.get('/goodbye', sayHello);
-
     var passport = require('passport');
     app.use(passport.initialize());
     app.use(passport.session());

@@ -22,7 +22,5 @@
                     $location.url('/admin/user');
                 });
         }
-
-
     }
 })();

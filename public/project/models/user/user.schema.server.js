@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 
-//TODO: Finish the Steam Login info
 var userSchema = mongoose.Schema({
     username: {type: String, require: true},
     password: {type: String, require: true},

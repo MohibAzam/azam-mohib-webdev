@@ -118,7 +118,6 @@
                 .then(function (response) {
                     if (userId === currentUser._id) {
                         vm.message = "You've unfollowed " + username;
-                        $location.url('/profile/' + currentUser._id);
                     }
                     else {
                         vm.following = false;

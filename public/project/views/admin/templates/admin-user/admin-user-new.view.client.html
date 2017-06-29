@@ -37,11 +37,12 @@
                 <input ng-model="model.newUser.age"
                        class="form-control"/>
 
-                <label>Gender</label>
+                <label>Gender (pick the blank to not respond)</label>
                 <select class="form-control"
                         ng-model="model.newUser.gender">
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
+                    <option></option>
                 </select>
 
                 <label>Role (Be careful with this setting!)</label>
@@ -52,7 +53,7 @@
                 </select>
 
                 <div class="edit-btns">
-                    <a ng-click="model.createUser(model.newUser)" class="btn btn-block btn-warning">Create User</a>
+                    <a ng-click="model.createUser(model.newUser)" class="btn btn-block btn-primary">Create User</a>
                 </div>
 
             </div>

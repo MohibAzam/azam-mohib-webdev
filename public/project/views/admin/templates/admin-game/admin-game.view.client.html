@@ -2,18 +2,20 @@
     <div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
     <div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
 
-
     <div class="container-fluid">
         <div ng-show="model.message"
              class="alert alert-success">
             {{model.message}}
         </div>
         <div class="panel panel-default">
+
             <h1 class="list-header">Games</h1>
+
             <p class="list-header">
                 Cached versions of the games obtained from the API,
                 used for actions specific to this site
             </p>
+
             <div class="container-fluid">
                 <a class="btn btn-success btn-block"
                    href="#!/admin/game/new">Create Game</a>
@@ -28,10 +30,9 @@
                     </li>
                 </ul>
             </div>
+
         </div>
     </div>
-
-
 
     <div ng-include="'views/common/mobile-footer.view.client.html'"></div>
 </div>

@@ -13,11 +13,6 @@ var gameSchema = mongoose.Schema({
     gamePublishers: String,
     gameReleases: String,
     gameEsrb: {type: String, enum: ['EC', 'E', 'E10+', 'T', 'M', 'AO']},
-    /*
-    gameRating: [
-        {username: String, rating: Number}
-    ],
-    */
     comments: [
         {username: String, time: String, message: String}
     ],

@@ -2,7 +2,6 @@
     <div ng-include="'views/common/mobile-navbar.view.client.html'"></div>
     <div ng-include="'views/common/desktop-navbar.view.client.html'"></div>
 
-
     <div class="container-fluid">
         <div class="panel panel-default">
             <div ng-show="model.message"
@@ -11,9 +10,14 @@
             </div>
             <h1 class="list-header">Users</h1>
             <p class="list-header">The users and their properties! The String next to the username is the user's ID</p>
+
             <div class="container-fluid">
+
                 <a class="btn btn-success btn-block"
-                   href="#!/admin/user/new">Create User</a>
+                   href="#!/admin/user/new">
+                    Create User
+                </a>
+
                 <ul class="list-group">
                     <li ng-repeat="user in model.users"
                         class="list-group-item result">
@@ -24,11 +28,10 @@
                            ng-click="model.deleteUser(user._id)">Delete</a>
                     </li>
                 </ul>
+
             </div>
         </div>
     </div>
-
-
 
     <div ng-include="'views/common/mobile-footer.view.client.html'"></div>
 </div>

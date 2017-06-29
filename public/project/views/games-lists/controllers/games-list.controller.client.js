@@ -76,15 +76,19 @@
             userGameService
                 .deleteUserGame(userGameId)
                 .then(function (response) {
-                    var newUser = vm.user;
-                    var ind = newUser.gamelist.indexOf(gameId);
-                    newUser.gamelist.splice(ind, 1);
-                    userService
-                        .updateUser(vm.user._id, newUser)
-                        .then(function (response) {
-                            $location.url('/profile/' + userId + '/gamelist');
-                            vm.message = userGame.gameName + " has been removed";
-                        });
+                    cleanUser();
+                });
+        }
+
+        function cleanUser() {
+            var newUser = vm.user;
+            var ind = newUser.gamelist.indexOf(gameId);
+            newUser.gamelist.splice(ind, 1);
+            userService
+                .updateUser(vm.user._id, newUser)
+                .then(function (response) {
+                    $location.url('/profile/' + userId + '/gamelist');
+                    vm.message = userGame.gameName + " has been removed";
                 });
         }
 
